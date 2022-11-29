@@ -1,11 +1,13 @@
 {
   "dependencies": {
+    "@expo/webpack-config": "^0.17.0",
     "expo": "^46.0.0",
     "react": "18.0.0",
     "react-dom": "18.0.0",
     "react-native": "0.69.6",
     "react-native-size-matters": "^0.4.0",
-    "react-native-web": "~0.18.7"
+    "react-native-web": "~0.18.7",
+    "@expo/dev-server": "0.1.120"
   },
   "devDependencies": {
     "@babel/core": "^7.18.6",

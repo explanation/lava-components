@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["../babel.config.js"],
+  "sourcesContent": ["module.exports = function(api) {\n  api.cache(true);\n  return {\n    presets: ['babel-preset-expo'],\n  };\n};\n"],
+  "mappings": "AAAA,OAAO,UAAU,SAAS,KAAK;AAC7B,MAAI,MAAM;AACV,SAAO;AAAA,IACL,SAAS,CAAC;AAAA;AAAA;",
+  "names": []
+}
