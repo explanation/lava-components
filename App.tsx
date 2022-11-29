@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { StyleSheet, Text, View, Button } from 'react-native'
-import SearchBarScreen from '../lib/screens/SearchBarScreen'
+import SearchBarScreen from './catalog/SearchBarScreen'
 
 
 export default function App() {
