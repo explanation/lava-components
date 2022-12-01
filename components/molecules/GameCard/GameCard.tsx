@@ -4,7 +4,6 @@ import Title from '../../atoms/Title/Title'
 import Label from '../../atoms/Label/Label'
 import Text from '../../atoms/Text/Text'
 import useTheme from '../../hooks/useTheme'
-import { Game } from '../../types/Model'
 import LikeStat from '../LikeStat/LikeStat'
 
 export interface GameCardProps {
@@ -34,13 +33,13 @@ export interface GameCardProps {
    * Default: 0
    */
   notificationsCount?: number
-  /** Subtitle
+  /** Callout
    *
    * Used in mini version
    */
   callout?: string
   /** on Tap/Click/Press function */
-  onPress: (game: Game) => void
+  onPress: () => void
   /** Card Variation
    *
    * Example: icon
@@ -102,7 +101,7 @@ const GameCard: React.FC<GameCardProps> = (props) => {
           marginRight: 8,
           borderColor: theme.colors.neutral + '99',
         },
-        miniImageWithSubtitle: {
+        miniImageWithCallout: {
           width: 32,
           height: 32,
           marginRight: 10,
@@ -174,7 +173,7 @@ const GameCard: React.FC<GameCardProps> = (props) => {
         <View style={styles.miniContainer}>
           <Image
             source={{ uri: imageUrl }}
-            style={styles.miniImageWithSubtitle}
+            style={styles.miniImageWithCallout}
           />
           <View>
             <Title variation="subtitle1">{name}</Title>
@@ -199,12 +198,7 @@ const GameCard: React.FC<GameCardProps> = (props) => {
 
   const handlePress = () => {
     if (onPress && typeof onPress === 'function') {
-      onPress({
-        name,
-        imageUrl,
-        likesByFriends,
-        likesOnPlatform,
-      })
+      onPress()
     }
   }
 

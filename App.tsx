@@ -1,11 +1,9 @@
 import React, { Fragment, useCallback, useEffect, useState } from 'react'
 import { StyleSheet, Text, View, Button } from 'react-native'
 import * as SplashScreen from 'expo-splash-screen'
-import SearchBarScreen from './catalog/SearchBarScreen'
+import SearchBarScreen from './catalog/GameCardScreen'
 import { useFonts } from 'expo-font'
-import ThemeContextProvider, {
-  ThemeContext,
-} from './components/contexts/ThemeContext'
+import ThemeContextProvider from './components/contexts/ThemeContext'
 
 export default function App() {
   const [view, setView] = useState<'screen' | 'root'>('screen')

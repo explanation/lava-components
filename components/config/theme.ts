@@ -44,14 +44,22 @@ export const fontFamily = {
   Regular: 'Agrandir-Regular',
 }
 
-export type TypographyConfig = {
-  [key: string]: {
-    fontFamily: TextStyle['fontFamily']
-    fontSize: TextStyle['fontSize']
-    fontWeight: TextStyle['fontWeight']
-    color: TextStyle['color']
-    lineHeight?: TextStyle['lineHeight']
-  }
+export type TypographyItem = {
+  fontFamily: TextStyle['fontFamily']
+  fontSize: TextStyle['fontSize']
+  fontWeight: TextStyle['fontWeight']
+  color: TextStyle['color']
+  lineHeight?: TextStyle['lineHeight']
+}
+
+export interface TypographyConfig {
+  heading1: TypographyItem
+  subtitle1: TypographyItem
+  subtitle2: TypographyItem
+  subtitle3: TypographyItem
+  subtitle4: TypographyItem
+  buttonLarge: TypographyItem
+  base: TypographyItem
 }
 
 export const roundness = {

@@ -17,7 +17,7 @@ const sampleGameData = {
   likesOnPlatform: 7200000,
 }
 
-export default function SearchBarScreen() {
+export default function GameCardScreen() {
   const theme = useTheme()
   const showAlert = () => {
     Alert.alert('Game is pressed!')
@@ -114,7 +114,7 @@ export default function SearchBarScreen() {
               callout="Has a new secret!"
             />
             <Text style={[styles.label, styles.lightLabel]}>
-              [Icon with Subtitle]
+              [Icon with Callout]
             </Text>
           </View>
         </View>
