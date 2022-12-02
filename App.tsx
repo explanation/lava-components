@@ -1,12 +1,15 @@
 import React, { Fragment, useCallback, useEffect, useState } from 'react'
 import { StyleSheet, Text, View, Button } from 'react-native'
 import * as SplashScreen from 'expo-splash-screen'
-import SearchBarScreen from './catalog/GameCardScreen'
+import GameCardScreen from './catalog/GameCardScreen'
+import TText from './components/atoms/Text/Text'
 import { useFonts } from 'expo-font'
 import ThemeContextProvider from './components/contexts/ThemeContext'
 
+type Views = 'ROOT' | 'GAME_CARD'
+
 export default function App() {
-  const [view, setView] = useState<'screen' | 'root'>('screen')
+  const [view, setView] = useState<Views>('ROOT')
   const [fontsLoaded] = useFonts({
     'Agrandir-Bold': require('./assets/fonts/Agrandir-Bold.otf'),
     'Agrandir-Medium': require('./assets/fonts/Agrandir-Medium.otf'),
@@ -32,17 +35,19 @@ export default function App() {
 
   let content = <Fragment />
 
-  if (view === 'root') {
+  if (view === 'ROOT') {
     content = (
       <View>
         <Text style={{ fontFamily: 'Agrandir-Bold' }}>
           Pick a Screen{'\n\n'}
         </Text>
-        <Button onPress={() => setView('screen')} title="View Cards" />
+        <Button onPress={() => setView('GAME_CARD')} title="<GameCard />" />
       </View>
     )
+  } else if (view === 'GAME_CARD') {
+    content = <GameCardScreen />
   } else {
-    content = <SearchBarScreen />
+    content = <View />
   }
 
   return (
