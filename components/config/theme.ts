@@ -71,11 +71,11 @@ export const roundness = {
 }
 
 export const spacing = {
-  xs: '2px',
-  sm: '4px',
-  md: '8px',
-  lg: '12px',
-  xl: '16px',
+  xs: 2,
+  sm: 4,
+  md: 8,
+  lg: 12,
+  xl: 16,
 }
 
 export const getTypography = (

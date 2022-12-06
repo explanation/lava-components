@@ -1,7 +1,6 @@
 import React, { useMemo } from 'react'
 
 import { StyleSheet, View, Image } from 'react-native'
-import LikeImage from './like@3x.png'
 import Text from '../../atoms/Text/Text'
 import { getFormattedNumber } from '../../utils/numbers'
 import useTheme from '../../hooks/useTheme'
@@ -45,7 +44,7 @@ const LikeStat: React.FC<LikeStatProps> = (props) => {
   return (
     <View style={styles.container}>
       <Image
-        source={LikeImage}
+        source={require('./like.png')}
         style={{ height: 8, width: 8, marginBottom: 3 }}
       />
       <Text
