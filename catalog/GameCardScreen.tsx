@@ -37,7 +37,7 @@ export default function GameCardScreen() {
           justifyContent: 'space-between',
           borderRadius: 4,
           width: '100%',
-          backgroundColor: theme.colors.neutral,
+          backgroundColor: theme.colors.primarySand,
         },
         card: {
           margin: 10,
@@ -47,10 +47,10 @@ export default function GameCardScreen() {
           marginTop: 5,
         },
         lightLabel: {
-          color: theme.colors.neutral,
+          color: theme.colors.primarySand,
         },
         darkCardsContainer: {
-          backgroundColor: theme.colors.background,
+          backgroundColor: theme.colors.secondaryBk,
           marginTop: 10,
         },
       }),

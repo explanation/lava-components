@@ -24,7 +24,7 @@ const Text: React.FC<TextProps> = (props) => {
   const styles = StyleSheet.create({
     default: {
       ...theme.typography.base,
-      color: theme.colors.neutral,
+      color: theme.colors.primarySand,
     },
   })
 

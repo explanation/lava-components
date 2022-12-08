@@ -71,7 +71,7 @@ const GameCard: React.FC<GameCardProps> = (props) => {
           position: 'relative',
           padding: theme.spacing.md,
           borderRadius: theme.roundness.sm,
-          backgroundColor: theme.colors.cards,
+          backgroundColor: theme.colors.secondaryContainers,
           shadowColor: '#000',
           shadowOffset: { width: 0, height: 1 },
           shadowOpacity: 0.8,
@@ -91,7 +91,7 @@ const GameCard: React.FC<GameCardProps> = (props) => {
           width: 120,
           borderRadius: theme.roundness.xs,
           borderWidth: 0.5,
-          borderColor: theme.colors.neutral + '99',
+          borderColor: theme.colors.primarySand60,
         },
         miniImage: {
           width: 38,
@@ -99,7 +99,7 @@ const GameCard: React.FC<GameCardProps> = (props) => {
           borderRadius: theme.roundness.xs,
           borderWidth: 0.5,
           marginRight: 8,
-          borderColor: theme.colors.neutral + '99',
+          borderColor: theme.colors.primarySand60,
         },
         miniImageWithCallout: {
           width: 32,
@@ -107,12 +107,12 @@ const GameCard: React.FC<GameCardProps> = (props) => {
           marginRight: 10,
           borderRadius: theme.roundness.xs,
           borderWidth: 0.5,
-          borderColor: theme.colors.neutral + '99',
+          borderColor: theme.colors.primarySand60,
         },
         name: {
           width: 120,
           height: 32,
-          color: theme.colors.neutral,
+          color: theme.colors.primarySand,
           marginTop: theme.spacing.md,
         },
         notificationLabelContainer: {
