@@ -2,38 +2,62 @@ import { TextStyle } from 'react-native'
 
 export const colors = {
   dark: {
-    neutral: '#EAEADF',
-    cta: '#398FE4',
-    background: '#13141C',
-    cards: '#161E2C',
-    online: '#0A741C',
-    text: '#aaa',
+    // Brand colors
+    sand: '#EAEADF',
+    gravity: '#398FE4',
+    bee: '#FFDF41',
+    nebula: '#923589',
+
+    // Primary Colors
+    primarySand: '#EAEADF',
+    primarySand60: '#EAEADF99',
+    primarySand40: '#EAEADF66',
+
+    // Secondary Colors
+    secondaryContainers: '#161E2C',
+    secondaryBk: '#13141C',
+    secondaryGravity100: '#398FE4',
+
+    // Tertiary Colors
+    tertiaryNebulaDark: '#692663',
+    tertiaryBeeDark: '#B8A236',
+    tertiaryGravityDark: '#265180',
+    tertiarySand20: '#EAEADF33',
+    tertiarySand5: '#EAEADF0D',
+    tertiaryOnline: '#0A741C',
+
+    // Others
     pureBlack: '#000000',
-    pureWhite: '#fff',
-    brandYellow: '#FFDF41',
-    brandPurple: '#923589',
-    purpleDark: '#6C2B68',
-    ctaDark: '#265180',
-    yellow: '#FFDF41',
-    yellowLight: '#FFDF4150',
-    yellowDark: '#FFDF4170',
+    pureWhite: '#FFF',
   },
   light: {
-    neutral: '#EAEADF',
-    cta: '#398FE4',
-    background: '#13141C',
-    cards: '#161E2C',
-    online: '#0A741C',
-    text: '#aaa',
+    // Brand colors
+    sand: '#EAEADF',
+    gravity: '#398FE4',
+    bee: '#FFDF41',
+    nebula: '#923589',
+
+    // Primary Colors
+    primarySand: '#EAEADF',
+    primarySand60: '#EAEADF99',
+    primarySand40: '#EAEADF66',
+
+    // Secondary Colors
+    secondaryContainers: '#161E2C',
+    secondaryBk: '#13141C',
+    secondaryGravity100: '#398FE4',
+
+    // Tertiary Colors
+    tertiaryNebulaDark: '#692663',
+    tertiaryBeeDark: '#B8A236',
+    tertiaryGravityDark: '#265180',
+    tertiarySand20: '#EAEADF33',
+    tertiarySand5: '#EAEADF0D',
+    tertiaryOnline: '#0A741C',
+
+    // Others
     pureBlack: '#000000',
-    pureWhite: '#fff',
-    brandYellow: '#FFDF41',
-    brandPurple: '#923589',
-    purpleDark: '#6C2B68',
-    ctaDark: '#265180',
-    yellow: '#FFDF41',
-    yellowLight: '#FFDF4150',
-    yellowDark: '#FFDF4170',
+    pureWhite: '#FFF',
   },
 }
 
