@@ -69,7 +69,7 @@ const GameCard: React.FC<GameCardProps> = (props) => {
         },
         container: {
           position: 'relative',
-          padding: theme.spacing.md,
+          padding: theme.spacing.lg,
           borderRadius: theme.roundness.sm,
           backgroundColor: theme.colors.secondaryContainers,
           shadowColor: '#000',
@@ -79,12 +79,12 @@ const GameCard: React.FC<GameCardProps> = (props) => {
           elevation: 5,
         },
         imageContainer: {
-          padding: theme.spacing.md,
+          padding: theme.spacing.lg,
         },
         footerContainer: {
           flexDirection: 'row',
           justifyContent: 'space-between',
-          marginTop: theme.spacing.lg,
+          marginTop: theme.spacing.xl,
         },
         image: {
           height: 120,
@@ -113,7 +113,7 @@ const GameCard: React.FC<GameCardProps> = (props) => {
           width: 120,
           height: 32,
           color: theme.colors.primarySand,
-          marginTop: theme.spacing.md,
+          marginTop: theme.spacing.lg,
         },
         notificationLabelContainer: {
           position: 'absolute',
