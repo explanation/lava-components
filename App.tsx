@@ -5,11 +5,12 @@ import GameCardScreen from './catalog/GameCardScreen'
 import TText from './components/atoms/Text/Text'
 import { useFonts } from 'expo-font'
 import ThemeContextProvider from './components/contexts/ThemeContext'
+import FriendScreen from './catalog/FriendScreen'
 
-type Views = 'ROOT' | 'GAME_CARD'
+type Views = 'ROOT' | 'GAME_CARD' | 'FRIEND'
 
 export default function App() {
-  const [view, setView] = useState<Views>('ROOT')
+  const [view, setView] = useState<Views>('FRIEND')
   const [fontsLoaded] = useFonts({
     'Agrandir-Bold': require('./assets/fonts/Agrandir-Bold.otf'),
     'Agrandir-Medium': require('./assets/fonts/Agrandir-Medium.otf'),
@@ -41,11 +42,18 @@ export default function App() {
         <Text style={{ fontFamily: 'Agrandir-Bold' }}>
           Pick a Screen{'\n\n'}
         </Text>
-        <Button onPress={() => setView('GAME_CARD')} title="<GameCard />" />
+        <View style={styles.button}>
+          <Button onPress={() => setView('GAME_CARD')} title="<GameCard />" />
+        </View>
+        <View style={styles.button}>
+          <Button onPress={() => setView('FRIEND')} title="<Friend />" />
+        </View>
       </View>
     )
   } else if (view === 'GAME_CARD') {
     content = <GameCardScreen />
+  } else if (view === 'FRIEND') {
+    content = <FriendScreen />
   } else {
     content = <View />
   }
@@ -65,5 +73,8 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  button: {
+    marginBottom: 10,
   },
 })

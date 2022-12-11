@@ -77,7 +77,8 @@ export type TypographyItem = {
 }
 
 export interface TypographyConfig {
-  heading1: TypographyItem
+  title1: TypographyItem
+  title2: TypographyItem
   subtitle1: TypographyItem
   subtitle2: TypographyItem
   subtitle3: TypographyItem
@@ -87,42 +88,61 @@ export interface TypographyConfig {
 }
 
 export const roundness = {
+  /** 1px */
   xs: 1,
+  /** 4px */
   sm: 4,
+  /** 6px */
   md: 6,
+  /** 8px */
   lg: 8,
+  /** 10px */
   xl: 10,
 }
 
 export const spacing = {
+  /** 2px */
   xs: 2,
+  /** 4px */
   sm: 4,
-  md: 8,
-  lg: 12,
-  xl: 16,
+  /** 6px */
+  md: 6,
+  /** 8px */
+  lg: 8,
+  /** 12px */
+  xl: 12,
+  /** 16px */
+  xxl: 16,
 }
 
 export const getTypography = (
   themeColors: typeof colors.dark,
 ): TypographyConfig => ({
-  heading1: {
+  title1: {
+    fontFamily: fontFamily.Regular,
+    fontSize: 22,
+    lineHeight: 28.6,
+    fontWeight: '400',
+    color: themeColors.pureBlack,
+  },
+  title2: {
     fontFamily: fontFamily.Medium,
     fontSize: 14,
-    lineHeight: 18,
+    lineHeight: 18.2,
     fontWeight: '500',
     color: themeColors.pureBlack,
   },
   subtitle1: {
     fontFamily: fontFamily.Medium,
     fontSize: 12,
-    lineHeight: 16,
+    lineHeight: 15.6,
     fontWeight: '500',
     color: themeColors.pureBlack,
   },
   subtitle2: {
     fontFamily: fontFamily.Regular,
     fontSize: 12,
-    lineHeight: 16,
+    lineHeight: 15.6,
     fontWeight: '400',
     color: themeColors.pureBlack,
   },
@@ -137,7 +157,7 @@ export const getTypography = (
     fontFamily: fontFamily.Regular,
     fontSize: 8,
     fontWeight: '400',
-    lineHeight: 10,
+    lineHeight: 10.4,
     color: themeColors.pureBlack,
   },
   buttonLarge: {
