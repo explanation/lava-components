@@ -10,7 +10,7 @@ import FriendScreen from './catalog/FriendScreen'
 type Views = 'ROOT' | 'GAME_CARD' | 'FRIEND'
 
 export default function App() {
-  const [view, setView] = useState<Views>('FRIEND')
+  const [view, setView] = useState<Views>('ROOT')
   const [fontsLoaded] = useFonts({
     'Agrandir-Bold': require('./assets/fonts/Agrandir-Bold.otf'),
     'Agrandir-Medium': require('./assets/fonts/Agrandir-Medium.otf'),

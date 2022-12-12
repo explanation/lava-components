@@ -90,14 +90,14 @@ export interface TypographyConfig {
 export const roundness = {
   /** 1px */
   xs: 1,
+  /** 2px */
+  sm: 2,
   /** 4px */
-  sm: 4,
+  md: 4,
   /** 6px */
-  md: 6,
+  lg: 6,
   /** 8px */
-  lg: 8,
-  /** 10px */
-  xl: 10,
+  xl: 8,
 }
 
 export const spacing = {
