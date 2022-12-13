@@ -2,19 +2,20 @@ import React, { useMemo } from 'react'
 import { StyleProp, StyleSheet, Text, TextProps, TextStyle } from 'react-native'
 import useTheme from '../../hooks/useTheme'
 
-export type HeadingVariation =
-  | 'heading1'
+export type TitleVariation =
+  | 'title1'
+  | 'title2'
   | 'subtitle1'
   | 'subtitle2'
   | 'subtitle3'
   | 'subtitle4'
 
 export interface TitleProps extends TextProps {
-  /** Heading's variation
-   * Possible values: "heading1" | "subtitle1" | "subtitle2" | "subtitle3" | "subtitle4"
+  /** Title's variation
+   * Possible values: "title1" | "title2" | "subtitle1" | "subtitle2" | "subtitle3" | "subtitle4"
    */
-  variation: HeadingVariation
-  /** Heading's Content */
+  variation: TitleVariation
+  /** Title's Content */
   children?: React.ReactNode
   style?: StyleProp<TextStyle>
 }
