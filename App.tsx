@@ -6,11 +6,12 @@ import TText from './components/atoms/Text/Text'
 import { useFonts } from 'expo-font'
 import ThemeContextProvider from './components/contexts/ThemeContext'
 import FriendScreen from './catalog/FriendScreen'
+import SearchScreen from './catalog/SearchScreen'
 
-type Views = 'ROOT' | 'GAME_CARD' | 'FRIEND'
+type Views = 'ROOT' | 'GAME_CARD' | 'FRIEND' | 'SEARCH'
 
 export default function App() {
-  const [view, setView] = useState<Views>('ROOT')
+  const [view, setView] = useState<Views>('SEARCH')
   const [fontsLoaded] = useFonts({
     'Agrandir-Bold': require('./assets/fonts/Agrandir-Bold.otf'),
     'Agrandir-Medium': require('./assets/fonts/Agrandir-Medium.otf'),
@@ -48,12 +49,17 @@ export default function App() {
         <View style={styles.button}>
           <Button onPress={() => setView('FRIEND')} title="<Friend />" />
         </View>
+        <View style={styles.button}>
+          <Button onPress={() => setView('SEARCH')} title="<Search />" />
+        </View>
       </View>
     )
   } else if (view === 'GAME_CARD') {
     content = <GameCardScreen />
   } else if (view === 'FRIEND') {
     content = <FriendScreen />
+  } else if (view === 'SEARCH') {
+    content = <SearchScreen />
   } else {
     content = <View />
   }
