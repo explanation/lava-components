@@ -2,7 +2,6 @@ import React, { Fragment, useCallback, useEffect, useState } from 'react'
 import { StyleSheet, Text, View, Button } from 'react-native'
 import * as SplashScreen from 'expo-splash-screen'
 import GameCardScreen from './catalog/GameCardScreen'
-import TText from './components/atoms/Text/Text'
 import { useFonts } from 'expo-font'
 import ThemeContextProvider from './components/contexts/ThemeContext'
 import FriendScreen from './catalog/FriendScreen'
@@ -10,7 +9,7 @@ import FriendScreen from './catalog/FriendScreen'
 type Views = 'ROOT' | 'GAME_CARD' | 'FRIEND'
 
 export default function App() {
-  const [view, setView] = useState<Views>('ROOT')
+  const [view, setView] = useState<Views>('FRIEND')
   const [fontsLoaded] = useFonts({
     'Agrandir-Bold': require('./assets/fonts/Agrandir-Bold.otf'),
     'Agrandir-Medium': require('./assets/fonts/Agrandir-Medium.otf'),
