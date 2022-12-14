@@ -329,7 +329,11 @@ export default function FriendScreen() {
         */}
         <View style={styles.compContainer}>
           <Text style={styles.labelText}>#14 [New Friend Request]</Text>
-          <Friend name={friendData.name} imageUrl={friendData.imageUrl} />
+          <Friend
+            newFriendRequest
+            name={friendData.name}
+            imageUrl={friendData.imageUrl}
+          />
         </View>
 
         {/* #15.1

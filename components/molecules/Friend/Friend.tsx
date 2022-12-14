@@ -62,7 +62,6 @@ const Friend: React.FC<FriendProps> = (props) => {
           alignItems: 'center',
           position: 'relative',
           paddingVertical: theme.spacing.xl,
-          // backgroundColor: 'blue',
         },
         imageWrapper: {
           paddingHorizontal: 5,
@@ -70,9 +69,9 @@ const Friend: React.FC<FriendProps> = (props) => {
         },
         imageContainer: {
           // containerHeight (52) + gapBetweenImageAndContainer (4)
-          height: 56,
-          width: 56,
-          borderRadius: 56,
+          height: 54,
+          width: 54,
+          borderRadius: 54,
           justifyContent: 'center',
           alignItems: 'center',
           borderWidth: friendRequestSent ? 0.5 : 3,
@@ -102,9 +101,10 @@ const Friend: React.FC<FriendProps> = (props) => {
         statusContainer: {
           flexDirection: 'row',
           alignItems: 'center',
+          marginTop: theme.spacing.md,
         },
         status: {
-          marginTop: 6,
+          // backgroundColor: 'blue',
           marginRight: theme.spacing.md,
           color:
             networkStatus === 'online'
@@ -114,7 +114,7 @@ const Friend: React.FC<FriendProps> = (props) => {
         robloxImage: {
           width: 14,
           height: 14,
-          marginTop: theme.spacing.sm,
+          // marginTop: theme.spacing.sm,
         },
         messageContainer: {
           marginTop: onCall ? theme.spacing.xs : theme.spacing.sm,
@@ -144,8 +144,8 @@ const Friend: React.FC<FriendProps> = (props) => {
           marginHorizontal: 12,
         },
         currentActivityContainer: {
-          height: 71,
-          width: 71,
+          height: 66,
+          width: 66,
           justifyContent: 'center',
           alignItems: 'center',
           borderRadius: 5,
