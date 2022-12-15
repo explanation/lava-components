@@ -16,7 +16,14 @@ import {
   getVideoDuration,
 } from '../../utils/numbers'
 
-export type VideoCardVariation = 'feed' | 'secrets' | 'game-preview'
+export type VideoCardVariation =
+  | 'feed'
+  | 'secrets'
+  | 'game-preview'
+  | 'game-preview-mini'
+  | 'playing'
+  | 'game-thumbnail'
+  | 'minimized'
 
 export interface VideoCardProps {
   thumbnailUrl: string
@@ -55,6 +62,14 @@ const VideoCard: React.FC<VideoCardProps> = (props) => {
         return 214
       case 'game-preview':
         return 495
+      case 'game-preview-mini':
+        return 160
+      case 'playing':
+        return 570
+      case 'minimized':
+        return 80
+      case 'game-thumbnail':
+        return 168
       default:
         return 0
     }
@@ -67,6 +82,14 @@ const VideoCard: React.FC<VideoCardProps> = (props) => {
         return 214
       case 'game-preview':
         return 481
+      case 'game-preview-mini':
+        return 160
+      case 'playing':
+        return 570
+      case 'minimized':
+        return 80
+      case 'game-thumbnail':
+        return 168
       default:
         return 0
     }
@@ -79,6 +102,14 @@ const VideoCard: React.FC<VideoCardProps> = (props) => {
         return 120
       case 'game-preview':
         return 270
+      case 'game-preview-mini':
+        return 90
+      case 'playing':
+        return 320
+      case 'minimized':
+        return 45
+      case 'game-thumbnail':
+        return 94
       default:
         return 0
     }
@@ -124,9 +155,20 @@ const VideoCard: React.FC<VideoCardProps> = (props) => {
           textAlign: 'center',
         },
         title: {
-          height: variation === 'feed' ? 14 : 30,
+          height:
+            variation === 'feed' || variation === 'game-thumbnail' ? 14 : 30,
           position: 'relative',
           marginTop: theme.spacing.lg,
+        },
+        gameThumbnailTitle: {
+          height: 10,
+          fontSize: 9,
+          lineHeight: 11.7,
+          marginTop: theme.spacing.sm,
+        },
+        gameThumbnailMetadata: {
+          fontSize: 9,
+          lineHeight: 11.7,
         },
         metaData: {
           marginTop: theme.spacing.lg - 3,
@@ -139,10 +181,11 @@ const VideoCard: React.FC<VideoCardProps> = (props) => {
           position: 'absolute',
         },
         playIcon: {
-          width: 72,
-          height: 72,
+          borderRadius: 72,
+          width: variation === 'game-preview' ? 72 : 30,
+          height: variation === 'game-preview' ? 72 : 30,
           transform: 'translate(-50%, -50%)' as any,
-          // boxShadow: '-1px 0px 4px rgba(0, 0, 0, 0.78)' as any,
+          boxShadow: '-1px 0px 4px rgba(0, 0, 0, 0.78)' as any,
         },
         nextIconContainer: {
           right: 0,
@@ -153,7 +196,9 @@ const VideoCard: React.FC<VideoCardProps> = (props) => {
         nextIcon: {
           width: 28,
           height: 28,
+          borderRadius: 28,
           transform: 'translateY(-50%)' as any,
+          boxShadow: '-2px 2px 4px rgba(0, 0, 0, 0.7)',
         },
       }),
     [],
@@ -176,8 +221,8 @@ const VideoCard: React.FC<VideoCardProps> = (props) => {
       <View style={styles.thumbnailContainer}>
         <Image source={{ uri: thumbnailUrl }} style={styles.thumbnail} />
 
-        {variation === 'game-preview' && (
-          // <View style={styles.iconContainer}>
+        {(variation === 'game-preview' ||
+          variation === 'game-preview-mini') && (
           <Pressable
             onPress={handlePress}
             style={({ pressed }) => [
@@ -187,7 +232,6 @@ const VideoCard: React.FC<VideoCardProps> = (props) => {
           >
             <Image source={require('./play@3x.png')} style={styles.playIcon} />
           </Pressable>
-          // </View>
         )}
 
         {(variation === 'feed' || variation === 'secrets') && (
@@ -214,12 +258,19 @@ const VideoCard: React.FC<VideoCardProps> = (props) => {
         </Pressable>
       )}
 
-      {(variation === 'feed' || variation === 'secrets') && (
+      {(variation === 'feed' ||
+        variation === 'secrets' ||
+        variation === 'game-thumbnail') && (
         <Fragment>
           <Title
-            numberOfLines={variation === 'feed' ? 1 : 2}
+            numberOfLines={
+              variation === 'feed' || variation === 'game-thumbnail' ? 1 : 2
+            }
             variation="subtitle2"
-            style={styles.title}
+            style={{
+              ...styles.title,
+              ...(variation === 'game-thumbnail' && styles.gameThumbnailTitle),
+            }}
           >
             {title}
           </Title>
@@ -227,7 +278,10 @@ const VideoCard: React.FC<VideoCardProps> = (props) => {
           <Title
             variation="subtitle3"
             numberOfLines={1}
-            style={styles.metaData}
+            style={{
+              ...styles.metaData,
+              ...(variation === 'game-thumbnail' && styles.gameThumbnailTitle),
+            }}
           >
             {creatorName} • {getFormattedNumber(views).replace(' ', '')} views •{' '}
             {getTimeAgo(new Date(uploadedOn!))}

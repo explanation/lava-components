@@ -41,7 +41,7 @@ const VideoCardScreen: React.FC = () => {
           backgroundColor: theme.colors.secondaryBk,
         },
         videoCardContainer: {
-          marginBottom: 10,
+          marginBottom: 20,
         },
         label: {
           fontSize: 10,
@@ -61,7 +61,7 @@ const VideoCardScreen: React.FC = () => {
         </View>
 
         <View style={styles.videoCardContainer}>
-          <Text style={styles.label}>[Secrets Vdo Card]</Text>
+          <Text style={styles.label}>2. [Secrets Vdo Card]</Text>
           <VideoCard
             {...commonVideoCardProps}
             variation="secrets"
@@ -70,12 +70,49 @@ const VideoCardScreen: React.FC = () => {
         </View>
 
         <View style={styles.videoCardContainer}>
-          <Text style={styles.label}>[Game Preview Vdo Card]</Text>
+          <Text style={styles.label}>3. [Game Preview Vdo Card]</Text>
           <VideoCard
-            {...commonVideoCardProps}
             variation="game-preview"
             thumbnailUrl="https://i.imgur.com/6J8Wmfh.png"
-            title="How to fly a bicycle its a long question of 2 lines ?"
+            onPress={commonVideoCardProps.onPress}
+            onNext={() => console.log('on next press')}
+          />
+        </View>
+
+        <View style={styles.videoCardContainer}>
+          <Text style={styles.label}>4. [Game Preview Vdo Card Minimized]</Text>
+          <VideoCard
+            variation="game-preview-mini"
+            thumbnailUrl="https://i.imgur.com/6J8Wmfh.png"
+            onPress={commonVideoCardProps.onPress}
+          />
+        </View>
+
+        <View style={styles.videoCardContainer}>
+          <Text style={styles.label}>5. [Game Vdo Playing]</Text>
+          <VideoCard
+            variation="playing"
+            thumbnailUrl="https://i.imgur.com/6J8Wmfh.png"
+            onPress={commonVideoCardProps.onPress}
+          />
+        </View>
+
+        <View style={styles.videoCardContainer}>
+          <Text style={styles.label}>6. [Game Vdo Thumbnail]</Text>
+          <VideoCard
+            {...commonVideoCardProps}
+            variation="game-thumbnail"
+            thumbnailUrl="https://i.imgur.com/6J8Wmfh.png"
+            onPress={commonVideoCardProps.onPress}
+          />
+        </View>
+
+        <View style={styles.videoCardContainer}>
+          <Text style={styles.label}>7. [Game Preview Vdo Card Minimized]</Text>
+          <VideoCard
+            variation="minimized"
+            thumbnailUrl="https://i.imgur.com/6J8Wmfh.png"
+            onPress={commonVideoCardProps.onPress}
           />
         </View>
       </ScrollView>
