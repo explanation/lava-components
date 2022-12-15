@@ -38,12 +38,14 @@ const SearchScreen: React.FC = () => {
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <ScrollView contentContainerStyle={styles.container}>
-        <Search
-          variation="YouTube"
-          placeholder="Search with YouTube"
-          text="Roblox Adopt Me New Secrets 2022"
-          onSearch={handleYoutubeSearch}
-        />
+        <View style={{ width: 520 }}>
+          <Search
+            variation="YouTube"
+            placeholder="Search with YouTube"
+            text="Roblox Adopt Me New Secrets 2022"
+            onSearch={handleYoutubeSearch}
+          />
+        </View>
 
         <View style={{ marginTop: 10 }}>
           <Search

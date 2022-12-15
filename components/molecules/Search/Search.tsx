@@ -10,12 +10,19 @@ export interface SearchProps {
   placeholder?: string
   variation?: SearchVariation
   onSearch: (text: string) => void
+  onVoiceSearchPress?: () => void
 }
 
 const Search: React.FC<SearchProps> = (props) => {
   const theme = useTheme()
   const [inputText, setInputText] = useState('')
-  const { text = '', placeholder = '', variation = 'Default', onSearch } = props
+  const {
+    text = '',
+    placeholder = '',
+    variation = 'Default',
+    onSearch,
+    onVoiceSearchPress,
+  } = props
 
   const styles = useMemo(
     () =>
@@ -23,6 +30,7 @@ const Search: React.FC<SearchProps> = (props) => {
         defaultWrapper: {
           flexDirection: 'row',
           alignItems: 'center',
+          justifyContent: 'space-between',
           backgroundColor: theme.colors.tertiarySand5,
           borderBottomColor: theme.colors.tertiarySand20,
           borderBottomWidth: 1,
@@ -32,8 +40,8 @@ const Search: React.FC<SearchProps> = (props) => {
           paddingRight: 0,
           flexDirection: 'row',
           alignItems: 'center',
-          width: 520,
           height: '100%',
+          flex: 1,
         },
         youtubeIcon: {
           width: 101,
@@ -43,6 +51,7 @@ const Search: React.FC<SearchProps> = (props) => {
         defaultTextInput: {
           height: '100%',
           width: '100%',
+          alignSelf: 'stretch',
           color: theme.colors.primarySand,
           outlineStyle: 'none',
         },
@@ -65,10 +74,31 @@ const Search: React.FC<SearchProps> = (props) => {
           flexDirection: 'row',
           alignItems: 'center',
           width: 640,
-          backgroundColor: 'blue',
+          // backgroundColor: 'blue',
+        },
+        youtubeTextInputWrapper: {
+          flex: 1,
+          height: '100%',
+          paddingVertical: theme.spacing.md,
+        },
+        youtubeTextInputContainer: {
+          flex: 1,
+          height: '100%',
+          paddingHorizontal: 71,
+          flexDirection: 'row',
+          borderWidth: 0.5,
+          alignItems: 'center',
+          paddingVertical: theme.spacing.md,
+          borderRadius: theme.roundness.md,
+          borderColor: theme.colors.primarySand40,
+          backgroundColor: theme.colors.tertiarySand5,
         },
         youtubeTextInput: {
           width: '100%',
+          height: '100%',
+          outlineStyle: 'none',
+          marginLeft: theme.spacing.lg,
+          color: theme.colors.primarySand,
         },
       }),
     [theme],
@@ -116,11 +146,29 @@ const Search: React.FC<SearchProps> = (props) => {
   } else {
     return (
       <View style={styles.youtubeContainer}>
-        <Image
-          source={require('./voice-search@3x.png')}
-          style={styles.voiceSearchIcon}
-        />
-        <TextInput placeholder={placeholder} style={styles.youtubeTextInput} />
+        <Pressable
+          onPress={onVoiceSearchPress}
+          style={({ pressed }) => [{ opacity: pressed ? 0.8 : 1 }]}
+        >
+          <Image
+            source={require('./voice-search@3x.png')}
+            style={styles.voiceSearchIcon}
+          />
+        </Pressable>
+        <View style={styles.youtubeTextInputWrapper}>
+          <View style={styles.youtubeTextInputContainer}>
+            <Image
+              source={require('./search@3x.png')}
+              style={styles.searchIcon}
+            />
+            <TextInput
+              placeholder={placeholder}
+              style={styles.youtubeTextInput}
+              onSubmitEditing={handlePress}
+              placeholderTextColor={theme.colors.primarySand40}
+            />
+          </View>
+        </View>
       </View>
     )
   }
