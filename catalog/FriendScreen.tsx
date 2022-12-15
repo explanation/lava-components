@@ -9,13 +9,131 @@ import {
 } from 'react-native'
 import useTheme from '../components/hooks/useTheme'
 import Friend, { FriendProps } from '../components/molecules/Friend/Friend'
+import FriendGroup, {
+  FriendGroupItem,
+} from '../components/molecules/Friend/FriendGroup'
 
 const friendData: FriendProps = {
   imageUrl: 'https://i.imgur.com/LK7ymaN.png',
   name: 'Lily Woofers',
-  message: 'where are you. what are you doing?',
-  lastPlayedGameUrl: 'https://i.imgur.com/vC81osj.png',
+  message: 'where are you. what are you doing...?',
+  activityImageUrl: 'https://i.imgur.com/vC81osj.png',
+  activityType: 'game',
 }
+
+const friendsOnlineOfflineSampleData: FriendGroupItem[] = [
+  {
+    firstName: 'Charlie',
+    imageUrl: friendData.imageUrl,
+    networkStatus: 'online',
+  },
+  {
+    firstName: 'Doug',
+    imageUrl: friendData.imageUrl,
+    networkStatus: 'offline',
+  },
+  {
+    firstName: 'Devin',
+    imageUrl: friendData.imageUrl,
+    networkStatus: 'online',
+  },
+  {
+    firstName: 'Pranay',
+    imageUrl: friendData.imageUrl,
+    networkStatus: 'online',
+  },
+  {
+    firstName: 'Nihar',
+    imageUrl: friendData.imageUrl,
+    networkStatus: 'offline',
+  },
+  {
+    firstName: 'Josie',
+    imageUrl: friendData.imageUrl,
+    networkStatus: 'online',
+  },
+  {
+    firstName: 'Evan',
+    imageUrl: friendData.imageUrl,
+    networkStatus: 'online',
+  },
+]
+
+const friendsOnlineOnlineSampleData: FriendGroupItem[] = [
+  {
+    firstName: 'Charlie',
+    imageUrl: friendData.imageUrl,
+    networkStatus: 'online',
+  },
+  {
+    firstName: 'Doug',
+    imageUrl: friendData.imageUrl,
+    networkStatus: 'online',
+  },
+  {
+    firstName: 'Devin',
+    imageUrl: friendData.imageUrl,
+    networkStatus: 'online',
+  },
+  {
+    firstName: 'Pranay',
+    imageUrl: friendData.imageUrl,
+    networkStatus: 'online',
+  },
+  {
+    firstName: 'Nihar',
+    imageUrl: friendData.imageUrl,
+    networkStatus: 'offline',
+  },
+  {
+    firstName: 'Josie',
+    imageUrl: friendData.imageUrl,
+    networkStatus: 'online',
+  },
+  {
+    firstName: 'Evan',
+    imageUrl: friendData.imageUrl,
+    networkStatus: 'online',
+  },
+]
+
+const friendsOfflineOfflineSampleData: FriendGroupItem[] = [
+  {
+    firstName: 'Charlie',
+    imageUrl: friendData.imageUrl,
+    networkStatus: 'offline',
+  },
+  {
+    firstName: 'Doug',
+    imageUrl: friendData.imageUrl,
+    networkStatus: 'offline',
+  },
+  {
+    firstName: 'Devin',
+    imageUrl: friendData.imageUrl,
+    networkStatus: 'online',
+  },
+  {
+    firstName: 'Pranay',
+    imageUrl: friendData.imageUrl,
+    networkStatus: 'online',
+  },
+  {
+    firstName: 'Nihar',
+    imageUrl: friendData.imageUrl,
+    networkStatus: 'offline',
+  },
+  {
+    firstName: 'Josie',
+    imageUrl: friendData.imageUrl,
+    networkStatus: 'online',
+  },
+  {
+    firstName: 'Evan',
+    imageUrl: friendData.imageUrl,
+    networkStatus: 'online',
+  },
+]
 
 const lastSeen = new Date(new Date().getTime() - 20 * 60 * 1000).toISOString()
 
@@ -67,7 +185,7 @@ export default function FriendScreen() {
             name={friendData.name}
             imageUrl={friendData.imageUrl}
             message={friendData.message}
-            lastPlayedGameUrl={friendData.lastPlayedGameUrl}
+            activityImageUrl={friendData.activityImageUrl}
           />
         </View>
 
@@ -87,7 +205,7 @@ export default function FriendScreen() {
             name={friendData.name}
             imageUrl={friendData.imageUrl}
             message={friendData.message}
-            lastPlayedGameUrl={friendData.lastPlayedGameUrl}
+            activityImageUrl={friendData.activityImageUrl}
           />
         </View>
 
@@ -106,7 +224,7 @@ export default function FriendScreen() {
             name={friendData.name}
             imageUrl={friendData.imageUrl}
             message={friendData.message}
-            lastPlayedGameUrl={friendData.lastPlayedGameUrl}
+            activityImageUrl={friendData.activityImageUrl}
           />
         </View>
 
@@ -115,15 +233,29 @@ export default function FriendScreen() {
         */}
         <View style={[styles.compContainer]}>
           <Text style={styles.labelText}>
-            #4 [Group w/ different status of users]*
+            #4 [Group w/ different status of users, online/offline]
           </Text>
-          <Friend
-            onCall
-            name={friendData.name}
-            imageUrl={friendData.imageUrl}
-            message={friendData.message}
-            lastPlayedGameUrl={friendData.lastPlayedGameUrl}
-          />
+          <FriendGroup friends={friendsOnlineOfflineSampleData} />
+        </View>
+
+        {/* #4.1
+          • Group w/ different status of users
+        */}
+        <View style={[styles.compContainer]}>
+          <Text style={styles.labelText}>
+            #4.1 [Group w/ different status of users, online/online]
+          </Text>
+          <FriendGroup friends={friendsOnlineOnlineSampleData} />
+        </View>
+
+        {/* #4.2
+          • Group w/ different status of users
+        */}
+        <View style={[styles.compContainer]}>
+          <Text style={styles.labelText}>
+            #4.2 [Group w/ different status of users, offline/offline]
+          </Text>
+          <FriendGroup friends={friendsOfflineOfflineSampleData} />
         </View>
 
         {/* #5
@@ -142,7 +274,7 @@ export default function FriendScreen() {
             name={friendData.name}
             imageUrl={friendData.imageUrl}
             message={friendData.message}
-            lastPlayedGameUrl={friendData.lastPlayedGameUrl}
+            activityImageUrl={friendData.activityImageUrl}
           />
         </View>
 
@@ -162,7 +294,7 @@ export default function FriendScreen() {
             name={friendData.name}
             imageUrl={friendData.imageUrl}
             message={friendData.message}
-            lastPlayedGameUrl={friendData.lastPlayedGameUrl}
+            activityImageUrl={friendData.activityImageUrl}
           />
         </View>
 
@@ -188,7 +320,7 @@ export default function FriendScreen() {
             playing
             name={friendData.name}
             imageUrl={friendData.imageUrl}
-            lastPlayedGameUrl={friendData.lastPlayedGameUrl}
+            activityImageUrl={friendData.activityImageUrl}
           />
         </View>
 
@@ -203,7 +335,7 @@ export default function FriendScreen() {
             lastSeen={lastSeen}
             name={friendData.name}
             imageUrl={friendData.imageUrl}
-            lastPlayedGameUrl={friendData.lastPlayedGameUrl}
+            activityImageUrl={friendData.activityImageUrl}
           />
         </View>
 
@@ -243,7 +375,7 @@ export default function FriendScreen() {
         */}
         <View style={styles.compContainer}>
           <Text style={styles.labelText}>
-            #10.1 [Online, Not playing game, Chat history]*
+            #10.1 [Online, Not playing game, Chat history]
           </Text>
           <Friend
             name={friendData.name}
@@ -267,7 +399,6 @@ export default function FriendScreen() {
             name={friendData.name}
             imageUrl={friendData.imageUrl}
             message={friendData.message}
-            lastPlayedGameUrl={friendData.lastPlayedGameUrl}
           />
         </View>
 
@@ -276,15 +407,13 @@ export default function FriendScreen() {
           • Watching a video
         */}
         <View style={styles.compContainer}>
-          <Text style={styles.labelText}>
-            #11 [Offline, Not playing game, Chat history]*
-          </Text>
+          <Text style={styles.labelText}>#11 [Online, Watching a Video]</Text>
           <Friend
-            networkStatus="offline"
             name={friendData.name}
             imageUrl={friendData.imageUrl}
             message={friendData.message}
-            lastPlayedGameUrl={friendData.lastPlayedGameUrl}
+            activityImageUrl={friendData.activityImageUrl}
+            activityType="video"
           />
         </View>
 
@@ -302,7 +431,7 @@ export default function FriendScreen() {
             friendInLava={false}
             name={friendData.name}
             imageUrl={friendData.imageUrl}
-            lastPlayedGameUrl={friendData.lastPlayedGameUrl}
+            activityImageUrl={friendData.activityImageUrl}
           />
         </View>
 
@@ -317,59 +446,12 @@ export default function FriendScreen() {
           </Text>
           <Friend
             networkStatus="offline"
+            friendInLava={false}
             lastSeen={lastSeen}
             name={friendData.name}
             imageUrl={friendData.imageUrl}
-            lastPlayedGameUrl={friendData.lastPlayedGameUrl}
+            activityImageUrl={friendData.activityImageUrl}
           />
-        </View>
-
-        {/* #14
-          • New Friend Request
-        */}
-        <View style={styles.compContainer}>
-          <Text style={styles.labelText}>#14 [New Friend Request]</Text>
-          <Friend name={friendData.name} imageUrl={friendData.imageUrl} />
-        </View>
-
-        {/* #15.1
-          • Chat notification
-        */}
-        <View style={styles.compContainer}>
-          <Text style={styles.labelText}>#15.1 [Chat notification]</Text>
-          <Friend networkStatus="offline" {...friendData} />
-        </View>
-
-        {/* #15.2
-          • Chat notification group
-        */}
-        <View style={styles.compContainer}>
-          <Text style={styles.labelText}>#15.2 [Chat notification group]</Text>
-          <Friend networkStatus="offline" {...friendData} />
-        </View>
-
-        {/* #16.1
-          • Call notification
-        */}
-        <View style={styles.compContainer}>
-          <Text style={styles.labelText}>#16 [Call notification]</Text>
-          <Friend networkStatus="offline" {...friendData} />
-        </View>
-
-        {/* #16.2
-          • Call notification group
-        */}
-        <View style={styles.compContainer}>
-          <Text style={styles.labelText}>#16.2 [Call notification group]</Text>
-          <Friend networkStatus="offline" {...friendData} />
-        </View>
-
-        {/* #17
-          • New friend joined
-        */}
-        <View style={styles.compContainer}>
-          <Text style={styles.labelText}>#17 [New friend joined]</Text>
-          <Friend networkStatus="offline" {...friendData} />
         </View>
       </ScrollView>
     </SafeAreaView>

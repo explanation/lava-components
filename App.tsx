@@ -2,13 +2,13 @@ import React, { Fragment, useCallback, useEffect, useState } from 'react'
 import { StyleSheet, Text, View, Button } from 'react-native'
 import * as SplashScreen from 'expo-splash-screen'
 import GameCardScreen from './catalog/GameCardScreen'
-import TText from './components/atoms/Text/Text'
 import { useFonts } from 'expo-font'
 import ThemeContextProvider from './components/contexts/ThemeContext'
 import FriendScreen from './catalog/FriendScreen'
 import SearchScreen from './catalog/SearchScreen'
+import ButtonScreen from './catalog/ButtonScreen'
 
-type Views = 'ROOT' | 'GAME_CARD' | 'FRIEND' | 'SEARCH'
+type Views = 'ROOT' | 'GAME_CARD' | 'FRIEND' | 'BUTTON' | 'SEARCH'
 
 export default function App() {
   const [view, setView] = useState<Views>('ROOT')
@@ -60,6 +60,8 @@ export default function App() {
     content = <FriendScreen />
   } else if (view === 'SEARCH') {
     content = <SearchScreen />
+  } else if (view === 'BUTTON') {
+    content = <ButtonScreen />
   } else {
     content = <View />
   }
