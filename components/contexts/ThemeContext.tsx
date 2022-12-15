@@ -35,7 +35,7 @@ interface ThemeContextProviderProps {
 }
 
 const ThemeContextProvider: FC<ThemeContextProviderProps> = (props) => {
-  const { children, mode, theme: overrideTheme } = props
+  const { children, mode = 'dark', theme: overrideTheme } = props
 
   const theme = useMemo(() => {
     return (
