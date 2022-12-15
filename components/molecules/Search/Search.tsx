@@ -20,14 +20,14 @@ const Search: React.FC<SearchProps> = (props) => {
   const styles = useMemo(
     () =>
       StyleSheet.create({
-        wrapper: {
+        defaultWrapper: {
           flexDirection: 'row',
           alignItems: 'center',
           backgroundColor: theme.colors.tertiarySand5,
           borderBottomColor: theme.colors.tertiarySand20,
           borderBottomWidth: 1,
         },
-        container: {
+        defaultContainer: {
           padding: theme.spacing.md,
           paddingRight: 0,
           flexDirection: 'row',
@@ -40,7 +40,7 @@ const Search: React.FC<SearchProps> = (props) => {
           height: 28,
           marginRight: theme.spacing.xl,
         },
-        textInput: {
+        defaultTextInput: {
           height: '100%',
           width: '100%',
           color: theme.colors.primarySand,
@@ -56,6 +56,20 @@ const Search: React.FC<SearchProps> = (props) => {
           width: 16,
           height: 16,
         },
+        voiceSearchIcon: {
+          width: 50,
+          height: 50,
+          marginRight: 14,
+        },
+        youtubeContainer: {
+          flexDirection: 'row',
+          alignItems: 'center',
+          width: 640,
+          backgroundColor: 'blue',
+        },
+        youtubeTextInput: {
+          width: '100%',
+        },
       }),
     [theme],
   )
@@ -66,35 +80,50 @@ const Search: React.FC<SearchProps> = (props) => {
     }
   }
 
-  return (
-    <View style={styles.wrapper}>
-      <View style={styles.container}>
-        <Image
-          source={require('./youtube@3x.png')}
-          style={styles.youtubeIcon}
-        />
-        <TextInput
-          defaultValue={text}
-          style={styles.textInput}
-          placeholder={placeholder}
-          onChangeText={setInputText}
-          onSubmitEditing={handlePress}
-          placeholderTextColor={theme.colors.primarySand40}
-        />
-      </View>
+  if (variation === 'YouTube') {
+    return (
+      <View style={styles.defaultWrapper}>
+        <View style={styles.defaultContainer}>
+          <Image
+            source={require('./youtube@3x.png')}
+            style={styles.youtubeIcon}
+          />
+          <TextInput
+            defaultValue={text}
+            style={styles.defaultTextInput}
+            placeholder={placeholder}
+            onChangeText={setInputText}
+            onSubmitEditing={handlePress}
+            placeholderTextColor={theme.colors.primarySand40}
+          />
+        </View>
 
-      <Pressable
-        onPress={handlePress}
-        style={({ pressed }) => [styles.search, { opacity: pressed ? 0.8 : 1 }]}
-      >
+        <Pressable
+          onPress={handlePress}
+          style={({ pressed }) => [
+            styles.search,
+            { opacity: pressed ? 0.8 : 1 },
+          ]}
+        >
+          <Image
+            source={require('./search@3x.png')}
+            style={styles.searchIcon}
+            resizeMode="cover"
+          />
+        </Pressable>
+      </View>
+    )
+  } else {
+    return (
+      <View style={styles.youtubeContainer}>
         <Image
-          source={require('./search@3x.png')}
-          style={styles.searchIcon}
-          resizeMode="cover"
+          source={require('./voice-search@3x.png')}
+          style={styles.voiceSearchIcon}
         />
-      </Pressable>
-    </View>
-  )
+        <TextInput placeholder={placeholder} style={styles.youtubeTextInput} />
+      </View>
+    )
+  }
 }
 
 export default Search
