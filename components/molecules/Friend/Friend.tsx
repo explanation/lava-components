@@ -183,7 +183,7 @@ const Friend: React.FC<FriendProps> = (props) => {
         'You must provide `lastSeen` when `networkStatus` is offline',
       )
     }
-    statusContent = getTimeAgo(new Date(lastSeen ?? null))
+    statusContent = getTimeAgo(new Date(!!lastSeen ? lastSeen : ''))
   }
 
   // Message Content
