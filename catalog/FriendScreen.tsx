@@ -9,6 +9,7 @@ import {
 } from 'react-native'
 import useTheme from '../components/hooks/useTheme'
 import Friend, { FriendProps } from '../components/molecules/Friend/Friend'
+import FriendGroup from '../components/molecules/Friend/FriendGroup'
 
 const friendData: FriendProps = {
   imageUrl: 'https://i.imgur.com/LK7ymaN.png',
@@ -117,12 +118,44 @@ export default function FriendScreen() {
           <Text style={styles.labelText}>
             #4 [Group w/ different status of users]*
           </Text>
-          <Friend
-            onCall
-            name={friendData.name}
-            imageUrl={friendData.imageUrl}
-            message={friendData.message}
-            lastPlayedGameUrl={friendData.lastPlayedGameUrl}
+          <FriendGroup
+            friends={[
+              {
+                firstName: 'Charlie',
+                imageUrl: friendData.imageUrl,
+                networkStatus: 'online',
+              },
+              {
+                firstName: 'Doug',
+                imageUrl: friendData.imageUrl,
+                networkStatus: 'offline',
+              },
+              {
+                firstName: 'Devin',
+                imageUrl: friendData.imageUrl,
+                networkStatus: 'online',
+              },
+              {
+                firstName: 'Pranay',
+                imageUrl: friendData.imageUrl,
+                networkStatus: 'online',
+              },
+              {
+                firstName: 'Nihar',
+                imageUrl: friendData.imageUrl,
+                networkStatus: 'online',
+              },
+              {
+                firstName: 'Josie',
+                imageUrl: friendData.imageUrl,
+                networkStatus: 'online',
+              },
+              {
+                firstName: 'Evan',
+                imageUrl: friendData.imageUrl,
+                networkStatus: 'online',
+              },
+            ]}
           />
         </View>
 
