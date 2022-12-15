@@ -5,8 +5,9 @@ import GameCardScreen from './catalog/GameCardScreen'
 import { useFonts } from 'expo-font'
 import ThemeContextProvider from './components/contexts/ThemeContext'
 import FriendScreen from './catalog/FriendScreen'
+import ButtonScreen from './catalog/ButtonScreen'
 
-type Views = 'ROOT' | 'GAME_CARD' | 'FRIEND'
+type Views = 'ROOT' | 'GAME_CARD' | 'FRIEND' | 'BUTTON'
 
 export default function App() {
   const [view, setView] = useState<Views>('ROOT')
@@ -53,6 +54,8 @@ export default function App() {
     content = <GameCardScreen />
   } else if (view === 'FRIEND') {
     content = <FriendScreen />
+  } else if (view === 'BUTTON') {
+    content = <ButtonScreen />
   } else {
     content = <View />
   }
