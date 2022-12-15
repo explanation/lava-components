@@ -77,6 +77,7 @@ export type TypographyItem = {
   fontWeight: TextStyle['fontWeight']
   color: TextStyle['color']
   lineHeight?: TextStyle['lineHeight']
+  letterSpacing?: TextStyle['letterSpacing']
 }
 
 export interface TypographyConfig {
@@ -86,21 +87,20 @@ export interface TypographyConfig {
   subtitle2: TypographyItem
   subtitle3: TypographyItem
   subtitle4: TypographyItem
-  buttonLarge: TypographyItem
   base: TypographyItem
 }
 
 export const roundness = {
   /** 1px */
   xs: 1,
+  /** 2px */
+  sm: 2,
   /** 4px */
-  sm: 4,
+  md: 4,
   /** 6px */
-  md: 6,
+  lg: 6,
   /** 8px */
-  lg: 8,
-  /** 10px */
-  xl: 10,
+  xl: 8,
 }
 
 export const spacing = {
@@ -112,10 +112,12 @@ export const spacing = {
   md: 6,
   /** 8px */
   lg: 8,
+  /** 10px */
+  xl: 10,
   /** 12px */
-  xl: 12,
+  xxl: 12,
   /** 16px */
-  xxl: 16,
+  xxxl: 16,
 }
 
 export const getTypography = (
@@ -126,55 +128,54 @@ export const getTypography = (
     fontSize: 22,
     lineHeight: 28.6,
     fontWeight: '400',
-    color: themeColors.pureBlack,
+    letterSpacing: 0.96,
+    color: themeColors.primarySand,
   },
   title2: {
     fontFamily: fontFamily.Medium,
     fontSize: 14,
     lineHeight: 18.2,
     fontWeight: '500',
-    color: themeColors.pureBlack,
+    letterSpacing: 0.96,
+    color: themeColors.primarySand,
   },
   subtitle1: {
     fontFamily: fontFamily.Medium,
     fontSize: 12,
     lineHeight: 15.6,
     fontWeight: '500',
-    color: themeColors.pureBlack,
+    letterSpacing: 0.96,
+    color: themeColors.primarySand,
   },
   subtitle2: {
     fontFamily: fontFamily.Regular,
     fontSize: 12,
     lineHeight: 15.6,
+    letterSpacing: 0.96,
     fontWeight: '400',
-    color: themeColors.pureBlack,
+    color: themeColors.primarySand,
   },
   subtitle3: {
     fontFamily: fontFamily.Regular,
     fontSize: 10,
     lineHeight: 13,
+    letterSpacing: 0.96,
     fontWeight: '400',
-    color: themeColors.pureBlack,
+    color: themeColors.primarySand,
   },
   subtitle4: {
     fontFamily: fontFamily.Regular,
     fontSize: 8,
     fontWeight: '400',
+    letterSpacing: 0.96,
     lineHeight: 10.4,
-    color: themeColors.pureBlack,
-  },
-  buttonLarge: {
-    fontFamily: fontFamily.Bold,
-    fontSize: 14,
-    fontWeight: '700',
-    lineHeight: 18,
-    color: themeColors.pureBlack,
+    color: themeColors.primarySand,
   },
   base: {
     fontFamily: fontFamily.Regular,
     fontSize: 12,
     fontWeight: '400',
-    color: themeColors.pureBlack,
+    color: themeColors.primarySand,
   },
 })
 

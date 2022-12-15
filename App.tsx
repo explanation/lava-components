@@ -11,7 +11,7 @@ import ButtonScreen from './catalog/ButtonScreen'
 type Views = 'ROOT' | 'GAME_CARD' | 'FRIEND' | 'BUTTON'
 
 export default function App() {
-  const [view, setView] = useState<Views>('BUTTON')
+  const [view, setView] = useState<Views>('ROOT')
   const [fontsLoaded] = useFonts({
     'Agrandir-Bold': require('./assets/fonts/Agrandir-Bold.otf'),
     'Agrandir-Medium': require('./assets/fonts/Agrandir-Medium.otf'),

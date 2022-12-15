@@ -1,5 +1,13 @@
 import React, { Fragment, useMemo } from 'react'
-import { View, Image, StyleSheet, Pressable } from 'react-native'
+import {
+  View,
+  Image,
+  StyleSheet,
+  Pressable,
+  StyleProp,
+  ViewStyle,
+  TextStyle,
+} from 'react-native'
 import Title from '../../atoms/Title/Title'
 import Label from '../../atoms/Label/Label'
 import Text from '../../atoms/Text/Text'
@@ -46,6 +54,14 @@ export interface GameCardProps {
    * Default: full
    */
   variation?: 'full' | 'icon' | 'mini'
+  /**
+   * Container Styles, Could be used for apply margin
+   */
+  containerStyle?: ViewStyle
+  /**
+   * Title/Name Styles, Could be used changing colors
+   */
+  titleStyle?: TextStyle
 }
 
 const GameCard: React.FC<GameCardProps> = (props) => {
@@ -58,6 +74,8 @@ const GameCard: React.FC<GameCardProps> = (props) => {
     callout,
     onPress,
     variation = 'full',
+    containerStyle = {},
+    titleStyle = {},
   } = props
   const theme = useTheme()
 
@@ -66,6 +84,7 @@ const GameCard: React.FC<GameCardProps> = (props) => {
       StyleSheet.create({
         wrapper: {
           flexDirection: 'row',
+          ...containerStyle,
         },
         container: {
           position: 'relative',
@@ -79,12 +98,13 @@ const GameCard: React.FC<GameCardProps> = (props) => {
           elevation: 5,
         },
         imageContainer: {
-          padding: theme.spacing.lg,
+          paddingHorizontal: theme.spacing.lg,
+          paddingTop: theme.spacing.lg,
         },
         footerContainer: {
           flexDirection: 'row',
           justifyContent: 'space-between',
-          marginTop: theme.spacing.xl,
+          marginTop: theme.spacing.xxl,
         },
         image: {
           height: 120,
@@ -113,7 +133,8 @@ const GameCard: React.FC<GameCardProps> = (props) => {
           width: 120,
           height: 32,
           color: theme.colors.primarySand,
-          marginTop: theme.spacing.lg,
+          marginTop: theme.spacing.xl,
+          ...titleStyle,
         },
         notificationLabelContainer: {
           position: 'absolute',
@@ -135,11 +156,7 @@ const GameCard: React.FC<GameCardProps> = (props) => {
       <View style={styles.container}>
         {/* Card Main */}
         <View style={styles.imageContainer}>
-          <Image
-            source={{ uri: imageUrl }}
-            style={styles.image}
-            resizeMode="cover"
-          />
+          <Image source={{ uri: imageUrl }} style={styles.image} />
           <Title numberOfLines={2} variation="subtitle2" style={styles.name}>
             {name}
           </Title>
