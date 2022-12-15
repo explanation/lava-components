@@ -1,5 +1,6 @@
 import React, { useMemo } from 'react'
 import { StyleProp, StyleSheet, Text, TextProps, TextStyle } from 'react-native'
+import { TypographyConfig } from '../../config/theme'
 import useTheme from '../../hooks/useTheme'
 
 export type HeadingVariation =
@@ -27,7 +28,7 @@ const Title: React.FC<TitleProps> = (props) => {
     () =>
       StyleSheet.create({
         default: {
-          ...theme.typography[variation],
+          ...theme.typography[variation as keyof TypographyConfig],
         },
       }),
     [theme],
