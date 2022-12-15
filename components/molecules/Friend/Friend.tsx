@@ -61,7 +61,7 @@ const Friend: React.FC<FriendProps> = (props) => {
           flexDirection: 'row',
           alignItems: 'center',
           position: 'relative',
-          paddingVertical: theme.spacing.xl,
+          paddingVertical: theme.spacing.xxl,
           // backgroundColor: 'blue',
         },
         imageWrapper: {

@@ -98,12 +98,13 @@ const GameCard: React.FC<GameCardProps> = (props) => {
           elevation: 5,
         },
         imageContainer: {
-          padding: theme.spacing.lg,
+          paddingHorizontal: theme.spacing.lg,
+          paddingTop: theme.spacing.lg,
         },
         footerContainer: {
           flexDirection: 'row',
           justifyContent: 'space-between',
-          marginTop: theme.spacing.xl,
+          marginTop: theme.spacing.xxl,
         },
         image: {
           height: 120,
@@ -132,7 +133,7 @@ const GameCard: React.FC<GameCardProps> = (props) => {
           width: 120,
           height: 32,
           color: theme.colors.primarySand,
-          marginTop: theme.spacing.lg,
+          marginTop: theme.spacing.xl,
           ...titleStyle,
         },
         notificationLabelContainer: {
@@ -155,11 +156,7 @@ const GameCard: React.FC<GameCardProps> = (props) => {
       <View style={styles.container}>
         {/* Card Main */}
         <View style={styles.imageContainer}>
-          <Image
-            source={{ uri: imageUrl }}
-            style={styles.image}
-            resizeMode="cover"
-          />
+          <Image source={{ uri: imageUrl }} style={styles.image} />
           <Title numberOfLines={2} variation="subtitle2" style={styles.name}>
             {name}
           </Title>
