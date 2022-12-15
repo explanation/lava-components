@@ -45,11 +45,13 @@ const SearchScreen: React.FC = () => {
           onSearch={handleYoutubeSearch}
         />
 
-        <Search
-          placeholder="Search Up Games, Codes, Secrets, Friends and more..."
-          text=""
-          onSearch={handleDefaultSearch}
-        />
+        <View style={{ marginTop: 10 }}>
+          <Search
+            placeholder="Search Up Games, Codes, Secrets, Friends and more..."
+            text=""
+            onSearch={handleDefaultSearch}
+          />
+        </View>
       </ScrollView>
     </SafeAreaView>
   )
