@@ -11,7 +11,7 @@ import SearchScreen from './catalog/SearchScreen'
 type Views = 'ROOT' | 'GAME_CARD' | 'FRIEND' | 'SEARCH'
 
 export default function App() {
-  const [view, setView] = useState<Views>('SEARCH')
+  const [view, setView] = useState<Views>('ROOT')
   const [fontsLoaded] = useFonts({
     'Agrandir-Bold': require('./assets/fonts/Agrandir-Bold.otf'),
     'Agrandir-Medium': require('./assets/fonts/Agrandir-Medium.otf'),
