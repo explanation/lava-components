@@ -31,3 +31,12 @@ export const getTimeAgo = (date: Date) => {
   const count = Math.floor(seconds / interval!.seconds)
   return `${count} ${interval!.label}${count !== 1 ? 's' : ''} ago`
 }
+
+export const getVideoDuration = (durationInSeconds: number) => {
+  const h = Math.floor(durationInSeconds / 3600)
+  const m = Math.floor((durationInSeconds % 3600) / 60)
+  const s = Math.round(durationInSeconds % 60)
+  return [h, m > 9 ? m : h ? '00' + m : m || '00', s > 9 ? s : '0' + s]
+    .filter(Boolean)
+    .join(':')
+}

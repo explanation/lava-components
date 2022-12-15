@@ -6,11 +6,12 @@ import TText from './components/atoms/Text/Text'
 import { useFonts } from 'expo-font'
 import ThemeContextProvider from './components/contexts/ThemeContext'
 import FriendScreen from './catalog/FriendScreen'
+import VideoCardScreen from './catalog/VideoCardScreen'
 
-type Views = 'ROOT' | 'GAME_CARD' | 'FRIEND'
+type Views = 'ROOT' | 'GAME_CARD' | 'FRIEND' | 'VIDEO_CARD'
 
 export default function App() {
-  const [view, setView] = useState<Views>('ROOT')
+  const [view, setView] = useState<Views>('VIDEO_CARD')
   const [fontsLoaded] = useFonts({
     'Agrandir-Bold': require('./assets/fonts/Agrandir-Bold.otf'),
     'Agrandir-Medium': require('./assets/fonts/Agrandir-Medium.otf'),
@@ -54,6 +55,8 @@ export default function App() {
     content = <GameCardScreen />
   } else if (view === 'FRIEND') {
     content = <FriendScreen />
+  } else if (view === 'VIDEO_CARD') {
+    content = <VideoCardScreen />
   } else {
     content = <View />
   }
