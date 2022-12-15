@@ -49,6 +49,7 @@ const VideoCard: React.FC<VideoCardProps> = (props) => {
       StyleSheet.create({
         container: {
           maxWidth: 214,
+          position: 'relative',
         },
         thumbnailContainer: {
           borderRadius: theme.roundness.xs,
@@ -84,12 +85,12 @@ const VideoCard: React.FC<VideoCardProps> = (props) => {
           textAlign: 'center',
         },
         title: {
-          height: 11,
+          height: 14,
           position: 'relative',
           marginTop: theme.spacing.lg,
         },
         metaData: {
-          marginTop: theme.spacing.lg,
+          marginTop: theme.spacing.lg - 3,
           color: theme.colors.primarySand60,
         },
       }),
@@ -113,7 +114,7 @@ const VideoCard: React.FC<VideoCardProps> = (props) => {
       </Title>
 
       <Title variation="subtitle3" numberOfLines={1} style={styles.metaData}>
-        {creatorName} • {getFormattedNumber(views)} views •{' '}
+        {creatorName} • {getFormattedNumber(views).replace(' ', '')} views •{' '}
         {getTimeAgo(new Date(uploadedOn))}
       </Title>
     </View>
