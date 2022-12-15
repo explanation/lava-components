@@ -6,6 +6,7 @@ import useTheme from '../../hooks/useTheme'
 import { getTimeAgo } from '../../utils/numbers'
 
 export type FriendNetworkStatus = 'online' | 'offline'
+export type ActivityType = 'game' | 'video'
 
 export interface FriendProps {
   imageUrl: string
@@ -21,7 +22,8 @@ export interface FriendProps {
   lastSeen?: string
   onCall?: boolean
   friendRequestSent?: boolean
-  lastPlayedGameUrl?: string
+  activityImageUrl?: string
+  activityType?: ActivityType
   friendInLava?: boolean
   newFriendRequest?: boolean
   onAsidePress?: () => void
@@ -39,8 +41,9 @@ const Friend: React.FC<FriendProps> = (props) => {
     lastSeen,
     onCall,
     onAsidePress,
-    lastPlayedGameUrl,
+    activityImageUrl: lastPlayedGameUrl,
     friendInLava = true,
+    activityType,
   } = props
   const theme = useTheme()
 
@@ -70,8 +73,8 @@ const Friend: React.FC<FriendProps> = (props) => {
           marginRight: 5,
         },
         imageContainer: {
-          height: 56,
-          width: 56,
+          height: 56 - (friendRequestSent ? 3 : 0),
+          width: 56 - (friendRequestSent ? 3 : 0),
           borderRadius: 56,
           justifyContent: 'center',
           alignItems: 'center',
@@ -122,7 +125,9 @@ const Friend: React.FC<FriendProps> = (props) => {
           marginTop: onCall ? theme.spacing.md : 9,
           flexDirection: 'row',
           alignItems: 'center',
-          width: 127,
+          width: lastPlayedGameUrl ? 127 : undefined,
+          maxWidth: 206,
+          minWidth: 127,
           height: 12,
         },
         message: {
@@ -147,7 +152,7 @@ const Friend: React.FC<FriendProps> = (props) => {
           marginHorizontal: 12,
         },
         currentActivityContainer: {
-          height: 66,
+          height: activityType === 'video' ? 52 : 66,
           width: 66,
           justifyContent: 'center',
           alignItems: 'center',
@@ -159,8 +164,13 @@ const Friend: React.FC<FriendProps> = (props) => {
               : 'transparent',
         },
         currentActivityImage: {
-          height: 56,
+          height: activityType === 'video' ? 42 : 56,
           width: 56,
+        },
+        playImage: {
+          position: 'absolute',
+          width: 24,
+          height: 24,
         },
         resendImage: {
           width: 42,
@@ -234,6 +244,12 @@ const Friend: React.FC<FriendProps> = (props) => {
             source={{ uri: lastPlayedGameUrl }}
             style={styles.currentActivityImage}
           />
+          {activityType === 'video' && (
+            <Image
+              source={require('./assets/play@3x.png')}
+              style={styles.playImage}
+            />
+          )}
         </View>
       </Fragment>
     )

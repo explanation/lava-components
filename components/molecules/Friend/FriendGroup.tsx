@@ -80,7 +80,7 @@ const FriendGroup: React.FC<FriendProps> = (props) => {
         },
         imageWrapper: {
           alignItems: 'center',
-          paddingRight: theme.spacing.xxl,
+          paddingRight: theme.spacing.xxxl,
         },
         friend2: {
           marginTop: -7,
