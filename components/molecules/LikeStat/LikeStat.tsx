@@ -31,10 +31,12 @@ const LikeStat: React.FC<LikeStatProps> = (props) => {
           padding: 0,
         },
         likes: {
+          ...theme.typography.subtitle3,
           marginLeft: theme.spacing.sm,
           opacity: 0.6,
         },
         suffix: {
+          ...theme.typography.subtitle3,
           opacity: 0.6,
         },
       }),
@@ -44,7 +46,7 @@ const LikeStat: React.FC<LikeStatProps> = (props) => {
   return (
     <View style={styles.container}>
       <Image
-        source={require('./like.png')}
+        source={require('./like@3x.png')}
         style={{ height: 8, width: 8, marginBottom: 3 }}
       />
       <Text
