@@ -2,13 +2,13 @@ import React, { Fragment, useCallback, useEffect, useState } from 'react'
 import { StyleSheet, Text, View, Button } from 'react-native'
 import * as SplashScreen from 'expo-splash-screen'
 import GameCardScreen from './catalog/GameCardScreen'
-import TText from './components/atoms/Text/Text'
 import { useFonts } from 'expo-font'
 import ThemeContextProvider from './components/contexts/ThemeContext'
 import FriendScreen from './catalog/FriendScreen'
 import VideoCardScreen from './catalog/VideoCardScreen'
-
-type Views = 'ROOT' | 'GAME_CARD' | 'FRIEND' | 'VIDEO_CARD'
+import ButtonScreen from './catalog/ButtonScreen'
+        
+type Views = 'ROOT' | 'GAME_CARD' | 'FRIEND' | 'VIDEO_CARD' | 'BUTTON'
 
 export default function App() {
   const [view, setView] = useState<Views>('VIDEO_CARD')
@@ -57,6 +57,8 @@ export default function App() {
     content = <FriendScreen />
   } else if (view === 'VIDEO_CARD') {
     content = <VideoCardScreen />
+  } else if (view === 'BUTTON') {
+    content = <ButtonScreen />
   } else {
     content = <View />
   }

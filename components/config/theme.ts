@@ -63,8 +63,11 @@ export const colors = {
 
 export const fontFamily = {
   default: 'Agrandir',
+  /** 700 */
   Bold: 'Agrandir-Bold',
+  /** 500 */
   Medium: 'Agrandir-Medium',
+  /** 400 */
   Regular: 'Agrandir-Regular',
 }
 

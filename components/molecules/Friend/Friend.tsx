@@ -5,11 +5,14 @@ import Title from '../../atoms/Title/Title'
 import useTheme from '../../hooks/useTheme'
 import { getTimeAgo } from '../../utils/numbers'
 
+export type FriendNetworkStatus = 'online' | 'offline'
+export type ActivityType = 'game' | 'video'
+
 export interface FriendProps {
   imageUrl: string
   name: string
   message?: string
-  networkStatus?: 'online' | 'offline'
+  networkStatus?: FriendNetworkStatus
   playing?: boolean
   messageSeen?: boolean
   /**
@@ -19,7 +22,8 @@ export interface FriendProps {
   lastSeen?: string
   onCall?: boolean
   friendRequestSent?: boolean
-  lastPlayedGameUrl?: string
+  activityImageUrl?: string
+  activityType?: ActivityType
   friendInLava?: boolean
   newFriendRequest?: boolean
   onAsidePress?: () => void
@@ -37,8 +41,9 @@ const Friend: React.FC<FriendProps> = (props) => {
     lastSeen,
     onCall,
     onAsidePress,
-    lastPlayedGameUrl,
+    activityImageUrl: lastPlayedGameUrl,
     friendInLava = true,
+    activityType,
   } = props
   const theme = useTheme()
 
@@ -61,20 +66,19 @@ const Friend: React.FC<FriendProps> = (props) => {
           flexDirection: 'row',
           alignItems: 'center',
           position: 'relative',
-          paddingVertical: theme.spacing.xxl,
-          // backgroundColor: 'blue',
+          paddingVertical: theme.spacing.xl,
         },
         imageWrapper: {
-          paddingHorizontal: 5,
+          paddingRight: 5,
           marginRight: 5,
         },
         imageContainer: {
-          // containerHeight (52) + gapBetweenImageAndContainer (4)
-          height: 56,
-          width: 56,
+          height: 56 - (friendRequestSent ? 3 : 0),
+          width: 56 - (friendRequestSent ? 3 : 0),
           borderRadius: 56,
           justifyContent: 'center',
           alignItems: 'center',
+          backgroundColor: theme.colors.secondaryContainers,
           borderWidth: friendRequestSent ? 0.5 : 3,
           borderColor: imageContainerBorderColor,
         },
@@ -92,7 +96,8 @@ const Friend: React.FC<FriendProps> = (props) => {
         },
         name: {
           color: theme.colors.primarySand,
-          lineHeight: 8,
+          position: 'relative',
+          height: 11,
         },
         detailsContainer: {
           paddingVertical: 3,
@@ -101,10 +106,11 @@ const Friend: React.FC<FriendProps> = (props) => {
         },
         statusContainer: {
           flexDirection: 'row',
-          alignItems: 'center',
+          // alignItems: 'center',
+          marginTop: theme.spacing.md,
         },
         status: {
-          marginTop: 6,
+          height: 11,
           marginRight: theme.spacing.md,
           color:
             networkStatus === 'online'
@@ -114,13 +120,15 @@ const Friend: React.FC<FriendProps> = (props) => {
         robloxImage: {
           width: 14,
           height: 14,
-          marginTop: theme.spacing.sm,
         },
         messageContainer: {
-          marginTop: onCall ? theme.spacing.xs : theme.spacing.sm,
+          marginTop: onCall ? theme.spacing.md : 9,
           flexDirection: 'row',
           alignItems: 'center',
-          width: 127,
+          width: lastPlayedGameUrl ? 127 : undefined,
+          maxWidth: 206,
+          minWidth: 127,
+          height: 12,
         },
         message: {
           color: messageSeen
@@ -144,8 +152,8 @@ const Friend: React.FC<FriendProps> = (props) => {
           marginHorizontal: 12,
         },
         currentActivityContainer: {
-          height: 71,
-          width: 71,
+          height: activityType === 'video' ? 52 : 66,
+          width: 66,
           justifyContent: 'center',
           alignItems: 'center',
           borderRadius: 5,
@@ -156,8 +164,13 @@ const Friend: React.FC<FriendProps> = (props) => {
               : 'transparent',
         },
         currentActivityImage: {
-          height: 56,
+          height: activityType === 'video' ? 42 : 56,
           width: 56,
+        },
+        playImage: {
+          position: 'absolute',
+          width: 24,
+          height: 24,
         },
         resendImage: {
           width: 42,
@@ -231,6 +244,12 @@ const Friend: React.FC<FriendProps> = (props) => {
             source={{ uri: lastPlayedGameUrl }}
             style={styles.currentActivityImage}
           />
+          {activityType === 'video' && (
+            <Image
+              source={require('./assets/play@3x.png')}
+              style={styles.playImage}
+            />
+          )}
         </View>
       </Fragment>
     )
@@ -244,7 +263,7 @@ const Friend: React.FC<FriendProps> = (props) => {
 
   return (
     <View style={styles.container}>
-      <View style={styles.imageWrapper}>
+      <View style={[styles.imageWrapper]}>
         <View style={[styles.imageContainer]}>
           <Image
             source={{ uri: imageUrl }}
@@ -264,7 +283,7 @@ const Friend: React.FC<FriendProps> = (props) => {
         )}
       </View>
 
-      <View style={styles.detailsContainer}>
+      <View style={[styles.detailsContainer]}>
         <Title variation="subtitle1" style={styles.name}>
           {name}
         </Title>
@@ -281,7 +300,7 @@ const Friend: React.FC<FriendProps> = (props) => {
           )}
         </View>
 
-        {!friendRequestSent && (
+        {messageContent && (
           <View style={styles.messageContainer}>{messageContent}</View>
         )}
       </View>
