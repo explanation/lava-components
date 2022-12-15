@@ -24,6 +24,8 @@ const Search: React.FC<SearchProps> = (props) => {
           flexDirection: 'row',
           alignItems: 'center',
           backgroundColor: theme.colors.tertiarySand5,
+          borderBottomColor: theme.colors.tertiarySand20,
+          borderBottomWidth: 1,
         },
         container: {
           padding: theme.spacing.md,
