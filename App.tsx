@@ -7,11 +7,19 @@ import ThemeContextProvider from './components/contexts/ThemeContext'
 import FriendScreen from './catalog/FriendScreen'
 import VideoCardScreen from './catalog/VideoCardScreen'
 import ButtonScreen from './catalog/ButtonScreen'
-        
-type Views = 'ROOT' | 'GAME_CARD' | 'FRIEND' | 'VIDEO_CARD' | 'BUTTON'
+import TopicCard from './components/molecules/TopicCard/TopicCard'
+import TopicCardScreen from './catalog/TopicCardScreen'
+
+type Views =
+  | 'ROOT'
+  | 'GAME_CARD'
+  | 'FRIEND'
+  | 'VIDEO_CARD'
+  | 'BUTTON'
+  | 'TOPIC_CARD'
 
 export default function App() {
-  const [view, setView] = useState<Views>('VIDEO_CARD')
+  const [view, setView] = useState<Views>('ROOT')
   const [fontsLoaded] = useFonts({
     'Agrandir-Bold': require('./assets/fonts/Agrandir-Bold.otf'),
     'Agrandir-Medium': require('./assets/fonts/Agrandir-Medium.otf'),
@@ -49,6 +57,9 @@ export default function App() {
         <View style={styles.button}>
           <Button onPress={() => setView('FRIEND')} title="<Friend />" />
         </View>
+        <View style={styles.button}>
+          <Button onPress={() => setView('TOPIC_CARD')} title="<TopicCard />" />
+        </View>
       </View>
     )
   } else if (view === 'GAME_CARD') {
@@ -59,6 +70,8 @@ export default function App() {
     content = <VideoCardScreen />
   } else if (view === 'BUTTON') {
     content = <ButtonScreen />
+  } else if (view === 'TOPIC_CARD') {
+    content = <TopicCardScreen />
   } else {
     content = <View />
   }
