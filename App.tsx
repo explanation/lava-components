@@ -51,6 +51,12 @@ export default function App() {
         <View style={styles.button}>
           <Button onPress={() => setView('FRIEND')} title="<Friend />" />
         </View>
+        <View style={styles.button}>
+          <Button onPress={() => setView('VIDEO_CARD')} title="<VideoCard />" />
+        </View>
+        <View style={styles.button}>
+          <Button onPress={() => setView('BUTTON')} title="<Button />" />
+        </View>
       </View>
     )
   } else {
