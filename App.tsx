@@ -1,5 +1,5 @@
 import React, { Fragment, useCallback, useEffect, useState } from 'react'
-import { StyleSheet, Text, View, Button } from 'react-native'
+import { StyleSheet, Text, View, Button, Pressable } from 'react-native'
 import * as SplashScreen from 'expo-splash-screen'
 import GameCardScreen from './catalog/GameCardScreen'
 import { useFonts } from 'expo-font'
@@ -7,7 +7,9 @@ import ThemeContextProvider from './components/contexts/ThemeContext'
 import FriendScreen from './catalog/FriendScreen'
 import VideoCardScreen from './catalog/VideoCardScreen'
 import ButtonScreen from './catalog/ButtonScreen'
-        
+import Title from './components/atoms/Title/Title'
+import theme from './components/config/theme'
+
 type Views = 'ROOT' | 'GAME_CARD' | 'FRIEND' | 'VIDEO_CARD' | 'BUTTON'
 
 export default function App() {
@@ -51,16 +53,39 @@ export default function App() {
         </View>
       </View>
     )
-  } else if (view === 'GAME_CARD') {
-    content = <GameCardScreen />
-  } else if (view === 'FRIEND') {
-    content = <FriendScreen />
-  } else if (view === 'VIDEO_CARD') {
-    content = <VideoCardScreen />
-  } else if (view === 'BUTTON') {
-    content = <ButtonScreen />
   } else {
-    content = <View />
+    let screen = <View />
+    if (view === 'GAME_CARD') {
+      screen = <GameCardScreen />
+    } else if (view === 'FRIEND') {
+      screen = <FriendScreen />
+    } else if (view === 'VIDEO_CARD') {
+      screen = <VideoCardScreen />
+    } else if (view === 'BUTTON') {
+      screen = <ButtonScreen />
+    } else {
+      screen = <View />
+    }
+    content = (
+      <View>
+        <Pressable
+          onPress={() => setView('ROOT')}
+          style={{
+            backgroundColor: theme.colors.dark.secondaryBk,
+            paddingVertical: 20,
+            paddingLeft: 20,
+          }}
+        >
+          <Title
+            variation="subtitle1"
+            style={{ color: theme.colors.dark.gravity }}
+          >
+            {'<'} View All Components
+          </Title>
+        </Pressable>
+        {screen}
+      </View>
+    )
   }
 
   return (
@@ -76,6 +101,8 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
+    width: '100%',
+    height: '100%',
     alignItems: 'center',
     justifyContent: 'center',
   },
