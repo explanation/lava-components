@@ -337,7 +337,7 @@ const ButtonScreen: React.FC = () => {
                   />
                 }
               />
-              <Title variation="heading1" style={styles.actionText}>
+              <Title variation="title2" style={styles.actionText}>
                 Tap here to call
               </Title>
             </Pressable>

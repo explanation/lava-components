@@ -5,12 +5,13 @@ import GameCardScreen from './catalog/GameCardScreen'
 import { useFonts } from 'expo-font'
 import ThemeContextProvider from './components/contexts/ThemeContext'
 import FriendScreen from './catalog/FriendScreen'
+import VideoCardScreen from './catalog/VideoCardScreen'
 import ButtonScreen from './catalog/ButtonScreen'
-
-type Views = 'ROOT' | 'GAME_CARD' | 'FRIEND' | 'BUTTON'
+        
+type Views = 'ROOT' | 'GAME_CARD' | 'FRIEND' | 'VIDEO_CARD' | 'BUTTON'
 
 export default function App() {
-  const [view, setView] = useState<Views>('ROOT')
+  const [view, setView] = useState<Views>('VIDEO_CARD')
   const [fontsLoaded] = useFonts({
     'Agrandir-Bold': require('./assets/fonts/Agrandir-Bold.otf'),
     'Agrandir-Medium': require('./assets/fonts/Agrandir-Medium.otf'),
@@ -54,6 +55,8 @@ export default function App() {
     content = <GameCardScreen />
   } else if (view === 'FRIEND') {
     content = <FriendScreen />
+  } else if (view === 'VIDEO_CARD') {
+    content = <VideoCardScreen />
   } else if (view === 'BUTTON') {
     content = <ButtonScreen />
   } else {
