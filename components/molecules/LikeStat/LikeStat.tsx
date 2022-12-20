@@ -46,7 +46,7 @@ const LikeStat: React.FC<LikeStatProps> = (props) => {
   return (
     <View style={styles.container}>
       <Image
-        source={require('./like@3x.png')}
+        source={require('./like.png')}
         style={{ height: 8, width: 8, marginBottom: 3 }}
       />
       <Text
