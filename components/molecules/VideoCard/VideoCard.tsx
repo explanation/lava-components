@@ -58,8 +58,9 @@ const VideoCard: React.FC<VideoCardProps> = (props) => {
   const maxWidth = useMemo(() => {
     switch (variation) {
       case 'feed':
-      case 'secrets':
         return 214
+      case 'secrets':
+        return 278
       case 'game-preview':
         return 495
       case 'game-preview-mini':
@@ -78,8 +79,9 @@ const VideoCard: React.FC<VideoCardProps> = (props) => {
   const thumbnailWidth = useMemo(() => {
     switch (variation) {
       case 'feed':
-      case 'secrets':
         return 214
+      case 'secrets':
+        return 278
       case 'game-preview':
         return 481
       case 'game-preview-mini':
@@ -98,8 +100,9 @@ const VideoCard: React.FC<VideoCardProps> = (props) => {
   const thumbnailHeight = useMemo(() => {
     switch (variation) {
       case 'feed':
-      case 'secrets':
         return 120
+      case 'secrets':
+        return 156
       case 'game-preview':
         return 270
       case 'game-preview-mini':
@@ -133,8 +136,8 @@ const VideoCard: React.FC<VideoCardProps> = (props) => {
         },
         thumbnailOverlay: {
           position: 'absolute',
-          width: 214,
-          height: 120,
+          width: maxWidth,
+          height: thumbnailHeight,
           zIndex: 1,
           backgroundColor: theme.colors.secondaryBk + '26',
         },

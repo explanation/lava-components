@@ -17,8 +17,13 @@ export const getFormattedNumber = (num: number, digits: number = 2) => {
     : '0'
 }
 
-export const getTimeAgo = (date: Date) => {
-  const intervals = [
+export type IntervalMapping = {
+  label: string
+  seconds: number
+}
+
+export const getTimeAgo = (date: Date, intervalMapping?: IntervalMapping[]) => {
+  const intervals = intervalMapping || [
     { label: 'year', seconds: 31536000 },
     { label: 'month', seconds: 2592000 },
     { label: 'day', seconds: 86400 },

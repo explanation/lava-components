@@ -1,12 +1,19 @@
 import { Fragment, useCallback, useMemo } from 'react'
-import { Image, Pressable, StyleSheet, View, ViewStyle } from 'react-native'
+import { Image, Pressable, StyleSheet, View } from 'react-native'
+import Button from '../../atoms/Button/Button'
 import Text from '../../atoms/Text/Text'
 import Title from '../../atoms/Title/Title'
+import { intervalMapping } from '../../config/date'
 import useTheme from '../../hooks/useTheme'
 import { getTimeAgo } from '../../utils/numbers'
 
 export type FriendNetworkStatus = 'online' | 'offline'
 export type ActivityType = 'game' | 'video'
+export type NotificationType =
+  | 'new-friend-request'
+  | 'chat'
+  | 'video'
+  | 'new-friend-joined'
 
 export interface FriendProps {
   imageUrl: string
@@ -22,11 +29,28 @@ export interface FriendProps {
   lastSeen?: string
   onCall?: boolean
   friendRequestSent?: boolean
+  /**
+   * ISO Date format
+   * eg: 2022-12-08T10:41:29.921Z
+   */
+  notificationType?: NotificationType
+  /**
+   * ISO Date format
+   * eg: 2022-12-08T10:41:29.921Z
+   */
+  notificationSentOn?: string
   activityImageUrl?: string
   activityType?: ActivityType
   friendInLava?: boolean
-  newFriendRequest?: boolean
   onAsidePress?: () => void
+  /**
+   * Used for "New Friend Request" variation
+   */
+  onIgnorePress?: () => void
+  /**
+   * Used for "New Friend Request" variation
+   */
+  onAcceptPress?: () => void
 }
 
 const Friend: React.FC<FriendProps> = (props) => {
@@ -37,19 +61,23 @@ const Friend: React.FC<FriendProps> = (props) => {
     networkStatus = 'online',
     playing = false,
     friendRequestSent = false,
+    notificationType,
+    notificationSentOn,
     messageSeen,
     lastSeen,
     onCall,
     onAsidePress,
-    activityImageUrl: lastPlayedGameUrl,
+    activityImageUrl,
     friendInLava = true,
     activityType,
+    onIgnorePress,
+    onAcceptPress,
   } = props
   const theme = useTheme()
 
   const imageContainerBorderColor = useMemo(() => {
     let borderColor = null
-    if (friendRequestSent) {
+    if (friendRequestSent || notificationType === 'new-friend-request') {
       borderColor = theme.colors.primarySand
     } else if (networkStatus === 'offline') {
       borderColor = theme.colors.primarySand40
@@ -59,27 +87,90 @@ const Friend: React.FC<FriendProps> = (props) => {
     return borderColor
   }, [])
 
+  const nameVisible = useMemo(() => {
+    return notificationType === 'new-friend-request' ? false : true
+  }, [])
+
+  const dividerVisible = useMemo(() => {
+    return !friendRequestSent && activityImageUrl && !notificationType
+  }, [])
+
+  const statusVisible = useMemo(() => {
+    return (
+      notificationType !== 'chat' &&
+      notificationType !== 'video' &&
+      notificationType !== 'new-friend-joined'
+    )
+  }, [])
+
+  const handleAsidePress = useCallback(() => {
+    if (onAsidePress && typeof onAsidePress === 'function') {
+      onAsidePress()
+    }
+  }, [])
+
+  const handleIgnorePress = useCallback(() => {
+    if (onIgnorePress && typeof onIgnorePress === 'function') {
+      onIgnorePress()
+    }
+  }, [])
+
+  const handleAcceptPress = useCallback(() => {
+    if (onAcceptPress && typeof onAcceptPress === 'function') {
+      onAcceptPress()
+    }
+  }, [])
+
+  const badgeIcon = useMemo(() => {
+    let image = null
+    if (friendRequestSent || notificationType === 'new-friend-request') {
+      image = require('./assets/FriendRequest@3x.png')
+    } else if (notificationType === 'chat') {
+      image = require('./assets/chat-bubble@3x.png')
+    } else if (notificationType === 'video') {
+      image = require('./assets/video-bubble@3x.png')
+    } else if (friendInLava) {
+      image = require('./assets/LBadge@3x.png')
+    }
+    return image
+  }, [])
+
   const styles = useMemo(
     () =>
       StyleSheet.create({
+        wrapper: {
+          paddingVertical: notificationType ? theme.spacing.xxxl : undefined,
+        },
         container: {
+          paddingVertical: theme.spacing.xl,
           flexDirection: 'row',
           alignItems: 'center',
           position: 'relative',
-          paddingVertical: theme.spacing.xl,
+          maxWidth: 290,
         },
         imageWrapper: {
           paddingRight: 5,
-          marginRight: 5,
+          marginRight: notificationType === 'new-friend-request' ? 9 : 5,
         },
         imageContainer: {
-          height: 56 - (friendRequestSent ? 3 : 0),
-          width: 56 - (friendRequestSent ? 3 : 0),
+          height:
+            56 -
+            (friendRequestSent || notificationType === 'new-friend-request'
+              ? 3
+              : 0),
+          width:
+            56 -
+            (friendRequestSent || notificationType === 'new-friend-request'
+              ? 3
+              : 0),
           borderRadius: 56,
           justifyContent: 'center',
           alignItems: 'center',
           backgroundColor: theme.colors.secondaryContainers,
-          borderWidth: friendRequestSent ? 0.5 : 3,
+          borderWidth:
+            friendRequestSent || notificationType === 'new-friend-request'
+              ? 0.5
+              : 3,
           borderColor: imageContainerBorderColor,
         },
         image: {
@@ -97,7 +188,12 @@ const Friend: React.FC<FriendProps> = (props) => {
         name: {
           color: theme.colors.primarySand,
           position: 'relative',
-          height: 11,
+          height:
+            notificationType === 'video' ||
+            notificationType === 'new-friend-joined'
+              ? undefined
+              : 11,
+          maxWidth: 175,
         },
         detailsContainer: {
           paddingVertical: 3,
@@ -106,12 +202,12 @@ const Friend: React.FC<FriendProps> = (props) => {
         },
         statusContainer: {
           flexDirection: 'row',
-          // alignItems: 'center',
-          marginTop: theme.spacing.md,
+          marginTop: nameVisible ? theme.spacing.md : 0,
         },
         status: {
-          height: 11,
+          height: nameVisible ? 11 : undefined,
           marginRight: theme.spacing.md,
+          maxWidth: 170,
           color:
             networkStatus === 'online'
               ? theme.colors.primarySand
@@ -125,7 +221,7 @@ const Friend: React.FC<FriendProps> = (props) => {
           marginTop: onCall ? theme.spacing.md : 9,
           flexDirection: 'row',
           alignItems: 'center',
-          width: lastPlayedGameUrl ? 127 : undefined,
+          width: activityImageUrl ? 127 : undefined,
           maxWidth: 206,
           minWidth: 127,
           height: 12,
@@ -166,6 +262,9 @@ const Friend: React.FC<FriendProps> = (props) => {
         currentActivityImage: {
           height: activityType === 'video' ? 42 : 56,
           width: 56,
+          borderWidth: 0.5,
+          borderColor: theme.colors.primarySand40,
+          borderRadius: theme.roundness.sm,
         },
         playImage: {
           position: 'absolute',
@@ -176,6 +275,18 @@ const Friend: React.FC<FriendProps> = (props) => {
           width: 42,
           height: 42,
         },
+        footerContainer: {
+          marginTop: theme.spacing.xxl,
+          flexDirection: 'row',
+          justifyContent: 'space-between',
+        },
+        notificationSentOn: {
+          height: 12,
+          position: 'absolute',
+          top: theme.spacing.sm,
+          right: theme.spacing.xs,
+          color: theme.colors.primarySand60,
+        },
       }),
     [],
   )
@@ -184,11 +295,12 @@ const Friend: React.FC<FriendProps> = (props) => {
   let statusContent = ''
   if (friendRequestSent) {
     statusContent = 'Friend Request sent'
+  } else if (notificationType === 'new-friend-request') {
+    statusContent = `${name} sent a friend request`
   } else if (networkStatus === 'online') {
     statusContent = 'Online'
-    if (playing) {
-      statusContent += ', Playing'
-    }
+    if (playing) statusContent += ', Playing'
+    if (activityType === 'video') statusContent += ', Watching'
   } else {
     // TODO: Fix with typescript
     if (__DEV__ && !lastSeen) {
@@ -196,7 +308,7 @@ const Friend: React.FC<FriendProps> = (props) => {
         'You must provide `lastSeen` when `networkStatus` is offline',
       )
     }
-    statusContent = getTimeAgo(new Date(!!lastSeen ? lastSeen : ''))
+    statusContent = getTimeAgo(new Date(!!lastSeen ? lastSeen : 0))
   }
 
   // Message Content
@@ -236,12 +348,64 @@ const Friend: React.FC<FriendProps> = (props) => {
         />
       </View>
     )
-  } else if (lastPlayedGameUrl) {
+  } else if (notificationType === 'chat') {
+    asideContent = (
+      <Button
+        onPress={handleAsidePress}
+        variation="gravity"
+        roundness="circular"
+        icon={
+          <Image
+            resizeMode="contain"
+            style={{ width: 20, height: 20 }}
+            source={require('./assets/chat@3x.png')}
+          />
+        }
+      />
+    )
+  } else if (notificationType === 'video') {
+    asideContent = (
+      <Button
+        onPress={handleAsidePress}
+        variation="gravity"
+        roundness="circular"
+        icon={
+          <Image
+            resizeMode="contain"
+            style={{ width: 20, height: 20 }}
+            source={require('./assets/VideoCall@3x.png')}
+          />
+        }
+      />
+    )
+  } else if (notificationType === 'new-friend-joined') {
+    asideContent = (
+      <Button
+        onPress={handleAsidePress}
+        variation="gravity"
+        roundness="circular"
+        icon={
+          <View
+            style={{
+              width: 20,
+              height: 20,
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}
+          >
+            <Text style={{ fontSize: 18, marginTop: 2 }}>👋</Text>
+          </View>
+        }
+      />
+    )
+  } else if (notificationType === 'new-friend-request') {
+    asideContent = <Fragment />
+  } else if (activityImageUrl) {
     asideContent = (
       <Fragment>
         <View style={styles.currentActivityContainer}>
           <Image
-            source={{ uri: lastPlayedGameUrl }}
+            source={{ uri: activityImageUrl }}
             style={styles.currentActivityImage}
           />
           {activityType === 'video' && (
@@ -255,66 +419,106 @@ const Friend: React.FC<FriendProps> = (props) => {
     )
   }
 
-  const handleAsidePress = useCallback(() => {
-    if (onAsidePress && typeof onAsidePress === 'function') {
-      onAsidePress()
-    }
-  }, [])
+  let nameContent = name
+  if (notificationType === 'video') {
+    nameContent = `You missed a call from ${name}. Call back!`
+  } else if (notificationType === 'new-friend-joined') {
+    nameContent = `${name} has started using Lava.\nSay Hi!`
+  }
 
   return (
-    <View style={styles.container}>
-      <View style={[styles.imageWrapper]}>
-        <View style={[styles.imageContainer]}>
-          <Image
-            source={{ uri: imageUrl }}
-            style={styles.image}
-            resizeMode="cover"
-          />
-        </View>
-        {friendInLava && (
-          <Image
-            source={
-              friendRequestSent
-                ? require('./assets/FriendRequest@3x.png')
-                : require('./assets/LBadge@3x.png')
-            }
-            style={styles.lBadge}
-          />
-        )}
-      </View>
-
-      <View style={[styles.detailsContainer]}>
-        <Title variation="subtitle1" style={styles.name}>
-          {name}
-        </Title>
-
-        <View style={styles.statusContainer}>
-          <Title variation="subtitle2" style={styles.status}>
-            {statusContent}
-          </Title>
-          {playing && (
+    <View style={styles.wrapper}>
+      <View style={styles.container}>
+        <View style={[styles.imageWrapper]}>
+          <View style={[styles.imageContainer]}>
             <Image
-              source={require('./assets/Roblox@3x.png')}
-              style={styles.robloxImage}
+              source={{ uri: imageUrl }}
+              style={styles.image}
+              resizeMode="cover"
             />
+          </View>
+
+          {badgeIcon && <Image source={badgeIcon} style={styles.lBadge} />}
+        </View>
+
+        <View style={styles.detailsContainer}>
+          {nameVisible && (
+            <Title numberOfLines={3} variation="subtitle1" style={styles.name}>
+              {nameContent}
+            </Title>
+          )}
+
+          {statusVisible && (
+            <View style={styles.statusContainer}>
+              <Title variation="subtitle2" style={styles.status}>
+                {statusContent}
+              </Title>
+              {playing && (
+                <Image
+                  source={require('./assets/Roblox@3x.png')}
+                  style={styles.robloxImage}
+                />
+              )}
+            </View>
+          )}
+
+          {messageContent && (
+            <View style={styles.messageContainer}>{messageContent}</View>
           )}
         </View>
 
-        {messageContent && (
-          <View style={styles.messageContainer}>{messageContent}</View>
-        )}
+        {dividerVisible && <View style={styles.divider} />}
+
+        <Pressable
+          onPress={handleAsidePress}
+          style={({ pressed }) => [{ opacity: pressed ? 0.8 : 1 }]}
+        >
+          {asideContent}
+        </Pressable>
       </View>
 
-      {!friendRequestSent && lastPlayedGameUrl && (
-        <View style={styles.divider} />
+      {notificationType === 'new-friend-request' && (
+        <View style={styles.footerContainer}>
+          <Button
+            onPress={handleIgnorePress}
+            variation="tertiary"
+            iconPosition="right"
+            icon={
+              <Image
+                resizeMode="contain"
+                style={{ width: 10, height: 10 }}
+                source={require('./assets/close@2x.png')}
+              />
+            }
+          >
+            Ignore
+          </Button>
+
+          <Button
+            onPress={handleAcceptPress}
+            variation="gravity"
+            iconPosition="right"
+            icon={
+              <Image
+                resizeMode="contain"
+                style={{ width: 12, height: 12 }}
+                source={require('./assets/tick@3x.png')}
+              />
+            }
+          >
+            Accept
+          </Button>
+        </View>
       )}
 
-      <Pressable
-        onPress={handleAsidePress}
-        style={({ pressed }) => [{ opacity: pressed ? 0.8 : 1 }]}
-      >
-        {asideContent}
-      </Pressable>
+      {notificationType && (
+        <Text style={styles.notificationSentOn}>
+          {getTimeAgo(
+            new Date(!!notificationSentOn ? notificationSentOn : 0),
+            intervalMapping,
+          ).replace(' ago', '')}
+        </Text>
+      )}
     </View>
   )
 }

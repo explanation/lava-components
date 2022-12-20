@@ -5,7 +5,6 @@ import {
   Text,
   Pressable,
   GestureResponderEvent,
-  StyleProp,
   ViewStyle,
   TextStyle,
 } from 'react-native'
@@ -19,19 +18,24 @@ export type ButtonVariation =
   | 'gravity'
   | 'transparent'
 export type ButtonRoundness = 'flat' | 'rounded' | 'circular'
+export type ButtonSize = 'default' | 'large'
+export type IconPosition = 'left' | 'right'
 
 export interface ButtonProps {
   onPress: (event: GestureResponderEvent) => void
   style?: ViewStyle
   textStyle?: TextStyle
+  iconStyle?: ViewStyle
   full?: boolean
   variation?: ButtonVariation
+  size?: ButtonSize
   /**
    * Border Radius
    * default: rounded
    */
   roundness?: ButtonRoundness
   icon?: React.ReactNode
+  iconPosition?: IconPosition
   children?: React.ReactNode
 }
 
@@ -44,6 +48,10 @@ const Button: React.FC<ButtonProps> = (props) => {
     onPress,
     icon,
     children,
+    textStyle,
+    iconStyle,
+    size = 'default',
+    iconPosition = 'left',
   } = props
   const theme = useTheme()
 
@@ -74,7 +82,7 @@ const Button: React.FC<ButtonProps> = (props) => {
       case 'play':
         return theme.colors.primarySand
       case 'tertiary':
-        return theme.colors.primarySand
+        return theme.colors.primarySand60
       default:
         theme.colors.primarySand
     }
@@ -107,6 +115,7 @@ const Button: React.FC<ButtonProps> = (props) => {
   const borderRadius = useMemo(() => {
     switch (roundness) {
       case 'rounded':
+        if (variation === 'secondary' && icon) return 18
         return 17
       case 'circular':
         return '100%'
@@ -146,6 +155,27 @@ const Button: React.FC<ButtonProps> = (props) => {
           borderWidth: 1,
           borderColor: borderColor,
           backgroundColor: backgroundColor,
+          ...((variation === 'primary' || variation === 'secondary') &&
+            roundness === 'rounded' && {
+              minWidth: 110,
+              height: 34,
+            }),
+          ...(roundness === 'circular' && {
+            width: 42,
+            height: 42,
+          }),
+          ...((variation === 'tertiary' ||
+            variation === 'gravity' ||
+            variation === 'play') &&
+            roundness === 'rounded' && {
+              width: 134,
+              height: 34,
+            }),
+          ...(size === 'large' && {
+            width: 152,
+            height: 49,
+            borderRadius: 24.5,
+          }),
           ...style,
         },
         text: {
@@ -154,13 +184,36 @@ const Button: React.FC<ButtonProps> = (props) => {
             fontWeight === '500'
               ? theme.fontFamily.Medium
               : theme.fontFamily.Bold,
-          fontSize: 14,
+          fontSize:
+            variation === 'primary' || variation === 'secondary' ? 14 : 12,
           fontWeight: fontWeight,
           letterSpacing: 0.96,
           lineHeight: 18,
+          ...((variation === 'primary' || variation === 'secondary') && {
+            height: 16,
+            minWidth: 82,
+            textAlign: 'center',
+          }),
+          ...(size === 'large' && {
+            fontSize: 22,
+            lineHeight: 28.6,
+            marginTop: 4,
+            color:
+              variation === 'tertiary'
+                ? theme.colors.primarySand60
+                : theme.colors.pureWhite,
+          }),
+          ...textStyle,
         },
         icon: {
-          marginRight: children ? theme.spacing.lg : 0,
+          [iconPosition === 'left' ? 'marginRight' : 'marginLeft']: children
+            ? theme.spacing.lg
+            : 0,
+          ...(size === 'large' && {
+            [iconPosition === 'left' ? 'marginRight' : 'marginLeft']:
+              theme.spacing.xxl,
+          }),
+          ...iconStyle,
         },
       }),
     [theme],
@@ -175,8 +228,13 @@ const Button: React.FC<ButtonProps> = (props) => {
           { opacity: pressed ? 0.8 : 1 },
         ]}
       >
-        {!!icon && <View style={styles.icon}>{icon}</View>}
+        {!!icon && iconPosition === 'left' && (
+          <View style={styles.icon}>{icon}</View>
+        )}
         <Text style={styles.text}>{children}</Text>
+        {!!icon && iconPosition === 'right' && (
+          <View style={styles.icon}>{icon}</View>
+        )}
       </Pressable>
     </View>
   )
