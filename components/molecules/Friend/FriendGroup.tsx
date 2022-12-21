@@ -1,8 +1,14 @@
-import { FC, Fragment, useCallback, useMemo } from 'react'
-import { Image, Pressable, StyleSheet, View, ViewStyle } from 'react-native'
+import { useCallback, useMemo } from 'react'
+import { Image, StyleSheet, View } from 'react-native'
+import Button from '../../atoms/Button/Button'
 import Title from '../../atoms/Title/Title'
+import Text from '../../atoms/Text/Text'
 import useTheme from '../../hooks/useTheme'
 import { FriendNetworkStatus } from './Friend'
+import { getTimeAgo } from '../../utils/numbers'
+import { intervalMapping } from '../../config/date'
+
+export type FriendGroupNotificationType = 'chat' | 'video'
 
 export interface FriendGroupItem {
   firstName: string
@@ -12,6 +18,15 @@ export interface FriendGroupItem {
 
 export interface FriendProps {
   friends: FriendGroupItem[]
+  message?: string
+  messageSeen?: boolean
+  notificationType?: FriendGroupNotificationType
+  /**
+   * ISO Date format
+   * eg: 2022-12-08T10:41:29.921Z
+   */
+  notificationSentOn?: string
+  onAsidePress?: () => {}
 }
 
 type FriendCircleProps = Pick<FriendGroupItem, 'imageUrl' | 'networkStatus'> & {
@@ -64,10 +79,23 @@ const FriendCircle: React.FC<FriendCircleProps> = (props) => {
 }
 
 const FriendGroup: React.FC<FriendProps> = (props) => {
-  const { friends } = props
+  const {
+    friends = [],
+    message,
+    notificationSentOn,
+    onAsidePress,
+    notificationType,
+    messageSeen,
+  } = props
   const theme = useTheme()
 
   const [friend1, friend2] = friends
+
+  const handleAsidePress = useCallback(() => {
+    if (onAsidePress && typeof onAsidePress === 'function') {
+      onAsidePress()
+    }
+  }, [])
 
   const styles = useMemo(
     () =>
@@ -77,6 +105,7 @@ const FriendGroup: React.FC<FriendProps> = (props) => {
           alignItems: 'center',
           position: 'relative',
           paddingVertical: theme.spacing.xl,
+          maxWidth: 290,
         },
         imageWrapper: {
           alignItems: 'center',
@@ -95,6 +124,25 @@ const FriendGroup: React.FC<FriendProps> = (props) => {
           position: 'absolute',
           right: 0,
           bottom: 0,
+        },
+        messageContainer: {
+          marginTop: theme.spacing.xxl,
+          flexDirection: 'row',
+          alignItems: 'center',
+          minWidth: 127,
+          height: 12,
+        },
+        message: {
+          color: messageSeen
+            ? theme.colors.primarySand60
+            : theme.colors.primarySand,
+        },
+        notificationSentOn: {
+          height: 12,
+          position: 'absolute',
+          top: theme.spacing.sm,
+          right: theme.spacing.xs,
+          color: theme.colors.primarySand60,
         },
       }),
     [],
@@ -130,9 +178,58 @@ const FriendGroup: React.FC<FriendProps> = (props) => {
           + {friends.length - 2}
         </Title>
       </View>
-      <Title variation="subtitle1" numberOfLines={2} style={{ width: 213 }}>
-        {names}
-      </Title>
+
+      <View style={{ marginRight: 'auto' }}>
+        <Title
+          variation="subtitle1"
+          numberOfLines={2}
+          style={{ width: notificationType ? 178 : 213 }}
+        >
+          {names}
+        </Title>
+
+        {message && (
+          <View style={styles.messageContainer}>
+            <Text>“</Text>
+            <Title
+              variation="subtitle2"
+              numberOfLines={1}
+              style={styles.message}
+            >
+              {message}
+            </Title>
+            <Text>”</Text>
+          </View>
+        )}
+      </View>
+
+      {notificationType && (
+        <Text style={styles.notificationSentOn}>
+          {getTimeAgo(
+            new Date(!!notificationSentOn ? notificationSentOn : 0),
+            intervalMapping,
+          ).replace(' ago', '')}
+        </Text>
+      )}
+
+      {notificationType && (
+        <Button
+          onPress={handleAsidePress}
+          variation="gravity"
+          roundness="circular"
+          icon={
+            <Image
+              resizeMode="contain"
+              style={{ width: 20, height: 20 }}
+              source={
+                notificationType === 'chat'
+                  ? require('./assets/chat@3x.png')
+                  : require('./assets/VideoCall@3x.png')
+              }
+            />
+          }
+        />
+      )}
     </View>
   )
 }

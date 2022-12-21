@@ -11,7 +11,6 @@ import {
 import Button from '../components/atoms/Button/Button'
 import Title from '../components/atoms/Title/Title'
 import useTheme from '../components/hooks/useTheme'
-import Friend from '../components/molecules/Friend/Friend'
 
 const commonButtonProps = {
   onPress: () => {
@@ -42,6 +41,7 @@ const ButtonScreen: React.FC = () => {
         row: {
           flexDirection: 'row',
           flexWrap: 'wrap',
+          marginTop: 10,
         },
         marginRight: {
           marginRight: 10,
@@ -111,25 +111,28 @@ const ButtonScreen: React.FC = () => {
               {...commonButtonProps}
               variation="secondary"
               style={styles.marginRight}
+              iconStyle={{ marginRight: 2 }}
+              textStyle={{ marginTop: 1 }}
               icon={
                 <Image
                   resizeMode="contain"
-                  style={{ width: 20, height: 20 }}
-                  source={require('../assets/icons/play@2x.png')}
+                  style={{ width: 9.05, height: 12.12 }}
+                  source={require('../assets/icons/friend@2x.png')}
                 />
               }
             >
-              Find Friends
+              + Find Friends
             </Button>
 
             <Button
               {...commonButtonProps}
               variation="secondary"
+              textStyle={{ marginTop: 1 }}
               icon={
                 <Image
                   resizeMode="contain"
-                  style={{ width: 20, height: 20 }}
-                  source={require('../assets/icons/play@2x.png')}
+                  style={{ width: 21.58, height: 12.12 }}
+                  source={require('../assets/icons/friend-group@3x.png')}
                 />
               }
             >
@@ -143,10 +146,11 @@ const ButtonScreen: React.FC = () => {
               variation="gravity"
               roundness="circular"
               style={styles.marginRight}
+              textStyle={{ marginTop: 2 }}
               icon={
                 <Image
                   resizeMode="contain"
-                  style={{ width: 20, height: 20 }}
+                  style={{ width: 25, height: 25 }}
                   source={require('../assets/icons/resend@2x.png')}
                 />
               }
@@ -161,15 +165,16 @@ const ButtonScreen: React.FC = () => {
             <Button
               {...commonButtonProps}
               variation="secondary"
+              iconStyle={{ marginRight: 1 }}
               icon={
                 <Image
                   resizeMode="contain"
-                  style={{ width: 20, height: 20 }}
-                  source={require('../assets/icons/play@2x.png')}
+                  style={{ width: 9.5, height: 12.2 }}
+                  source={require('../assets/icons/friend@2x.png')}
                 />
               }
             >
-              Add Friend
+              + Add Friend
             </Button>
           </View>
         </View>
@@ -186,8 +191,8 @@ const ButtonScreen: React.FC = () => {
               icon={
                 <Image
                   resizeMode="contain"
-                  style={{ width: 20, height: 20 }}
-                  source={require('../assets/icons/resend@2x.png')}
+                  style={{ width: 17.92, height: 17.23 }}
+                  source={require('../assets/icons/chat@2x.png')}
                 />
               }
             />
@@ -197,17 +202,22 @@ const ButtonScreen: React.FC = () => {
               variation="gravity"
               roundness="circular"
               style={styles.marginRight}
-              icon={<View style={styles.waveIcon}>👋</View>}
+              icon={
+                <View style={styles.waveIcon}>
+                  <Text style={{ fontSize: 20 }}>👋</Text>
+                </View>
+              }
             />
 
             <Button
               {...commonButtonProps}
               variation="tertiary"
               style={styles.marginRight}
+              textStyle={{ marginTop: 1 }}
               icon={
                 <Image
                   resizeMode="contain"
-                  style={{ width: 10, height: 10 }}
+                  style={{ width: 8, height: 8 }}
                   source={require('../assets/icons/close@2x.png')}
                 />
               }
@@ -219,6 +229,7 @@ const ButtonScreen: React.FC = () => {
               {...commonButtonProps}
               variation="gravity"
               style={styles.marginRight}
+              textStyle={{ marginTop: 1 }}
               icon={
                 <Image
                   resizeMode="contain"
@@ -241,39 +252,11 @@ const ButtonScreen: React.FC = () => {
               variation="primary"
               style={styles.marginRight}
             >
-              Hello
+              Button
             </Button>
 
             <Button variation="secondary" {...commonButtonProps}>
-              Hello
-            </Button>
-          </View>
-        </View>
-
-        {/* Code Video btns */}
-        <View style={styles.compContainer}>
-          <Text style={styles.labelText}>[Code Video btns]</Text>
-          <View style={styles.row}>
-            <Button
-              {...commonButtonProps}
-              variation="secondary"
-              icon="😀"
-              style={styles.marginRight}
-            >
-              Good!
-            </Button>
-
-            <Button
-              {...commonButtonProps}
-              variation="secondary"
-              icon="🙄"
-              style={styles.marginRight}
-            >
-              Meh
-            </Button>
-
-            <Button {...commonButtonProps} variation="secondary" icon="😒">
-              Bad
+              Button
             </Button>
           </View>
         </View>
@@ -301,7 +284,7 @@ const ButtonScreen: React.FC = () => {
             icon={
               <Image
                 resizeMode="contain"
-                style={{ width: 8, height: 8 }}
+                style={{ width: 9.63, height: 4.38 }}
                 source={require('../assets/icons/chevron-down@3x.png')}
               />
             }
@@ -328,11 +311,13 @@ const ButtonScreen: React.FC = () => {
                 roundness="circular"
                 style={{
                   borderColor: theme.colors.primarySand,
+                  width: 40.97,
+                  height: 40,
                 }}
                 icon={
                   <Image
                     resizeMode="contain"
-                    style={{ width: 20, height: 20 }}
+                    style={{ width: 23.11, height: 13.73 }}
                     source={require('../assets/icons/video@2x.png')}
                   />
                 }
@@ -346,11 +331,11 @@ const ButtonScreen: React.FC = () => {
               {...commonButtonProps}
               variation="gravity"
               roundness="circular"
-              style={styles.marginRight}
+              style={{ ...styles.marginRight, width: 40.97, height: 40 }}
               icon={
                 <Image
                   resizeMode="contain"
-                  style={{ width: 20, height: 20 }}
+                  style={{ width: 23.11, height: 13.73 }}
                   source={require('../assets/icons/video@2x.png')}
                 />
               }
@@ -424,20 +409,164 @@ const ButtonScreen: React.FC = () => {
               roundness="circular"
               style={{
                 borderWidth: 3,
-                // paddingHorizontal: 38,
-                // paddingVertical: 25,
-                paddingTop: 27,
-                paddingLeft: 38,
-                paddingBottom: 25,
-                paddingRight: 37,
+                height: 91,
+                width: 91,
               }}
               textStyle={{
                 fontFamily: theme.fontFamily.Bold,
                 fontSize: 30,
                 lineHeight: 39,
+                height: 39,
               }}
             >
               1
+            </Button>
+          </View>
+          <View style={styles.row}>
+            <Button
+              {...commonButtonProps}
+              variation="secondary"
+              roundness="circular"
+              style={{
+                borderWidth: 4,
+                height: 61,
+                width: 227,
+                borderRadius: 30.5,
+              }}
+              textStyle={{
+                fontFamily: theme.fontFamily.Bold,
+                fontSize: 30,
+                lineHeight: 39,
+                height: 39,
+              }}
+            >
+              Teenager
+            </Button>
+          </View>
+
+          <View style={styles.row}>
+            <Button
+              {...commonButtonProps}
+              variation="tertiary"
+              roundness="rounded"
+              size="large"
+              style={{ marginRight: 10 }}
+              icon={
+                <Image
+                  source={require('../assets/icons/chevron-left@3x.png')}
+                  style={{ width: 10, height: 18 }}
+                  resizeMode="contain"
+                />
+              }
+            >
+              Back
+            </Button>
+
+            <Button
+              {...commonButtonProps}
+              variation="gravity"
+              roundness="rounded"
+              size="large"
+              iconPosition="right"
+              style={{ marginRight: 10 }}
+              icon={
+                <Image
+                  source={require('../assets/icons/chevron-right@3x.png')}
+                  style={{ width: 10, height: 18 }}
+                  resizeMode="contain"
+                />
+              }
+            >
+              Next
+            </Button>
+
+            <Button
+              {...commonButtonProps}
+              variation="tertiary"
+              roundness="rounded"
+              size="large"
+              style={{ marginRight: 10 }}
+              icon={
+                <Image
+                  source={require('../assets/icons/close-solid@3x.png')}
+                  style={{ width: 14, height: 14 }}
+                  resizeMode="contain"
+                />
+              }
+            >
+              Skip
+            </Button>
+          </View>
+
+          <View style={styles.row}>
+            <Button
+              {...commonButtonProps}
+              variation="tertiary"
+              roundness="rounded"
+              size="large"
+              style={{ marginRight: 10 }}
+              icon={
+                <Image
+                  source={require('../assets/icons/close-solid@3x.png')}
+                  style={{ width: 14, height: 14 }}
+                  resizeMode="contain"
+                />
+              }
+            >
+              No
+            </Button>
+
+            <Button
+              {...commonButtonProps}
+              variation="gravity"
+              roundness="rounded"
+              size="large"
+              style={{ marginRight: 10 }}
+              icon={
+                <Image
+                  source={require('../assets/icons/rating-like@3x.png')}
+                  style={{ width: 21.88, height: 21 }}
+                  resizeMode="contain"
+                />
+              }
+            >
+              Yes
+            </Button>
+
+            <Button
+              {...commonButtonProps}
+              variation="gravity"
+              roundness="rounded"
+              size="large"
+              style={{ marginRight: 10 }}
+              icon={
+                <Image
+                  source={require('../assets/icons/rating-like@3x.png')}
+                  style={{ width: 21.88, height: 21 }}
+                  resizeMode="contain"
+                />
+              }
+            >
+              OK
+            </Button>
+          </View>
+
+          <View style={styles.row}>
+            <Button
+              {...commonButtonProps}
+              variation="gravity"
+              roundness="rounded"
+              size="large"
+              style={{ marginTop: 10 }}
+              icon={
+                <Image
+                  source={require('../assets/icons/rating-like@3x.png')}
+                  style={{ width: 21.88, height: 21 }}
+                  resizeMode="contain"
+                />
+              }
+            >
+              Allow
             </Button>
           </View>
         </View>

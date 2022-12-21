@@ -19,7 +19,6 @@ type Views =
   | 'BUTTON'
   | 'TOPIC_CARD'
 
-
 export default function App() {
   const [view, setView] = useState<Views>('ROOT')
   const [fontsLoaded] = useFonts({
@@ -66,7 +65,7 @@ export default function App() {
           <Button onPress={() => setView('BUTTON')} title="<Button />" />
         </View>
         <View style={styles.button}>
-          <Button onPress={() => setView('TOPIC_CARD')} title="<Button />" />
+          <Button onPress={() => setView('TOPIC_CARD')} title="<TopicCard />" />
         </View>
       </View>
     )

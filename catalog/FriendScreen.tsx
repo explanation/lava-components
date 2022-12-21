@@ -137,6 +137,10 @@ const friendsOfflineOfflineSampleData: FriendGroupItem[] = [
 
 const lastSeen = new Date(new Date().getTime() - 20 * 60 * 1000).toISOString()
 
+const notificationSentOn = new Date(
+  new Date().getTime() - 2 * 60 * 60 * 1000,
+).toISOString()
+
 export default function FriendScreen() {
   const theme = useTheme()
   const showFriendAreaPressAlert = () => {
@@ -411,7 +415,6 @@ export default function FriendScreen() {
           <Friend
             name={friendData.name}
             imageUrl={friendData.imageUrl}
-            message={friendData.message}
             activityImageUrl={friendData.activityImageUrl}
             activityType="video"
           />
@@ -451,6 +454,85 @@ export default function FriendScreen() {
             name={friendData.name}
             imageUrl={friendData.imageUrl}
             activityImageUrl={friendData.activityImageUrl}
+          />
+        </View>
+
+        {/* #14
+          • New Friend Request
+        */}
+        <View style={styles.compContainer}>
+          <Text style={styles.labelText}>#14 [New friend request]</Text>
+          <Friend
+            notificationType="new-friend-request"
+            name="Ethan SuperNoob"
+            notificationSentOn={notificationSentOn}
+            imageUrl={friendData.imageUrl}
+            activityImageUrl={friendData.activityImageUrl}
+          />
+        </View>
+
+        {/* #15
+          • Chat
+        */}
+        <View style={styles.compContainer}>
+          <Text style={styles.labelText}>#15 [Chat Notification]</Text>
+          <Friend
+            notificationType="chat"
+            name="Lily Woofers 10"
+            message="hey where are you?"
+            imageUrl={friendData.imageUrl}
+            notificationSentOn={notificationSentOn}
+          />
+        </View>
+
+        {/* #16
+          • Chat
+        */}
+        <View style={styles.compContainer}>
+          <Text style={styles.labelText}>#16 [Chat Group]</Text>
+          <FriendGroup
+            messageSeen
+            message="hey where are you?"
+            notificationSentOn={notificationSentOn}
+            friends={friendsOnlineOnlineSampleData}
+          />
+        </View>
+
+        {/* #17.1
+          • Call
+        */}
+        <View style={styles.compContainer}>
+          <Text style={styles.labelText}>#17.1 [Call]</Text>
+          <Friend
+            name="Lily Woofers 10"
+            notificationType="video"
+            imageUrl={friendData.imageUrl}
+            notificationSentOn={notificationSentOn}
+          />
+        </View>
+
+        {/* #17.2
+          • Call
+        */}
+        <View style={styles.compContainer}>
+          <Text style={styles.labelText}>#17.2 [Group Call]</Text>
+          <FriendGroup
+            notificationType="video"
+            notificationSentOn={notificationSentOn}
+            friends={friendsOnlineOnlineSampleData}
+          />
+        </View>
+
+        {/* #18
+          • Call
+        */}
+        <View style={styles.compContainer}>
+          <Text style={styles.labelText}>#18 [Call]</Text>
+          <Friend
+            name="Lily Woofers 10"
+            notificationType="new-friend-joined"
+            notificationSentOn={notificationSentOn}
+            imageUrl={friendData.imageUrl}
           />
         </View>
       </ScrollView>

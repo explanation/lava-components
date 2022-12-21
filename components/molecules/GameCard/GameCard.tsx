@@ -113,7 +113,7 @@ const GameCard: React.FC<GameCardProps> = (props) => {
           borderWidth: 0.5,
           borderColor: theme.colors.primarySand60,
         },
-        miniImage: {
+        iconImage: {
           width: 38,
           height: 38,
           borderRadius: theme.roundness.xs,
@@ -121,7 +121,7 @@ const GameCard: React.FC<GameCardProps> = (props) => {
           marginRight: 8,
           borderColor: theme.colors.primarySand60,
         },
-        miniImageWithCallout: {
+        iconImageWithCallout: {
           width: 32,
           height: 32,
           marginRight: 10,
@@ -138,8 +138,8 @@ const GameCard: React.FC<GameCardProps> = (props) => {
         },
         notificationLabelContainer: {
           position: 'absolute',
-          top: 0,
-          right: 0,
+          top: 1,
+          right: 1,
         },
         miniContainer: {
           flexDirection: 'row',
@@ -190,7 +190,7 @@ const GameCard: React.FC<GameCardProps> = (props) => {
         <View style={styles.miniContainer}>
           <Image
             source={{ uri: imageUrl }}
-            style={styles.miniImageWithCallout}
+            style={styles.iconImageWithCallout}
           />
           <View>
             <Title variation="subtitle1">{name}</Title>
@@ -201,7 +201,7 @@ const GameCard: React.FC<GameCardProps> = (props) => {
     } else {
       content = (
         <View style={styles.miniContainer}>
-          <Image source={{ uri: imageUrl }} style={styles.miniImage} />
+          <Image source={{ uri: imageUrl }} style={styles.iconImage} />
           <Title variation="subtitle1">{name}</Title>
         </View>
       )
