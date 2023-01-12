@@ -38,6 +38,7 @@ export interface VideoCardProps {
   uploadedOn?: string
   onPress?: () => void
   onNext?: () => void
+  style?: ViewStyle
 }
 
 const VideoCard: React.FC<VideoCardProps> = (props) => {
@@ -158,8 +159,6 @@ const VideoCard: React.FC<VideoCardProps> = (props) => {
           textAlign: 'center',
         },
         title: {
-          height:
-            variation === 'feed' || variation === 'game-thumbnail' ? 14 : 30,
           position: 'relative',
           marginTop: theme.spacing.lg,
         },
@@ -174,7 +173,7 @@ const VideoCard: React.FC<VideoCardProps> = (props) => {
           lineHeight: 11.7,
         },
         metaData: {
-          marginTop: theme.spacing.lg - 3,
+          marginTop: 2,
           color: theme.colors.primarySand60,
         },
         playIconContainer: {
@@ -219,8 +218,9 @@ const VideoCard: React.FC<VideoCardProps> = (props) => {
     }
   }
 
+
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, props.style]}>
       <View style={styles.thumbnailContainer}>
         <Image source={{ uri: thumbnailUrl }} style={styles.thumbnail} />
 
@@ -233,7 +233,7 @@ const VideoCard: React.FC<VideoCardProps> = (props) => {
               { opacity: pressed ? 0.8 : 1 },
             ]}
           >
-            <Image source={require('./play@3x.png')} style={styles.playIcon} />
+            <Image source={require('./play.png')} style={styles.playIcon} />
           </Pressable>
         )}
 
@@ -242,7 +242,7 @@ const VideoCard: React.FC<VideoCardProps> = (props) => {
             <View style={styles.thumbnailOverlay} />
             <View style={styles.durationLabel}>
               <Title variation="subtitle3" style={styles.durationText}>
-                {getVideoDuration(duration!)}
+                {getVideoDuration(duration ?? 0)}
               </Title>
             </View>
           </Fragment>
@@ -257,7 +257,7 @@ const VideoCard: React.FC<VideoCardProps> = (props) => {
             { opacity: pressed ? 0.8 : 1 },
           ]}
         >
-          <Image source={require('./next@3x.png')} style={styles.nextIcon} />
+          <Image source={require('./next.png')} style={styles.nextIcon} />
         </Pressable>
       )}
 
@@ -267,7 +267,7 @@ const VideoCard: React.FC<VideoCardProps> = (props) => {
         <Fragment>
           <Title
             numberOfLines={
-              variation === 'feed' || variation === 'game-thumbnail' ? 1 : 2
+              variation === 'feed' || variation === 'game-thumbnail' || variation === 'secrets' ? 1 : 2
             }
             variation="subtitle2"
             style={{
@@ -287,7 +287,7 @@ const VideoCard: React.FC<VideoCardProps> = (props) => {
             }}
           >
             {creatorName} • {getFormattedNumber(views).replace(' ', '')} views •{' '}
-            {getTimeAgo(new Date(uploadedOn!))}
+            {uploadedOn && uploadedOn.length > 0 && getTimeAgo(new Date(uploadedOn!))}
           </Title>
         </Fragment>
       )}
