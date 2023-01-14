@@ -223,8 +223,8 @@ const FriendGroup: React.FC<FriendProps> = (props) => {
               style={{ width: 20, height: 20 }}
               source={
                 notificationType === 'chat'
-                  ? require('./assets/chat@3x.png')
-                  : require('./assets/VideoCall@3x.png')
+                  ? require('./assets/chat.png')
+                  : require('./assets/VideoCall.png')
               }
             />
           }

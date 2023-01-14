@@ -124,13 +124,13 @@ const Friend: React.FC<FriendProps> = (props) => {
   const badgeIcon = useMemo(() => {
     let image = null
     if (friendRequestSent || notificationType === 'new-friend-request') {
-      image = require('./assets/FriendRequest@3x.png')
+      image = require('./assets/FriendRequest.png')
     } else if (notificationType === 'chat') {
-      image = require('./assets/chat-bubble@3x.png')
+      image = require('./assets/chat-bubble.png')
     } else if (notificationType === 'video') {
-      image = require('./assets/video-bubble@3x.png')
+      image = require('./assets/video-bubble.png')
     } else if (friendInLava) {
-      image = require('./assets/LBadge@3x.png')
+      image = require('./assets/LBadge.png')
     }
     return image
   }, [])
@@ -320,7 +320,7 @@ const Friend: React.FC<FriendProps> = (props) => {
           In a Call
         </Title>
         <Image
-          source={require('./assets/VideoCall@3x.png')}
+          source={require('./assets/VideoCall.png')}
           style={styles.videoCallImage}
         />
       </Fragment>
@@ -343,7 +343,7 @@ const Friend: React.FC<FriendProps> = (props) => {
     asideContent = (
       <View>
         <Image
-          source={require('./assets/Resend@3x.png')}
+          source={require('./assets/Resend.png')}
           style={styles.resendImage}
         />
       </View>
@@ -358,7 +358,7 @@ const Friend: React.FC<FriendProps> = (props) => {
           <Image
             resizeMode="contain"
             style={{ width: 20, height: 20 }}
-            source={require('./assets/chat@3x.png')}
+            source={require('./assets/chat.png')}
           />
         }
       />
@@ -373,7 +373,7 @@ const Friend: React.FC<FriendProps> = (props) => {
           <Image
             resizeMode="contain"
             style={{ width: 20, height: 20 }}
-            source={require('./assets/VideoCall@3x.png')}
+            source={require('./assets/VideoCall.png')}
           />
         }
       />
@@ -410,7 +410,7 @@ const Friend: React.FC<FriendProps> = (props) => {
           />
           {activityType === 'video' && (
             <Image
-              source={require('./assets/play@3x.png')}
+              source={require('./assets/play.png')}
               style={styles.playImage}
             />
           )}
@@ -455,7 +455,7 @@ const Friend: React.FC<FriendProps> = (props) => {
               </Title>
               {playing && (
                 <Image
-                  source={require('./assets/Roblox@3x.png')}
+                  source={require('./assets/Roblox.png')}
                   style={styles.robloxImage}
                 />
               )}
@@ -487,7 +487,7 @@ const Friend: React.FC<FriendProps> = (props) => {
               <Image
                 resizeMode="contain"
                 style={{ width: 10, height: 10 }}
-                source={require('./assets/close@2x.png')}
+                source={require('./assets/close.png')}
               />
             }
           >
@@ -502,7 +502,7 @@ const Friend: React.FC<FriendProps> = (props) => {
               <Image
                 resizeMode="contain"
                 style={{ width: 12, height: 12 }}
-                source={require('./assets/tick@3x.png')}
+                source={require('./assets/tick.png')}
               />
             }
           >
