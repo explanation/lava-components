@@ -42,6 +42,11 @@ export interface FriendProps {
   activityImageUrl?: string
   activityType?: ActivityType
   friendInLava?: boolean
+  /**
+   * Invoked when the user presses the middle section of the component
+   */
+  onPress?: () => void
+  onProfilePress?: () => void
   onAsidePress?: () => void
   /**
    * Used for "New Friend Request" variation
@@ -70,6 +75,8 @@ const Friend: React.FC<FriendProps> = (props) => {
     activityImageUrl,
     friendInLava = true,
     activityType,
+    onPress,
+    onProfilePress,
     onIgnorePress,
     onAcceptPress,
   } = props
@@ -121,6 +128,18 @@ const Friend: React.FC<FriendProps> = (props) => {
     }
   }, [])
 
+  const handleProfilePress = useCallback(() => {
+    if (onProfilePress && typeof onProfilePress === 'function') {
+      onProfilePress()
+    }
+  }, [])
+
+  const handlePress = useCallback(() => {
+    if (onPress && typeof onPress === 'function') {
+      onPress()
+    }
+  }, [])
+
   const badgeIcon = useMemo(() => {
     let image = null
     if (friendRequestSent || notificationType === 'new-friend-request') {
@@ -140,6 +159,7 @@ const Friend: React.FC<FriendProps> = (props) => {
       StyleSheet.create({
         wrapper: {
           paddingVertical: notificationType ? theme.spacing.xxxl : undefined,
+          backgroundColor: 'yellow',
         },
         container: {
           paddingVertical: theme.spacing.xl,
@@ -147,10 +167,12 @@ const Friend: React.FC<FriendProps> = (props) => {
           alignItems: 'center',
           position: 'relative',
           maxWidth: 290,
+          backgroundColor: 'green',
         },
         imageWrapper: {
           paddingRight: 5,
           marginRight: notificationType === 'new-friend-request' ? 9 : 5,
+          backgroundColor: 'blue',
         },
         imageContainer: {
           height:
@@ -198,7 +220,9 @@ const Friend: React.FC<FriendProps> = (props) => {
         detailsContainer: {
           paddingVertical: 3,
           justifyContent: 'center',
-          marginRight: 'auto',
+          marginRight: !dividerVisible ? 20 : undefined,
+          backgroundColor: 'pink',
+          flex: 1,
         },
         statusContainer: {
           flexDirection: 'row',
@@ -429,7 +453,13 @@ const Friend: React.FC<FriendProps> = (props) => {
   return (
     <View style={styles.wrapper}>
       <View style={styles.container}>
-        <View style={[styles.imageWrapper]}>
+        <Pressable
+          onPress={handleProfilePress}
+          style={({ pressed }) => [
+            styles.imageWrapper,
+            { opacity: pressed ? 0.8 : 1 },
+          ]}
+        >
           <View style={[styles.imageContainer]}>
             <Image
               source={{ uri: imageUrl }}
@@ -439,9 +469,15 @@ const Friend: React.FC<FriendProps> = (props) => {
           </View>
 
           {badgeIcon && <Image source={badgeIcon} style={styles.lBadge} />}
-        </View>
+        </Pressable>
 
-        <View style={styles.detailsContainer}>
+        <Pressable
+          onPress={handlePress}
+          style={({ pressed }) => [
+            styles.detailsContainer,
+            { opacity: pressed ? 0.8 : 1 },
+          ]}
+        >
           {nameVisible && (
             <Title numberOfLines={3} variation="subtitle1" style={styles.name}>
               {nameContent}
@@ -465,13 +501,15 @@ const Friend: React.FC<FriendProps> = (props) => {
           {messageContent && (
             <View style={styles.messageContainer}>{messageContent}</View>
           )}
-        </View>
+        </Pressable>
 
         {dividerVisible && <View style={styles.divider} />}
 
         <Pressable
           onPress={handleAsidePress}
-          style={({ pressed }) => [{ opacity: pressed ? 0.8 : 1 }]}
+          style={({ pressed }) => [
+            { backgroundColor: 'red', opacity: pressed ? 0.8 : 1 },
+          ]}
         >
           {asideContent}
         </Pressable>
