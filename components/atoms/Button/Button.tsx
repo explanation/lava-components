@@ -71,7 +71,7 @@ const Button: React.FC<ButtonProps> = (props) => {
       default:
         return theme.colors.primarySand
     }
-  }, [theme])
+  }, [theme, variation])
 
   const textColor = useMemo(() => {
     switch (variation) {
@@ -86,7 +86,7 @@ const Button: React.FC<ButtonProps> = (props) => {
       default:
         theme.colors.primarySand
     }
-  }, [theme])
+  }, [theme, variation])
 
   const fontWeight = useMemo(() => {
     switch (variation) {
@@ -98,7 +98,7 @@ const Button: React.FC<ButtonProps> = (props) => {
       default:
         return '500'
     }
-  }, [theme])
+  }, [theme, variation])
 
   const borderColor = useMemo(() => {
     switch (variation) {
@@ -110,7 +110,7 @@ const Button: React.FC<ButtonProps> = (props) => {
       default:
         return 'transparent'
     }
-  }, [theme])
+  }, [theme, variation])
 
   const borderRadius = useMemo(() => {
     switch (roundness) {
@@ -123,7 +123,7 @@ const Button: React.FC<ButtonProps> = (props) => {
       default:
         return 0
     }
-  }, [theme])
+  }, [theme, variation])
 
   const paddingHorizontal = useMemo(() => {
     let padding = undefined
@@ -135,7 +135,7 @@ const Button: React.FC<ButtonProps> = (props) => {
       padding = theme.spacing.lg
     }
     return padding
-  }, [theme])
+  }, [theme, variation])
 
   const styles = useMemo(
     () =>
@@ -216,7 +216,7 @@ const Button: React.FC<ButtonProps> = (props) => {
           ...iconStyle,
         },
       }),
-    [theme],
+    [theme, variation],
   )
 
   return (
