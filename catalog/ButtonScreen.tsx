@@ -311,7 +311,7 @@ const ButtonScreen: React.FC = () => {
                 roundness="circular"
                 style={{
                   borderColor: theme.colors.primarySand,
-                  width: 40.97,
+                  width: 40,
                   height: 40,
                 }}
                 icon={
@@ -331,7 +331,7 @@ const ButtonScreen: React.FC = () => {
               {...commonButtonProps}
               variation="gravity"
               roundness="circular"
-              style={{ ...styles.marginRight, width: 40.97, height: 40 }}
+              style={{ ...styles.marginRight, width: 40, height: 40 }}
               icon={
                 <Image
                   resizeMode="contain"

@@ -159,7 +159,6 @@ const Friend: React.FC<FriendProps> = (props) => {
       StyleSheet.create({
         wrapper: {
           paddingVertical: notificationType ? theme.spacing.xxxl : undefined,
-          backgroundColor: 'yellow',
         },
         container: {
           paddingVertical: theme.spacing.xl,
@@ -167,12 +166,10 @@ const Friend: React.FC<FriendProps> = (props) => {
           alignItems: 'center',
           position: 'relative',
           maxWidth: 290,
-          backgroundColor: 'green',
         },
         imageWrapper: {
           paddingRight: 5,
           marginRight: notificationType === 'new-friend-request' ? 9 : 5,
-          backgroundColor: 'blue',
         },
         imageContainer: {
           height:
@@ -221,7 +218,6 @@ const Friend: React.FC<FriendProps> = (props) => {
           paddingVertical: 3,
           justifyContent: 'center',
           marginRight: !dividerVisible ? 20 : undefined,
-          backgroundColor: 'pink',
           flex: 1,
         },
         statusContainer: {
@@ -486,7 +482,14 @@ const Friend: React.FC<FriendProps> = (props) => {
 
           {statusVisible && (
             <View style={styles.statusContainer}>
-              <Title variation="subtitle2" style={styles.status}>
+              <Title
+                variation={
+                  notificationType === 'new-friend-request'
+                    ? 'subtitle1'
+                    : 'subtitle2'
+                }
+                style={styles.status}
+              >
                 {statusContent}
               </Title>
               {playing && (
@@ -507,9 +510,7 @@ const Friend: React.FC<FriendProps> = (props) => {
 
         <Pressable
           onPress={handleAsidePress}
-          style={({ pressed }) => [
-            { backgroundColor: 'red', opacity: pressed ? 0.8 : 1 },
-          ]}
+          style={({ pressed }) => [{ opacity: pressed ? 0.8 : 1 }]}
         >
           {asideContent}
         </Pressable>
@@ -550,12 +551,12 @@ const Friend: React.FC<FriendProps> = (props) => {
       )}
 
       {notificationType && (
-        <Text style={styles.notificationSentOn}>
+        <Title variation="subtitle3" style={styles.notificationSentOn}>
           {getTimeAgo(
             new Date(!!notificationSentOn ? notificationSentOn : 0),
             intervalMapping,
           ).replace(' ago', '')}
-        </Text>
+        </Title>
       )}
     </View>
   )
