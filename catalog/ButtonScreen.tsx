@@ -77,7 +77,7 @@ const ButtonScreen: React.FC = () => {
               <Image
                 resizeMode="contain"
                 style={{ width: 20, height: 20 }}
-                source={require('../assets/icons/play@2x.png')}
+                source={require('../assets/icons/play.png')}
               />
             }
           />
@@ -95,7 +95,7 @@ const ButtonScreen: React.FC = () => {
                 <Image
                   resizeMode="contain"
                   style={{ width: 20, height: 20 }}
-                  source={require('../assets/icons/play@2x.png')}
+                  source={require('../assets/icons/play.png')}
                 />
               }
             />
@@ -117,7 +117,7 @@ const ButtonScreen: React.FC = () => {
                 <Image
                   resizeMode="contain"
                   style={{ width: 9.05, height: 12.12 }}
-                  source={require('../assets/icons/friend@2x.png')}
+                  source={require('../assets/icons/friend.png')}
                 />
               }
             >
@@ -132,7 +132,7 @@ const ButtonScreen: React.FC = () => {
                 <Image
                   resizeMode="contain"
                   style={{ width: 21.58, height: 12.12 }}
-                  source={require('../assets/icons/friend-group@3x.png')}
+                  source={require('../assets/icons/friend-group.png')}
                 />
               }
             >
@@ -151,7 +151,7 @@ const ButtonScreen: React.FC = () => {
                 <Image
                   resizeMode="contain"
                   style={{ width: 25, height: 25 }}
-                  source={require('../assets/icons/resend@2x.png')}
+                  source={require('../assets/icons/resend.png')}
                 />
               }
             />
@@ -170,7 +170,7 @@ const ButtonScreen: React.FC = () => {
                 <Image
                   resizeMode="contain"
                   style={{ width: 9.5, height: 12.2 }}
-                  source={require('../assets/icons/friend@2x.png')}
+                  source={require('../assets/icons/friend.png')}
                 />
               }
             >
@@ -192,7 +192,7 @@ const ButtonScreen: React.FC = () => {
                 <Image
                   resizeMode="contain"
                   style={{ width: 17.92, height: 17.23 }}
-                  source={require('../assets/icons/chat@2x.png')}
+                  source={require('../assets/icons/chat.png')}
                 />
               }
             />
@@ -218,7 +218,7 @@ const ButtonScreen: React.FC = () => {
                 <Image
                   resizeMode="contain"
                   style={{ width: 8, height: 8 }}
-                  source={require('../assets/icons/close@2x.png')}
+                  source={require('../assets/icons/close.png')}
                 />
               }
             >
@@ -234,7 +234,7 @@ const ButtonScreen: React.FC = () => {
                 <Image
                   resizeMode="contain"
                   style={{ width: 12, height: 12 }}
-                  source={require('../assets/icons/tick@2x.png')}
+                  source={require('../assets/icons/tick.png')}
                 />
               }
             >
@@ -270,7 +270,7 @@ const ButtonScreen: React.FC = () => {
               <Image
                 resizeMode="contain"
                 style={{ width: 22, height: 22 }}
-                source={require('../assets/icons/close-thin@3x.png')}
+                source={require('../assets/icons/close-thin.png')}
               />
             }
             variation="transparent"
@@ -285,7 +285,7 @@ const ButtonScreen: React.FC = () => {
               <Image
                 resizeMode="contain"
                 style={{ width: 9.63, height: 4.38 }}
-                source={require('../assets/icons/chevron-down@3x.png')}
+                source={require('../assets/icons/chevron-down.png')}
               />
             }
             variation="transparent"
@@ -318,7 +318,7 @@ const ButtonScreen: React.FC = () => {
                   <Image
                     resizeMode="contain"
                     style={{ width: 23.11, height: 13.73 }}
-                    source={require('../assets/icons/video@2x.png')}
+                    source={require('../assets/icons/video.png')}
                   />
                 }
               />
@@ -336,7 +336,7 @@ const ButtonScreen: React.FC = () => {
                 <Image
                   resizeMode="contain"
                   style={{ width: 23.11, height: 13.73 }}
-                  source={require('../assets/icons/video@2x.png')}
+                  source={require('../assets/icons/video.png')}
                 />
               }
             />
@@ -351,7 +351,7 @@ const ButtonScreen: React.FC = () => {
               <Image
                 resizeMode="contain"
                 style={{ width: 8, height: 8 }}
-                source={require('../assets/icons/game-card-like@3x.png')}
+                source={require('../assets/icons/game-card-like.png')}
               />
             }
             variation="transparent"
@@ -365,7 +365,7 @@ const ButtonScreen: React.FC = () => {
                 <Image
                   resizeMode="contain"
                   style={{ width: 14, height: 14 }}
-                  source={require('../assets/icons/rating-like@3x.png')}
+                  source={require('../assets/icons/rating-like.png')}
                 />
               }
               variation="transparent"
@@ -378,7 +378,7 @@ const ButtonScreen: React.FC = () => {
                 <Image
                   resizeMode="contain"
                   style={{ width: 14, height: 14 }}
-                  source={require('../assets/icons/rating-like-partial@3x.png')}
+                  source={require('../assets/icons/rating-like-partial.png')}
                 />
               }
               variation="transparent"
@@ -391,7 +391,7 @@ const ButtonScreen: React.FC = () => {
                 <Image
                   resizeMode="contain"
                   style={{ width: 14, height: 14 }}
-                  source={require('../assets/icons/rating-like-outline@3x.png')}
+                  source={require('../assets/icons/rating-like-outline.png')}
                 />
               }
               variation="transparent"
@@ -453,7 +453,7 @@ const ButtonScreen: React.FC = () => {
               style={{ marginRight: 10 }}
               icon={
                 <Image
-                  source={require('../assets/icons/chevron-left@3x.png')}
+                  source={require('../assets/icons/chevron-left.png')}
                   style={{ width: 10, height: 18 }}
                   resizeMode="contain"
                 />
@@ -471,7 +471,7 @@ const ButtonScreen: React.FC = () => {
               style={{ marginRight: 10 }}
               icon={
                 <Image
-                  source={require('../assets/icons/chevron-right@3x.png')}
+                  source={require('../assets/icons/chevron-right.png')}
                   style={{ width: 10, height: 18 }}
                   resizeMode="contain"
                 />
@@ -488,7 +488,7 @@ const ButtonScreen: React.FC = () => {
               style={{ marginRight: 10 }}
               icon={
                 <Image
-                  source={require('../assets/icons/close-solid@3x.png')}
+                  source={require('../assets/icons/close-solid.png')}
                   style={{ width: 14, height: 14 }}
                   resizeMode="contain"
                 />
@@ -507,7 +507,7 @@ const ButtonScreen: React.FC = () => {
               style={{ marginRight: 10 }}
               icon={
                 <Image
-                  source={require('../assets/icons/close-solid@3x.png')}
+                  source={require('../assets/icons/close-solid.png')}
                   style={{ width: 14, height: 14 }}
                   resizeMode="contain"
                 />
@@ -524,7 +524,7 @@ const ButtonScreen: React.FC = () => {
               style={{ marginRight: 10 }}
               icon={
                 <Image
-                  source={require('../assets/icons/rating-like@3x.png')}
+                  source={require('../assets/icons/rating-like.png')}
                   style={{ width: 21.88, height: 21 }}
                   resizeMode="contain"
                 />
@@ -541,7 +541,7 @@ const ButtonScreen: React.FC = () => {
               style={{ marginRight: 10 }}
               icon={
                 <Image
-                  source={require('../assets/icons/rating-like@3x.png')}
+                  source={require('../assets/icons/rating-like.png')}
                   style={{ width: 21.88, height: 21 }}
                   resizeMode="contain"
                 />
@@ -560,7 +560,7 @@ const ButtonScreen: React.FC = () => {
               style={{ marginTop: 10 }}
               icon={
                 <Image
-                  source={require('../assets/icons/rating-like@3x.png')}
+                  source={require('../assets/icons/rating-like.png')}
                   style={{ width: 21.88, height: 21 }}
                   resizeMode="contain"
                 />
