@@ -218,23 +218,22 @@ const VideoCard: React.FC<VideoCardProps> = (props) => {
     }
   }
 
-
   return (
-    <View style={[styles.container, props.style]}>
+    <Pressable
+      style={({ pressed }) => [
+        styles.container,
+        props.style,
+        { opacity: pressed ? 0.8 : 1 },
+      ]}
+    >
       <View style={styles.thumbnailContainer}>
         <Image source={{ uri: thumbnailUrl }} style={styles.thumbnail} />
 
         {(variation === 'game-preview' ||
           variation === 'game-preview-mini') && (
-          <Pressable
-            onPress={handlePress}
-            style={({ pressed }) => [
-              styles.playIconContainer,
-              { opacity: pressed ? 0.8 : 1 },
-            ]}
-          >
+          <View style={styles.playIconContainer}>
             <Image source={require('./play.png')} style={styles.playIcon} />
-          </Pressable>
+          </View>
         )}
 
         {(variation === 'feed' || variation === 'secrets') && (
@@ -267,7 +266,11 @@ const VideoCard: React.FC<VideoCardProps> = (props) => {
         <Fragment>
           <Title
             numberOfLines={
-              variation === 'feed' || variation === 'game-thumbnail' || variation === 'secrets' ? 1 : 2
+              variation === 'feed' ||
+              variation === 'game-thumbnail' ||
+              variation === 'secrets'
+                ? 1
+                : 2
             }
             variation="subtitle2"
             style={{
@@ -287,11 +290,13 @@ const VideoCard: React.FC<VideoCardProps> = (props) => {
             }}
           >
             {creatorName} • {getFormattedNumber(views).replace(' ', '')} views •{' '}
-            {uploadedOn && uploadedOn.length > 0 && getTimeAgo(new Date(uploadedOn!))}
+            {uploadedOn &&
+              uploadedOn.length > 0 &&
+              getTimeAgo(new Date(uploadedOn!))}
           </Title>
         </Fragment>
       )}
-    </View>
+    </Pressable>
   )
 }
 

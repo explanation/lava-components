@@ -1,5 +1,5 @@
 import { useCallback, useMemo } from 'react'
-import { Image, StyleSheet, View } from 'react-native'
+import { Image, Pressable, StyleSheet, View } from 'react-native'
 import Button from '../../atoms/Button/Button'
 import Title from '../../atoms/Title/Title'
 import Text from '../../atoms/Text/Text'
@@ -155,7 +155,12 @@ const FriendGroup: React.FC<FriendProps> = (props) => {
 
   return (
     <View style={styles.container}>
-      <View style={styles.imageWrapper}>
+      <Pressable
+        style={({ pressed }) => [
+          styles.imageWrapper,
+          { opacity: pressed ? 0.8 : 1 },
+        ]}
+      >
         <FriendCircle
           gap={2}
           imageSize={36}
@@ -177,9 +182,13 @@ const FriendGroup: React.FC<FriendProps> = (props) => {
         <Title variation="subtitle1" style={styles.remainingFriendsCount}>
           + {friends.length - 2}
         </Title>
-      </View>
+      </Pressable>
 
-      <View style={{ marginRight: 'auto' }}>
+      <Pressable
+        style={({ pressed }) => [
+          { marginRight: 'auto', opacity: pressed ? 0.8 : 1 },
+        ]}
+      >
         <Title
           variation="subtitle1"
           numberOfLines={2}
@@ -201,7 +210,7 @@ const FriendGroup: React.FC<FriendProps> = (props) => {
             <Text>”</Text>
           </View>
         )}
-      </View>
+      </Pressable>
 
       {notificationType && (
         <Text style={styles.notificationSentOn}>
