@@ -223,6 +223,7 @@ const VideoCard: React.FC<VideoCardProps> = (props) => {
         props.style,
         { opacity: pressed ? 0.8 : 1 },
       ]}
+      onPress={handlePress}
     >
       <View style={styles.thumbnailContainer}>
         <Image source={{ uri: thumbnailUrl }} style={styles.thumbnail} />
