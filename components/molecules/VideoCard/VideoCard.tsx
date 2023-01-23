@@ -44,10 +44,8 @@ export interface VideoCardProps {
 const VideoCard: React.FC<VideoCardProps> = (props) => {
   const {
     thumbnailUrl,
-    duration = 0,
     title,
     creatorName,
-    views = 0,
     uploadedOn,
     onPress,
     onNext,
@@ -225,6 +223,7 @@ const VideoCard: React.FC<VideoCardProps> = (props) => {
         props.style,
         { opacity: pressed ? 0.8 : 1 },
       ]}
+      onPress={handlePress}
     >
       <View style={styles.thumbnailContainer}>
         <Image source={{ uri: thumbnailUrl }} style={styles.thumbnail} />
@@ -239,11 +238,11 @@ const VideoCard: React.FC<VideoCardProps> = (props) => {
         {(variation === 'feed' || variation === 'secrets') && (
           <Fragment>
             <View style={styles.thumbnailOverlay} />
-            <View style={styles.durationLabel}>
+            {props.duration && <View style={styles.durationLabel}>
               <Title variation="subtitle3" style={styles.durationText}>
-                {getVideoDuration(duration ?? 0)}
+                {getVideoDuration(props.duration)}
               </Title>
-            </View>
+            </View>}
           </Fragment>
         )}
       </View>
@@ -289,7 +288,7 @@ const VideoCard: React.FC<VideoCardProps> = (props) => {
               ...(variation === 'game-thumbnail' && styles.gameThumbnailTitle),
             }}
           >
-            {creatorName} • {getFormattedNumber(views).replace(' ', '')} views •{' '}
+            {creatorName} {props.views && `• ${getFormattedNumber(props.views).replace(' ', '')} views`}
             {uploadedOn &&
               uploadedOn.length > 0 &&
               getTimeAgo(new Date(uploadedOn!))}
