@@ -173,16 +173,16 @@ const Friend: React.FC<FriendProps> = (props) => {
         },
         imageContainer: {
           height:
-            56 -
+            58 -
             (friendRequestSent || notificationType === 'new-friend-request'
               ? 3
               : 0),
           width:
-            56 -
+            58 -
             (friendRequestSent || notificationType === 'new-friend-request'
               ? 3
               : 0),
-          borderRadius: 56,
+          borderRadius: 52,
           justifyContent: 'center',
           alignItems: 'center',
           backgroundColor: theme.colors.secondaryContainers,
@@ -211,7 +211,7 @@ const Friend: React.FC<FriendProps> = (props) => {
             notificationType === 'video' ||
             notificationType === 'new-friend-joined'
               ? undefined
-              : 11,
+              : 14,
           maxWidth: 175,
         },
         detailsContainer: {
@@ -222,7 +222,7 @@ const Friend: React.FC<FriendProps> = (props) => {
         },
         statusContainer: {
           flexDirection: 'row',
-          marginTop: nameVisible ? theme.spacing.md : 0,
+          marginTop: nameVisible ? 5 : 0,
         },
         status: {
           height: nameVisible ? 11 : undefined,
@@ -238,7 +238,7 @@ const Friend: React.FC<FriendProps> = (props) => {
           height: 14,
         },
         messageContainer: {
-          marginTop: onCall ? theme.spacing.md : 9,
+          marginTop: onCall ? theme.spacing.md : 8,
           flexDirection: 'row',
           alignItems: 'center',
           width: activityImageUrl ? 127 : undefined,
