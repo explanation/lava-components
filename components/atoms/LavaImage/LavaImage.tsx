@@ -10,7 +10,6 @@ export const LavaImage = (props: Props) => {
 
     return (
         <Image
-            source={source}
             {...props}
         />
     )
