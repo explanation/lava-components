@@ -142,6 +142,7 @@ const GameCard: React.FC<GameCardProps> = (props) => {
           right: 1,
         },
         miniContainer: {
+          flex: 1,
           flexDirection: 'row',
           alignItems: 'center',
         },
