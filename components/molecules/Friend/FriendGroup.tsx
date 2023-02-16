@@ -122,7 +122,7 @@ const FriendGroup: React.FC<FriendProps> = (props) => {
         },
         remainingFriendsCount: {
           position: 'absolute',
-          right: 0,
+          right: 1,
           bottom: 0,
         },
         messageContainer: {
@@ -213,12 +213,12 @@ const FriendGroup: React.FC<FriendProps> = (props) => {
       </Pressable>
 
       {notificationType && (
-        <Text style={styles.notificationSentOn}>
+        <Title variation="subtitle3" style={styles.notificationSentOn}>
           {getTimeAgo(
             new Date(!!notificationSentOn ? notificationSentOn : 0),
             intervalMapping,
           ).replace(' ago', '')}
-        </Text>
+        </Title>
       )}
 
       {notificationType && (

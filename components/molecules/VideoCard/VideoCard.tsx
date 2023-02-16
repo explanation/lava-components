@@ -138,7 +138,8 @@ const VideoCard: React.FC<VideoCardProps> = (props) => {
           width: maxWidth,
           height: thumbnailHeight,
           zIndex: 1,
-          backgroundColor: theme.colors.secondaryBk + '26',
+          backgroundColor: theme.colors.secondaryBk,
+          opacity: 0.15,
         },
         durationLabel: {
           width: 40,
@@ -175,30 +176,41 @@ const VideoCard: React.FC<VideoCardProps> = (props) => {
           color: theme.colors.primarySand60,
         },
         playIconContainer: {
-          top: '50%',
-          left: '50%',
           height: '100%',
+          width: '100%',
           position: 'absolute',
+          justifyContent: 'center',
+          alignItems: 'center',
         },
         playIcon: {
           borderRadius: 72,
           width: variation === 'game-preview' ? 72 : 30,
           height: variation === 'game-preview' ? 72 : 30,
-          transform: 'translate(-50%, -50%)' as any,
-          boxShadow: '-1px 0px 4px rgba(0, 0, 0, 0.78)' as any,
+          shadowColor: '#000',
+          shadowOffset: {
+            width: 0,
+            height: 2,
+          },
+          shadowOpacity: 0.23,
+          shadowRadius: 2.62,
         },
         nextIconContainer: {
           right: 0,
-          top: '50%',
           height: '100%',
+          justifyContent: 'center',
           position: 'absolute',
         },
         nextIcon: {
           width: 28,
           height: 28,
           borderRadius: 28,
-          transform: 'translateY(-50%)' as any,
-          boxShadow: '-2px 2px 4px rgba(0, 0, 0, 0.7)',
+          shadowColor: '#000',
+          shadowOffset: {
+            width: 0,
+            height: 2,
+          },
+          shadowOpacity: 0.23,
+          shadowRadius: 2.62,
         },
       }),
     [],
@@ -238,11 +250,13 @@ const VideoCard: React.FC<VideoCardProps> = (props) => {
         {(variation === 'feed' || variation === 'secrets') && (
           <Fragment>
             <View style={styles.thumbnailOverlay} />
-            {props.duration && <View style={styles.durationLabel}>
-              <Title variation="subtitle3" style={styles.durationText}>
-                {getVideoDuration(props.duration)}
-              </Title>
-            </View>}
+            {props.duration && (
+              <View style={styles.durationLabel}>
+                <Title variation="subtitle3" style={styles.durationText}>
+                  {getVideoDuration(props.duration)}
+                </Title>
+              </View>
+            )}
           </Fragment>
         )}
       </View>
@@ -288,7 +302,9 @@ const VideoCard: React.FC<VideoCardProps> = (props) => {
               ...(variation === 'game-thumbnail' && styles.gameThumbnailTitle),
             }}
           >
-            {creatorName} {props.views && `• ${getFormattedNumber(props.views).replace(' ', '')} views`}
+            {creatorName}{' '}
+            {props.views &&
+              `• ${getFormattedNumber(props.views).replace(' ', '')} views`}
             {uploadedOn &&
               uploadedOn.length > 0 &&
               getTimeAgo(new Date(uploadedOn!))}
