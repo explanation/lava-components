@@ -83,14 +83,12 @@ const GameCard: React.FC<GameCardProps> = (props) => {
     () =>
       StyleSheet.create({
         wrapper: {
-          flexDirection: 'row',
           ...containerStyle,
         },
         container: {
           position: 'relative',
           padding: theme.spacing.lg,
           borderRadius: theme.roundness.sm,
-          backgroundColor: theme.colors.secondaryContainers,
           shadowColor: '#000',
           shadowOffset: { width: 0, height: 1 },
           shadowOpacity: 0.8,
@@ -142,7 +140,6 @@ const GameCard: React.FC<GameCardProps> = (props) => {
           right: 1,
         },
         miniContainer: {
-          flex: 1,
           flexDirection: 'row',
           alignItems: 'center',
         },
@@ -203,7 +200,7 @@ const GameCard: React.FC<GameCardProps> = (props) => {
       content = (
         <View style={styles.miniContainer}>
           <Image source={{ uri: imageUrl }} style={styles.iconImage} />
-          <Title variation="subtitle1">{name}</Title>
+          <Title style={{flexShrink: 1}} variation="subtitle1">{name}</Title>
         </View>
       )
     }
