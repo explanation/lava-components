@@ -89,6 +89,7 @@ const GameCard: React.FC<GameCardProps> = (props) => {
           position: 'relative',
           padding: theme.spacing.lg,
           borderRadius: theme.roundness.sm,
+          backgroundColor: theme.colors.secondaryContainers,
           shadowColor: '#000',
           shadowOffset: { width: 0, height: 1 },
           shadowOpacity: 0.8,
