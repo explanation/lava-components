@@ -41,6 +41,12 @@ export interface GameCardProps {
    * Default: 0
    */
   notificationsCount?: number
+    /** New Notification label
+     *
+     * Example: 'Codes
+     * Default: undefined
+     */
+  notificationLabel?: string
   /** Callout
    *
    * Used in mini version
@@ -71,6 +77,7 @@ const GameCard: React.FC<GameCardProps> = (props) => {
     likesByFriends,
     likesOnPlatform,
     notificationsCount = 0,
+    notificationLabel,
     callout,
     onPress,
     variation = 'full',
@@ -162,14 +169,19 @@ const GameCard: React.FC<GameCardProps> = (props) => {
         </View>
 
         {/* Card Footer */}
-        <View style={styles.footerContainer}>
+        {likesOnPlatform || likesOnPlatform && <View style={styles.footerContainer}>
           <LikeStat likes={likesByFriends!} suffix="friends" />
           <LikeStat likes={likesOnPlatform!} />
-        </View>
+        </View>}
 
         {notificationsCount > 0 && (
           <View style={styles.notificationLabelContainer}>
             <Label count={notificationsCount} />
+          </View>
+        )}
+        {notificationLabel && (
+          <View style={styles.notificationLabelContainer}>
+            <Label text={notificationLabel} />
           </View>
         )}
       </View>

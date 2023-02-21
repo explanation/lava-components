@@ -6,11 +6,15 @@ export interface LabelProps {
   /** Label count:
    * example: 2
    */
-  count: number
+  count?: number
+  /**
+   * Custom text for the label
+   */
+  text?: string
 }
 
 const Label: React.FC<LabelProps> = (props) => {
-  const { count } = props
+  const { count, text } = props
   const theme = useTheme()
 
   const styles = useMemo(
@@ -38,11 +42,15 @@ const Label: React.FC<LabelProps> = (props) => {
     [theme],
   )
 
-  return (
-    <View style={styles.container}>
-      <Text style={styles.text}>{count < 10 ? count : '9+'} New</Text>
-    </View>
-  )
+    return (
+        <View style={styles.container}>
+            {count ?
+                <Text style={styles.text}>{count < 10 ? count : '9+'} New</Text>
+                :
+                <Text style={styles.text}>{text}</Text>
+            }
+        </View>
+    )
 }
 
 export default Label
