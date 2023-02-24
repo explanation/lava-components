@@ -17,7 +17,7 @@ export type NotificationType =
   | 'new-friend-joined'
 
 export interface FriendProps {
-  imageUrl: string
+  imageUrl?: string
   name: string
   message?: string
   networkStatus?: FriendNetworkStatus
@@ -366,7 +366,7 @@ const Friend: React.FC<FriendProps> = (props) => {
 
   let asideContent = <Fragment />
 
-  if (friendRequestSent) {
+  if (friendRequestSent && onAsidePress) {
     asideContent = (
       <View>
         <Image
