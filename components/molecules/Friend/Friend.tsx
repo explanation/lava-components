@@ -27,6 +27,7 @@ export interface FriendProps {
    * eg: 2022-12-08T10:41:29.921Z
    */
   lastSeen?: string
+  lastSeenLabel?: string
   onCall?: boolean
   friendRequestSent?: boolean
   /**
@@ -70,6 +71,7 @@ const Friend: React.FC<FriendProps> = (props) => {
     notificationSentOn,
     messageSeen,
     lastSeen,
+    lastSeenLabel,
     onCall,
     onAsidePress,
     activityImageUrl,
@@ -323,12 +325,16 @@ const Friend: React.FC<FriendProps> = (props) => {
     if (activityType === 'video') statusContent += ', Watching'
   } else {
     // TODO: Fix with typescript
-    if (__DEV__ && !lastSeen) {
+    if (__DEV__ && !lastSeen && !lastSeenLabel) {
       console.warn(
         'You must provide `lastSeen` when `networkStatus` is offline',
       )
     }
-    statusContent = getTimeAgo(new Date(!!lastSeen ? lastSeen : 0))
+    if (lastSeen) {
+        statusContent = getTimeAgo(new Date(!!lastSeen ? lastSeen : 0))
+    } else if (lastSeenLabel) {
+        statusContent = lastSeenLabel
+    }
   }
 
   // Message Content
