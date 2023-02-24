@@ -6,6 +6,7 @@ import Title from '../../atoms/Title/Title'
 import { intervalMapping } from '../../config/date'
 import useTheme from '../../hooks/useTheme'
 import { getTimeAgo } from '../../utils/numbers'
+import Avatar from "../../atoms/Avatar/Avatar"
 
 export type FriendNetworkStatus = 'online' | 'offline'
 export type ActivityType = 'game' | 'video'
@@ -463,11 +464,10 @@ const Friend: React.FC<FriendProps> = (props) => {
           ]}
         >
           <View style={[styles.imageContainer]}>
-            <Image
-              source={{ uri: imageUrl }}
-              style={styles.image}
-              resizeMode="cover"
-            />
+            <Avatar
+              username={name}
+              avatarUrl={imageUrl}
+              size={44} />
           </View>
 
           {badgeIcon && <Image source={badgeIcon} style={styles.lBadge} />}
