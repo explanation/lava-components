@@ -12,7 +12,7 @@ export type FriendGroupNotificationType = 'chat' | 'video'
 
 export interface FriendGroupItem {
     firstName: string
-    imageUrl: string
+    imageUrl?: string
     networkStatus: FriendNetworkStatus
 }
 
