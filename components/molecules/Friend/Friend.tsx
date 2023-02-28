@@ -228,7 +228,6 @@ const Friend: React.FC<FriendProps> = (props) => {
           marginTop: nameVisible ? 5 : 0,
         },
         status: {
-          height: nameVisible ? 11 : undefined,
           marginRight: theme.spacing.md,
           maxWidth: 170,
           color:
