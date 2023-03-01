@@ -19,7 +19,7 @@ export interface GameCardProps {
    *
    * Example: https://domain.com/images/image.png
    */
-  imageUrl: string
+  imageUrl?: string
   /** Game's name/title
    *
    * Example: PHILIPS Tower Defense Simulator
