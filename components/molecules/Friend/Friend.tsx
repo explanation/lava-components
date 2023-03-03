@@ -95,7 +95,7 @@ const Friend: React.FC<FriendProps> = (props) => {
       borderColor = theme.colors.tertiaryOnline
     }
     return borderColor
-  }, [])
+  }, [props.networkStatus])
 
   const nameVisible = useMemo(() => {
     return notificationType === 'new-friend-request' ? false : true
@@ -310,7 +310,7 @@ const Friend: React.FC<FriendProps> = (props) => {
           color: theme.colors.primarySand60,
         },
       }),
-    [],
+    [props],
   )
 
   // Status Content
