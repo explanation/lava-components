@@ -22,6 +22,7 @@ export interface FriendProps {
   message?: string
   networkStatus?: FriendNetworkStatus
   playing?: boolean
+  inRoblox?: boolean
   messageSeen?: boolean
   /**
    * ISO Date format
@@ -67,6 +68,7 @@ const Friend: React.FC<FriendProps> = (props) => {
     message,
     networkStatus = 'online',
     playing = false,
+    inRoblox: isInRoblox = false,
     friendRequestSent = false,
     notificationType,
     notificationSentOn,
@@ -168,7 +170,7 @@ const Friend: React.FC<FriendProps> = (props) => {
           flexDirection: 'row',
           alignItems: 'center',
           position: 'relative',
-          maxWidth: 290,
+          maxWidth: 350,
         },
         imageWrapper: {
           paddingRight: 5,
@@ -497,7 +499,7 @@ const Friend: React.FC<FriendProps> = (props) => {
               >
                 {statusContent}
               </Title>
-              {playing && (
+              {isInRoblox && (
                 <Image
                   source={require('./assets/Roblox.png')}
                   style={styles.robloxImage}
