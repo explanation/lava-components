@@ -328,8 +328,8 @@ const Friend: React.FC<FriendProps> = (props) => {
   } else {
     // TODO: Fix with typescript
     if (__DEV__ && !lastSeen && !lastSeenLabel) {
-      console.warn(
-        'You must provide `lastSeen` when `networkStatus` is offline',
+      console.log(
+        'In the Friend.tsx lava-component, you set `networkStatus` to offline but `lastSeen` was undefined. Maybe this is an old user missing data.',
       )
     }
     if (lastSeen) {

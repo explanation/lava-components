@@ -15,9 +15,9 @@ const Avatar = (props: Props) => {
 
     const initials = () => {
         if (!props.username) return ''
-        let parts = props.username.split(' ').slice(0, 2)
+        let parts = props.username.trim().split(' ').slice(0, 2)
         if (parts.length < 2) {
-            parts = props.username.split('_').slice(0, 2)
+            parts = props.username.trim().split('_').slice(0, 2)
         }
 
         return parts.map((p) => p[0].toUpperCase()).join('')
