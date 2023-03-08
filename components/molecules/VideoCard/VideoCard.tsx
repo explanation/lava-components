@@ -38,6 +38,7 @@ export interface VideoCardProps {
   uploadedOn?: string
   onPress?: () => void
   onNext?: () => void
+  showPlayButton: boolean
   style?: ViewStyle
 }
 
@@ -49,6 +50,7 @@ const VideoCard: React.FC<VideoCardProps> = (props) => {
     uploadedOn,
     onPress,
     onNext,
+    showPlayButton = false,
     variation = 'feed',
   } = props
 
@@ -241,7 +243,7 @@ const VideoCard: React.FC<VideoCardProps> = (props) => {
         <Image source={{ uri: thumbnailUrl }} style={styles.thumbnail} />
 
         {(variation === 'game-preview' ||
-          variation === 'game-preview-mini') && (
+          variation === 'game-preview-mini') || showPlayButton && (
           <View style={styles.playIconContainer}>
             <Image source={require('./play.png')} style={styles.playIcon} />
           </View>
