@@ -38,7 +38,7 @@ export interface VideoCardProps {
   uploadedOn?: string
   onPress?: () => void
   onNext?: () => void
-  showPlayButton: boolean
+  showPlayButton?: boolean
   style?: ViewStyle
 }
 
