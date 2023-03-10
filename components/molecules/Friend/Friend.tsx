@@ -97,15 +97,15 @@ const Friend: React.FC<FriendProps> = (props) => {
       borderColor = theme.colors.tertiaryOnline
     }
     return borderColor
-  }, [props.networkStatus])
+  }, [props])
 
   const nameVisible = useMemo(() => {
     return notificationType === 'new-friend-request' ? false : true
-  }, [])
+  }, [props])
 
   const dividerVisible = useMemo(() => {
     return !friendRequestSent && activityImageUrl && !notificationType
-  }, [])
+  }, [props])
 
   const statusVisible = useMemo(() => {
     return (
@@ -113,7 +113,7 @@ const Friend: React.FC<FriendProps> = (props) => {
       notificationType !== 'video' &&
       notificationType !== 'new-friend-joined'
     )
-  }, [])
+  }, [props])
 
   const handleAsidePress = useCallback(() => {
     if (onAsidePress && typeof onAsidePress === 'function') {
@@ -157,7 +157,7 @@ const Friend: React.FC<FriendProps> = (props) => {
       image = require('./assets/LBadge.png')
     }
     return image
-  }, [])
+  }, [props])
 
   const styles = useMemo(
     () =>
