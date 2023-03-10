@@ -169,8 +169,7 @@ const Friend: React.FC<FriendProps> = (props) => {
           paddingVertical: theme.spacing.xl,
           flexDirection: 'row',
           alignItems: 'center',
-          position: 'relative',
-          maxWidth: 350,
+          position: 'relative'
         },
         imageWrapper: {
           paddingRight: 5,
