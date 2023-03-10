@@ -182,9 +182,9 @@ const FriendGroup: React.FC<FriendProps> = (props) => {
                     />
                 </View>
 
-                <Title variation="subtitle1" style={styles.remainingFriendsCount}>
+                {(friends.length - 2 > 0) && <Title variation="subtitle1" style={styles.remainingFriendsCount}>
                     + {friends.length - 2}
-                </Title>
+                </Title>}
             </View>
 
             <View
