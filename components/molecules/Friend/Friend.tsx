@@ -51,6 +51,7 @@ export interface FriendProps {
   onPress?: () => void
   onProfilePress?: () => void
   onAsidePress?: () => void
+  onLongPress?: () => void
   /**
    * Used for "New Friend Request" variation
    */
@@ -76,12 +77,13 @@ const Friend: React.FC<FriendProps> = (props) => {
     lastSeen,
     lastSeenLabel,
     onCall,
-    onAsidePress,
     activityImageUrl,
     friendInLava = true,
     activityType,
     onPress,
     onProfilePress,
+    onAsidePress,
+    onLongPress,
     onIgnorePress,
     onAcceptPress,
   } = props
@@ -142,6 +144,12 @@ const Friend: React.FC<FriendProps> = (props) => {
   const handlePress = useCallback(() => {
     if (onPress && typeof onPress === 'function') {
       onPress()
+    }
+  }, [])
+
+  const handleLongPress = useCallback(() => {
+    if (onLongPress && typeof onLongPress === 'function') {
+      onLongPress()
     }
   }, [])
 
@@ -459,6 +467,7 @@ const Friend: React.FC<FriendProps> = (props) => {
       <View style={styles.container}>
         <Pressable
           onPress={handleProfilePress}
+          onLongPress={handleLongPress}
           style={({ pressed }) => [
             styles.imageWrapper,
             { opacity: pressed ? 0.8 : 1 },
@@ -476,6 +485,7 @@ const Friend: React.FC<FriendProps> = (props) => {
 
         <Pressable
           onPress={handlePress}
+          onLongPress={handleLongPress}
           style={({ pressed }) => [
             styles.detailsContainer,
             { opacity: pressed ? 0.8 : 1 },
@@ -517,6 +527,7 @@ const Friend: React.FC<FriendProps> = (props) => {
 
         <Pressable
           onPress={handleAsidePress}
+          onLongPress={handleLongPress}
           style={({ pressed }) => [{ opacity: pressed ? 0.8 : 1 }]}
         >
           {asideContent}
