@@ -1,4 +1,4 @@
-import { Fragment, useCallback, useMemo } from 'react'
+import { Fragment, useCallback } from 'react'
 import { Image, Pressable, StyleSheet, View } from 'react-native'
 import Button from '../../atoms/Button/Button'
 import Text from '../../atoms/Text/Text'
@@ -91,7 +91,7 @@ const Friend: React.FC<FriendProps> = (props) => {
   } = props
   const theme = useTheme()
 
-  const imageContainerBorderColor = useMemo(() => {
+  const imageContainerBorderColor = () => {
     let borderColor = null
     if (friendRequestSent || notificationType === 'new-friend-request') {
       borderColor = theme.colors.primarySand
@@ -101,23 +101,23 @@ const Friend: React.FC<FriendProps> = (props) => {
       borderColor = theme.colors.tertiaryOnline
     }
     return borderColor
-  }, [props])
+  }
 
-  const nameVisible = useMemo(() => {
+  const nameVisible = () => {
     return notificationType === 'new-friend-request' ? false : true
-  }, [props])
+  }
 
-  const dividerVisible = useMemo(() => {
+  const dividerVisible = () => {
     return !friendRequestSent && activityImageUrl && !notificationType
-  }, [props])
+  }
 
-  const statusVisible = useMemo(() => {
+  const statusVisible = () => {
     return (
       notificationType !== 'chat' &&
       notificationType !== 'video' &&
       notificationType !== 'new-friend-joined'
     )
-  }, [props])
+  }
 
   const handleAsidePress = useCallback(() => {
     if (onAsidePress && typeof onAsidePress === 'function') {
@@ -155,7 +155,7 @@ const Friend: React.FC<FriendProps> = (props) => {
     }
   }, [])
 
-  const badgeIcon = useMemo(() => {
+  const badgeIcon = () => {
     let image = null
     if (friendRequestSent || notificationType === 'new-friend-request') {
       image = require('./assets/FriendRequest.png')
@@ -167,9 +167,9 @@ const Friend: React.FC<FriendProps> = (props) => {
       image = require('./assets/LBadge.png')
     }
     return image
-  }, [props])
+  }
 
-  const styles = useMemo(
+  const styles =
     () =>
       StyleSheet.create({
         wrapper: {
@@ -204,7 +204,7 @@ const Friend: React.FC<FriendProps> = (props) => {
             friendRequestSent || notificationType === 'new-friend-request'
               ? 0.5
               : 3,
-          borderColor: imageContainerBorderColor,
+          borderColor: imageContainerBorderColor(),
         },
         image: {
           width: 44,
@@ -236,7 +236,7 @@ const Friend: React.FC<FriendProps> = (props) => {
         },
         statusContainer: {
           flexDirection: 'row',
-          marginTop: nameVisible ? 5 : 0,
+          marginTop: nameVisible() ? 5 : 0,
         },
         status: {
           marginRight: theme.spacing.md,
@@ -320,9 +320,7 @@ const Friend: React.FC<FriendProps> = (props) => {
           right: theme.spacing.xs,
           color: theme.colors.primarySand60,
         },
-      }),
-    [props],
-  )
+      })
 
   // Status Content
   let statusContent = ''
@@ -353,12 +351,12 @@ const Friend: React.FC<FriendProps> = (props) => {
   if (onCall) {
     messageContent = (
       <Fragment>
-        <Title variation="subtitle2" numberOfLines={1} style={styles.onCall}>
+        <Title variation="subtitle2" numberOfLines={1} style={styles().onCall}>
           In a Call
         </Title>
         <Image
           source={require('./assets/VideoCall.png')}
-          style={styles.videoCallImage}
+          style={styles().videoCallImage}
         />
       </Fragment>
     )
@@ -366,7 +364,7 @@ const Friend: React.FC<FriendProps> = (props) => {
     messageContent = (
       <Fragment>
         <Text>“</Text>
-        <Title variation="subtitle2" numberOfLines={1} style={styles.message}>
+        <Title variation="subtitle2" numberOfLines={1} style={styles().message}>
           {message}
         </Title>
         <Text>”</Text>
@@ -381,7 +379,7 @@ const Friend: React.FC<FriendProps> = (props) => {
       <View>
         <Image
           source={require('./assets/Resend.png')}
-          style={styles.resendImage}
+          style={styles().resendImage}
         />
       </View>
     )
@@ -440,15 +438,15 @@ const Friend: React.FC<FriendProps> = (props) => {
   } else if (activityImageUrl) {
     asideContent = (
       <Fragment>
-        <View style={styles.currentActivityContainer}>
+        <View style={styles().currentActivityContainer}>
           <Image
             source={{ uri: activityImageUrl }}
-            style={styles.currentActivityImage}
+            style={styles().currentActivityImage}
           />
           {activityType === 'video' && (
             <Image
               source={require('./assets/play.png')}
-              style={styles.playImage}
+              style={styles().playImage}
             />
           )}
         </View>
@@ -456,7 +454,7 @@ const Friend: React.FC<FriendProps> = (props) => {
     )
   } else if (joinFriend) {
       asideContent = (
-          <View style={[styles.currentActivityContainer, {borderWidth: 0}]}>
+          <View style={[styles().currentActivityContainer, {borderWidth: 0}]}>
               <Button
                   style={{backgroundColor: theme.colors.tertiaryOnline}}
                   onPress={handleAsidePress}
@@ -475,67 +473,67 @@ const Friend: React.FC<FriendProps> = (props) => {
   }
 
   return (
-    <View style={styles.wrapper}>
-      <View style={styles.container}>
+    <View style={styles().wrapper}>
+      <View style={styles().container}>
         <Pressable
           onPress={handleProfilePress}
           onLongPress={handleLongPress}
           style={({ pressed }) => [
-            styles.imageWrapper,
+            styles().imageWrapper,
             { opacity: pressed ? 0.8 : 1 },
           ]}
         >
-          <View style={[styles.imageContainer]}>
+          <View style={[styles().imageContainer]}>
             <Avatar
               username={name}
               avatarUrl={imageUrl}
               size={44} />
           </View>
 
-          {badgeIcon && <Image source={badgeIcon} style={styles.lBadge} />}
+          {badgeIcon && <Image source={badgeIcon()} style={styles().lBadge} />}
         </Pressable>
 
         <Pressable
           onPress={handlePress}
           onLongPress={handleLongPress}
           style={({ pressed }) => [
-            styles.detailsContainer,
+            styles().detailsContainer,
             { opacity: pressed ? 0.8 : 1 },
           ]}
         >
-          {nameVisible && (
-            <Title numberOfLines={3} variation="subtitle1" style={styles.name}>
+          {nameVisible() && (
+            <Title numberOfLines={3} variation="subtitle1" style={styles().name}>
               {nameContent}
             </Title>
           )}
 
-          {statusVisible && (
-            <View style={styles.statusContainer}>
+          {statusVisible() && (
+            <View style={styles().statusContainer}>
               <Title
                 variation={
                   notificationType === 'new-friend-request'
                     ? 'subtitle1'
                     : 'subtitle2'
                 }
-                style={styles.status}
+                style={styles().status}
               >
                 {statusContent}
               </Title>
               {isInRoblox && (
                 <Image
                   source={require('./assets/Roblox.png')}
-                  style={styles.robloxImage}
+                  style={styles().robloxImage}
                 />
               )}
             </View>
           )}
 
           {messageContent && (
-            <View style={styles.messageContainer}>{messageContent}</View>
+            <View style={styles().messageContainer}>{messageContent}</View>
           )}
         </Pressable>
 
-        {dividerVisible && <View style={styles.divider} />}
+        {dividerVisible() && <View style={styles().divider} />}
 
         <Pressable
           onPress={handleAsidePress}
@@ -547,7 +545,7 @@ const Friend: React.FC<FriendProps> = (props) => {
       </View>
 
       {notificationType === 'new-friend-request' && (
-        <View style={styles.footerContainer}>
+        <View style={styles().footerContainer}>
           <Button
             onPress={handleIgnorePress}
             variation="tertiary"
@@ -581,7 +579,7 @@ const Friend: React.FC<FriendProps> = (props) => {
       )}
 
       {notificationType && (
-        <Title variation="subtitle3" style={styles.notificationSentOn}>
+        <Title variation="subtitle3" style={styles().notificationSentOn}>
           {getTimeAgo(
             new Date(!!notificationSentOn ? notificationSentOn : 0),
             intervalMapping,
