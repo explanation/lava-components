@@ -13,6 +13,7 @@ import Label from '../../atoms/Label/Label'
 import Text from '../../atoms/Text/Text'
 import useTheme from '../../hooks/useTheme'
 import LikeStat from '../LikeStat/LikeStat'
+import {LavaImage} from "../../atoms/LavaImage/LavaImage"
 
 export interface GameCardProps {
   /** Game's thumbnail url
@@ -162,7 +163,19 @@ const GameCard: React.FC<GameCardProps> = (props) => {
       <View style={styles.container}>
         {/* Card Main */}
         <View style={styles.imageContainer}>
-          <Image source={{ uri: imageUrl }} style={styles.image} />
+          <View>
+              <LavaImage source={{ uri: imageUrl }} style={styles.image} />
+              {callout && <Title variation={'subtitle3'} style={{
+                  position: 'absolute',
+                  left: 0,
+                  bottom: 0,
+                  padding: 2,
+                  color: theme.colors.pureWhite,
+                  backgroundColor: theme.colors.gravity
+              }}>
+                  {callout}
+              </Title>}
+          </View>
           <Title numberOfLines={2} variation="subtitle2" style={styles.name}>
             {name}
           </Title>
@@ -189,7 +202,7 @@ const GameCard: React.FC<GameCardProps> = (props) => {
   } else if (variation === 'mini') {
     content = (
       <View>
-        <Image source={{ uri: imageUrl }} style={styles.image} />
+        <LavaImage source={{ uri: imageUrl }} style={styles.image} />
         <Title numberOfLines={2} variation="subtitle2" style={styles.name}>
           {name}
         </Title>
@@ -199,7 +212,7 @@ const GameCard: React.FC<GameCardProps> = (props) => {
     if (callout) {
       content = (
         <View style={styles.miniContainer}>
-          <Image
+          <LavaImage
             source={{ uri: imageUrl }}
             style={styles.iconImageWithCallout}
           />
@@ -212,7 +225,7 @@ const GameCard: React.FC<GameCardProps> = (props) => {
     } else {
       content = (
         <View style={styles.miniContainer}>
-          <Image source={{ uri: imageUrl }} style={styles.iconImage} />
+          <LavaImage source={{ uri: imageUrl }} style={styles.iconImage} />
           <Title style={{flexShrink: 1}} variation="subtitle1">{name}</Title>
         </View>
       )
