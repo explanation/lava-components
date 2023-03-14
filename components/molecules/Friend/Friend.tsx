@@ -44,6 +44,7 @@ export interface FriendProps {
   notificationSentOn?: string
   activityImageUrl?: string
   activityType?: ActivityType
+  joinFriend?: boolean
   friendInLava?: boolean
   /**
    * Invoked when the user presses the middle section of the component
@@ -80,6 +81,7 @@ const Friend: React.FC<FriendProps> = (props) => {
     activityImageUrl,
     friendInLava = true,
     activityType,
+    joinFriend = undefined,
     onPress,
     onProfilePress,
     onAsidePress,
@@ -252,7 +254,7 @@ const Friend: React.FC<FriendProps> = (props) => {
           marginTop: onCall ? theme.spacing.md : 8,
           flexDirection: 'row',
           alignItems: 'center',
-          width: activityImageUrl ? 127 : undefined,
+          width: (activityImageUrl || joinFriend) ? 127 : undefined,
           maxWidth: 206,
           minWidth: 127,
           height: 12,
@@ -452,9 +454,20 @@ const Friend: React.FC<FriendProps> = (props) => {
         </View>
       </Fragment>
     )
+  } else if (joinFriend) {
+      asideContent = (
+          <View style={[styles.currentActivityContainer, {borderWidth: 0}]}>
+              <Button
+                  style={{backgroundColor: theme.colors.tertiaryOnline}}
+                  onPress={handleAsidePress}
+                  roundness={'flat'}
+                  variation={'gravity'}
+              >Join</Button>
+          </View>
+      )
   }
 
-  let nameContent = name
+    let nameContent = name
   if (notificationType === 'video') {
     nameContent = `You missed a call from ${name}. Call back!`
   } else if (notificationType === 'new-friend-joined') {
