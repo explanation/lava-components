@@ -53,6 +53,7 @@ export interface GameCardProps {
    * Used in mini version
    */
   callout?: string
+  bottomMessage?: string
   /** on Tap/Click/Press function */
   onPress: () => void
   /** Card Variation
@@ -80,6 +81,7 @@ const GameCard: React.FC<GameCardProps> = (props) => {
     notificationsCount = 0,
     notificationLabel,
     callout,
+      bottomMessage,
     onPress,
     variation = 'full',
     containerStyle = {},
@@ -111,8 +113,11 @@ const GameCard: React.FC<GameCardProps> = (props) => {
         footerContainer: {
           flexDirection: 'row',
           justifyContent: 'space-between',
-          marginTop: theme.spacing.xxl,
+          marginTop: theme.spacing.xl,
         },
+          bottomMessageContainer: {
+              marginTop: theme.spacing.xl,
+          },
         image: {
           height: 120,
           width: 120,
@@ -163,20 +168,8 @@ const GameCard: React.FC<GameCardProps> = (props) => {
       <View style={styles.container}>
         {/* Card Main */}
         <View style={styles.imageContainer}>
-          <View>
-              <LavaImage source={{ uri: imageUrl }} style={styles.image} />
-              {callout && <Title variation={'subtitle3'} style={{
-                  position: 'absolute',
-                  left: 0,
-                  bottom: 0,
-                  padding: 2,
-                  color: theme.colors.pureWhite,
-                  backgroundColor: theme.colors.gravity
-              }}>
-                  {callout}
-              </Title>}
-          </View>
-          <Title numberOfLines={2} variation="subtitle2" style={styles.name}>
+            <LavaImage source={{ uri: imageUrl }} style={styles.image} />
+            <Title numberOfLines={2} variation="subtitle2" style={styles.name}>
             {name}
           </Title>
         </View>
@@ -185,6 +178,12 @@ const GameCard: React.FC<GameCardProps> = (props) => {
         {likesOnPlatform || likesOnPlatform && <View style={styles.footerContainer}>
           <LikeStat likes={likesByFriends!} suffix="friends" />
           <LikeStat likes={likesOnPlatform!} />
+        </View>}
+
+        {bottomMessage && <View style={styles.bottomMessageContainer}>
+            {bottomMessage.trim().length > 0 &&
+            <View style={{height: 0.5, marginVertical: theme.spacing.md, backgroundColor: theme.colors.primarySand, opacity: 0.1}}/>}
+            <Title style={{color: theme.colors.primarySand60}} variation={'subtitle3'}>{bottomMessage}</Title>
         </View>}
 
         {notificationsCount > 0 && (
