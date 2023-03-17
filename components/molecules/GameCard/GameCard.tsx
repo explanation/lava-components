@@ -181,7 +181,7 @@ const GameCard: React.FC<GameCardProps> = (props) => {
                     <LikeStat likes={likesOnPlatform!}/>
                 </View>}
 
-                {bottomMessage && <View style={styles.bottomMessageContainer} onLayout={(e) => console.log(`HEIGHT: ${e.nativeEvent.layout.height}`)}>
+                {bottomMessage && <View style={styles.bottomMessageContainer}>
                     {bottomMessage.trim().length > 0 &&
                     <View style={{
                         height: 0.5,
