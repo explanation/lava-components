@@ -116,7 +116,8 @@ const GameCard: React.FC<GameCardProps> = (props) => {
                     marginTop: theme.spacing.xl,
                 },
                 bottomMessageContainer: {
-                    marginTop: theme.spacing.xl,
+                    height: 26,
+                    marginTop: theme.spacing.sm,
                 },
                 image: {
                     height: 120,
@@ -180,7 +181,7 @@ const GameCard: React.FC<GameCardProps> = (props) => {
                     <LikeStat likes={likesOnPlatform!}/>
                 </View>}
 
-                {bottomMessage && <View style={styles.bottomMessageContainer}>
+                {bottomMessage && <View style={styles.bottomMessageContainer} onLayout={(e) => console.log(`HEIGHT: ${e.nativeEvent.layout.height}`)}>
                     {bottomMessage.trim().length > 0 &&
                     <View style={{
                         height: 0.5,
