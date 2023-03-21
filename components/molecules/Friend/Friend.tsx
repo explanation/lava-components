@@ -1,4 +1,4 @@
-import { Fragment, useCallback } from 'react'
+import { Fragment } from 'react'
 import { Image, Pressable, StyleSheet, View } from 'react-native'
 import Button from '../../atoms/Button/Button'
 import Text from '../../atoms/Text/Text'
@@ -119,41 +119,41 @@ const Friend: React.FC<FriendProps> = (props) => {
     )
   }
 
-  const handleAsidePress = useCallback(() => {
+  const handleAsidePress = () => {
     if (onAsidePress && typeof onAsidePress === 'function') {
       onAsidePress()
     }
-  }, [])
+  }
 
-  const handleIgnorePress = useCallback(() => {
+  const handleIgnorePress = () => {
     if (onIgnorePress && typeof onIgnorePress === 'function') {
       onIgnorePress()
     }
-  }, [])
+  }
 
-  const handleAcceptPress = useCallback(() => {
+  const handleAcceptPress = () => {
     if (onAcceptPress && typeof onAcceptPress === 'function') {
       onAcceptPress()
     }
-  }, [])
+  }
 
-  const handleProfilePress = useCallback(() => {
+  const handleProfilePress = () => {
     if (onProfilePress && typeof onProfilePress === 'function') {
       onProfilePress()
     }
-  }, [])
+  }
 
-  const handlePress = useCallback(() => {
+  const handlePress = () => {
     if (onPress && typeof onPress === 'function') {
       onPress()
     }
-  }, [])
+  }
 
-  const handleLongPress = useCallback(() => {
+  const handleLongPress = () => {
     if (onLongPress && typeof onLongPress === 'function') {
       onLongPress()
     }
-  }, [])
+  }
 
   const badgeIcon = () => {
     let image = null
