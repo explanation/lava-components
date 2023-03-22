@@ -18,7 +18,7 @@ const friendData: FriendProps = {
   name: 'Lily Woofers',
   message: 'where are you. what are you doing...?',
   activityImageUrl: 'https://i.imgur.com/vC81osj.png',
-  activityType: 'game',
+  activityType: 'playing',
 }
 
 const friendsOnlineOfflineSampleData: FriendGroupItem[] = [
@@ -185,11 +185,11 @@ export default function FriendScreen() {
             #1 [Online, Playing a game, Unread Chat]
           </Text>
           <Friend
-            playing
             name={friendData.name}
             imageUrl={friendData.imageUrl}
             message={friendData.message}
             activityImageUrl={friendData.activityImageUrl}
+            activityType={'playing'}
           />
         </View>
 
@@ -204,12 +204,12 @@ export default function FriendScreen() {
           </Text>
 
           <Friend
-            playing
             messageSeen
             name={friendData.name}
             imageUrl={friendData.imageUrl}
             message={friendData.message}
             activityImageUrl={friendData.activityImageUrl}
+            activityType={'playing'}
           />
         </View>
 
@@ -224,11 +224,11 @@ export default function FriendScreen() {
           </Text>
           <Friend
             onCall
-            playing
             name={friendData.name}
             imageUrl={friendData.imageUrl}
             message={friendData.message}
             activityImageUrl={friendData.activityImageUrl}
+            activityType={'playing'}
           />
         </View>
 
@@ -273,7 +273,6 @@ export default function FriendScreen() {
           </Text>
           <Friend
             networkStatus="offline"
-            playing={false}
             lastSeen={lastSeen}
             name={friendData.name}
             imageUrl={friendData.imageUrl}
@@ -321,7 +320,6 @@ export default function FriendScreen() {
         <View style={styles.compContainer}>
           <Text style={styles.labelText}>#8.1 [Online, No chat history]</Text>
           <Friend
-            playing
             name={friendData.name}
             imageUrl={friendData.imageUrl}
             activityImageUrl={friendData.activityImageUrl}
@@ -416,7 +414,7 @@ export default function FriendScreen() {
             name={friendData.name}
             imageUrl={friendData.imageUrl}
             activityImageUrl={friendData.activityImageUrl}
-            activityType="video"
+            activityType="watching"
           />
         </View>
 
@@ -430,11 +428,11 @@ export default function FriendScreen() {
             #12 [Online, Playing a game, Friend not in lava]
           </Text>
           <Friend
-            playing
             friendInLava={false}
             name={friendData.name}
             imageUrl={friendData.imageUrl}
             activityImageUrl={friendData.activityImageUrl}
+            activityType="playing"
           />
         </View>
 

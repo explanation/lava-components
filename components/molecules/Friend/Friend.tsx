@@ -9,7 +9,7 @@ import { getTimeAgo } from '../../utils/numbers'
 import Avatar from "../../atoms/Avatar/Avatar"
 
 export type FriendNetworkStatus = 'online' | 'offline'
-export type ActivityType = 'game' | 'video'
+export type ActivityType = 'playing' | 'watching' | 'talking'
 export type NotificationType =
   | 'new-friend-request'
   | 'chat'
@@ -21,7 +21,6 @@ export interface FriendProps {
   name: string
   message?: string
   networkStatus?: FriendNetworkStatus
-  playing?: boolean
   inRoblox?: boolean
   messageSeen?: boolean
   /**
@@ -69,7 +68,6 @@ const Friend: React.FC<FriendProps> = (props) => {
     name,
     message,
     networkStatus = 'online',
-    playing = false,
     inRoblox: isInRoblox = false,
     friendRequestSent = false,
     notificationType,
@@ -281,7 +279,7 @@ const Friend: React.FC<FriendProps> = (props) => {
           marginHorizontal: 12,
         },
         currentActivityContainer: {
-          height: activityType === 'video' ? 52 : 66,
+          height: activityType === 'playing' ? 52 : 66,
           width: 66,
           justifyContent: 'center',
           alignItems: 'center',
@@ -293,7 +291,7 @@ const Friend: React.FC<FriendProps> = (props) => {
               : 'transparent',
         },
         currentActivityImage: {
-          height: activityType === 'video' ? 42 : 56,
+          height: activityType === 'playing' ? 42 : 56,
           width: 56,
           borderWidth: 0.5,
           borderColor: theme.colors.primarySand40,
@@ -330,8 +328,9 @@ const Friend: React.FC<FriendProps> = (props) => {
     statusContent = `${name} sent a friend request`
   } else if (networkStatus === 'online') {
     statusContent = 'Online'
-    if (playing) statusContent += ', Playing'
-    if (activityType === 'video') statusContent += ', Watching'
+    if (activityType === 'playing') statusContent += ', Playing'
+    if (activityType === 'watching') statusContent += ', Watching'
+    if (activityType === 'talking') statusContent += ', Talking'
   } else {
     // TODO: Fix with typescript
     if (__DEV__ && !lastSeen && !lastSeenLabel) {
@@ -443,7 +442,7 @@ const Friend: React.FC<FriendProps> = (props) => {
             source={{ uri: activityImageUrl }}
             style={styles().currentActivityImage}
           />
-          {activityType === 'video' && (
+          {activityType === 'watching' && (
             <Image
               source={require('./assets/play.png')}
               style={styles().playImage}
