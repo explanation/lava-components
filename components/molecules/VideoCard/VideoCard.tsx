@@ -27,6 +27,7 @@ export interface VideoCardProps {
     onPress?: () => void
     onNext?: () => void
     showPlayButton?: boolean
+    isVerified?: boolean
     style?: ViewStyle
 }
 
@@ -39,6 +40,7 @@ const VideoCard: React.FC<VideoCardProps> = (props) => {
         onPress,
         onNext,
         showPlayButton = false,
+        isVerified = false,
         variation = 'feed',
     } = props
 
@@ -267,22 +269,32 @@ const VideoCard: React.FC<VideoCardProps> = (props) => {
                 variation === 'secrets' ||
                 variation === 'game-thumbnail') && (
                 <Fragment>
-                    <Title
-                        numberOfLines={
-                            variation === 'feed' ||
-                            variation === 'game-thumbnail' ||
-                            variation === 'secrets'
-                                ? 1
-                                : 2
+                    <View style={{flexDirection: 'row', alignItems: 'center'}}>
+                        <Title
+                            numberOfLines={
+                                variation === 'feed' ||
+                                variation === 'game-thumbnail' ||
+                                variation === 'secrets'
+                                    ? 1
+                                    : 2
+                            }
+                            variation="subtitle2"
+                            style={{
+                                flex: 1,
+                                ...styles.title,
+                                ...(variation === 'game-thumbnail' && styles.gameThumbnailTitle),
+                            }}
+                        >
+                            {title}
+                        </Title>
+
+                        {isVerified &&
+                        <Image
+                            style={{width: 30, height: 30, marginTop: theme.spacing.md, marginStart: theme.spacing.md}}
+                            resizeMode={'contain'}
+                            source={require('./verified.png')} />
                         }
-                        variation="subtitle2"
-                        style={{
-                            ...styles.title,
-                            ...(variation === 'game-thumbnail' && styles.gameThumbnailTitle),
-                        }}
-                    >
-                        {title}
-                    </Title>
+                    </View>
 
                     <Title
                         variation="subtitle3"
