@@ -145,7 +145,7 @@ const VideoCard: React.FC<VideoCardProps> = (props) => {
                     alignItems: 'center',
                 },
                 durationText: {
-                    height: 10.38,
+                    height: 12.38,
                     width: 33.61,
                     textAlign: 'center',
                 },
@@ -176,8 +176,8 @@ const VideoCard: React.FC<VideoCardProps> = (props) => {
                 },
                 playIcon: {
                     borderRadius: 72,
-                    width: variation === 'game-preview' ? 72 : 30,
-                    height: variation === 'game-preview' ? 72 : 30,
+                    width: variation === 'game-preview' ? 72 : 40,
+                    height: variation === 'game-preview' ? 72 : 40,
                     shadowColor: '#000',
                     shadowOffset: {
                         width: 0,
@@ -239,7 +239,7 @@ const VideoCard: React.FC<VideoCardProps> = (props) => {
                     </View>
                 )}
 
-                {(variation === 'feed' || variation === 'secrets') && (
+                {(variation === 'feed' || variation === 'secrets') && !showPlayButton &&
                     <Fragment>
                         <View style={styles.thumbnailOverlay}/>
                         {props.duration && (
@@ -250,7 +250,7 @@ const VideoCard: React.FC<VideoCardProps> = (props) => {
                             </View>
                         )}
                     </Fragment>
-                )}
+                }
             </View>
 
             {variation === 'game-preview' && (
@@ -275,7 +275,7 @@ const VideoCard: React.FC<VideoCardProps> = (props) => {
                                 variation === 'feed' ||
                                 variation === 'game-thumbnail' ||
                                 variation === 'secrets'
-                                    ? 1
+                                    ? 2 // this was 1 but temporarily changing to 2 until we have a better design fix
                                     : 2
                             }
                             variation="subtitle2"
@@ -305,7 +305,7 @@ const VideoCard: React.FC<VideoCardProps> = (props) => {
                         }}
                     >
                         {creatorName}{' '}
-                        {props.views &&
+                        {props.views && props.views > 0 &&
                         `• ${getFormattedNumber(props.views).replace(' ', '')} views`}
                         {uploadedOn &&
                         uploadedOn.length > 0 &&
