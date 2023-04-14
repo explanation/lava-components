@@ -237,7 +237,6 @@ const Friend: React.FC<FriendProps> = (props) => {
           marginTop: nameVisible() ? 5 : 0,
         },
         status: {
-          marginRight: theme.spacing.md,
           maxWidth: 170,
           color:
             networkStatus === 'online'
@@ -245,6 +244,7 @@ const Friend: React.FC<FriendProps> = (props) => {
               : theme.colors.primarySand60,
         },
         robloxImage: {
+          marginLeft: theme.spacing.md,
           width: 14,
           height: 14,
         },
@@ -279,7 +279,7 @@ const Friend: React.FC<FriendProps> = (props) => {
           marginHorizontal: 12,
         },
         currentActivityContainer: {
-          height: activityType === 'playing' ? 52 : 66,
+          height: activityType === 'playing' ? 66 : 42,
           width: 66,
           justifyContent: 'center',
           alignItems: 'center',
@@ -291,7 +291,7 @@ const Friend: React.FC<FriendProps> = (props) => {
               : 'transparent',
         },
         currentActivityImage: {
-          height: activityType === 'playing' ? 42 : 56,
+          height: activityType === 'playing' ? 56 : 32,
           width: 56,
           borderWidth: 0.5,
           borderColor: theme.colors.primarySand40,
@@ -322,15 +322,16 @@ const Friend: React.FC<FriendProps> = (props) => {
 
   // Status Content
   let statusContent = ''
+  let statusContentDetail = undefined
   if (friendRequestSent) {
-    statusContent = 'Friend Request sent'
+    statusContent = 'Friend Request Sent'
   } else if (notificationType === 'new-friend-request') {
     statusContent = `${name} sent a friend request`
   } else if (networkStatus === 'online') {
     statusContent = 'Online'
-    if (activityType === 'playing') statusContent += ', Playing'
-    if (activityType === 'watching') statusContent += ', Watching'
-    if (activityType === 'talking') statusContent += ', Talking'
+    if (activityType === 'playing') statusContentDetail = ', Playing'
+    if (activityType === 'watching') statusContentDetail = ', Watching'
+    if (activityType === 'talking') statusContentDetail = ', Talking'
   } else {
     // TODO: Fix with typescript
     if (__DEV__ && !lastSeen && !lastSeenLabel) {
@@ -518,12 +519,18 @@ const Friend: React.FC<FriendProps> = (props) => {
               >
                 {statusContent}
               </Title>
-              {isInRoblox && (
+              {isInRoblox && (statusContentDetail == undefined || statusContentDetail == ', Playing') &&
                 <Image
                   source={require('./assets/Roblox.png')}
                   style={styles().robloxImage}
-                />
-              )}
+                />}
+              {statusContentDetail &&
+              <Title
+                variation={'subtitle2'}
+                style={styles().status}
+              >
+                {statusContentDetail}
+              </Title>}
             </View>
           )}
 
