@@ -1,8 +1,10 @@
-import React, {Fragment, useMemo} from 'react'
+import React, {Fragment, useEffect, useMemo, useRef} from 'react'
 import {Image, Pressable, StyleSheet, View, ViewStyle,} from 'react-native'
 import Title from '../../atoms/Title/Title'
 import useTheme from '../../hooks/useTheme'
 import {getFormattedNumber, getTimeAgo, getVideoDuration,} from '../../utils/numbers'
+import {Video} from "../../../../../modules/browse/views/Video"
+import VideoModel from '../../../../../modules/browse/models/VideoModel'
 
 export type VideoCardVariation =
     | 'feed'
@@ -29,6 +31,8 @@ export interface VideoCardProps {
     showPlayButton?: boolean
     isVerified?: boolean
     style?: ViewStyle
+    video?: VideoModel
+    playable?: boolean
 }
 
 const VideoCard: React.FC<VideoCardProps> = (props) => {
@@ -42,9 +46,22 @@ const VideoCard: React.FC<VideoCardProps> = (props) => {
         showPlayButton = false,
         isVerified = false,
         variation = 'feed',
+        video,
+        playable = false
     } = props
 
+    const videoRef = useRef<any>(null)
     const theme = useTheme()
+
+    useEffect(() => {
+        if(videoRef && video){
+            if(playable){
+                videoRef.current?.autoPlay()
+            } else {
+                videoRef.current?.autoPause()
+            }
+        }
+    },[videoRef, video, playable])
 
     const maxWidth = useMemo(() => {
         switch (variation) {
@@ -230,7 +247,12 @@ const VideoCard: React.FC<VideoCardProps> = (props) => {
             onPress={handlePress}
         >
             <View style={styles.thumbnailContainer}>
-                <Image source={{uri: thumbnailUrl}} style={styles.thumbnail}/>
+                {video && playable ?
+                    <Video
+                        video={video}
+                        ref={videoRef}
+                    /> : <Image source={{uri: thumbnailUrl}} style={styles.thumbnail}/>
+                }
 
                 {(variation === 'game-preview' ||
                     variation === 'game-preview-mini') || showPlayButton && (
