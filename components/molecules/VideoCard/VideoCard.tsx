@@ -335,7 +335,7 @@ const VideoCard: React.FC<VideoCardProps> = (props) => {
                     >
                         {creatorName}{' '}
                         {props.views && props.views > 0 &&
-                        `• ${getFormattedNumber(props.views).replace(' ', '')} views`}
+                        `• ${getFormattedNumber(props.views).replace(' ', '')} views • `}
                         {uploadedOn &&
                         uploadedOn.length > 0 &&
                         getTimeAgo(new Date(uploadedOn!))}
