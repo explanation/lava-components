@@ -1,16 +1,24 @@
-import {Image, ImageProps} from "react-native"
+import {Image, ImageProps} from "expo-image"
+import {Image as RNImage, ImageProps as RNImageProps} from "react-native"
 
 type Props = {} & ImageProps
 
 export const LavaImage = (props: Props) => {
-    let source = props.source as any
-    if (source.uri) {
-        source.cache = 'force-cache'
+
+    const isLocalImage = (): boolean => {
+        return typeof props.source === "number"
     }
 
-    return (
-        <Image
-            {...props}
-        />
-    )
+    if (isLocalImage()) {
+        return (
+            <RNImage
+                {...props as any} />
+        )
+    } else {
+        return (
+            <Image
+                cachePolicy={props.cachePolicy ?? 'memory-disk'}
+                {...props} />
+        )
+    }
 }
