@@ -5,6 +5,7 @@ import useTheme from '../../hooks/useTheme'
 import {getFormattedNumber, getTimeAgo, getVideoDuration,} from '../../utils/numbers'
 import {Video} from "../../../../../modules/browse/views/Video"
 import VideoModel from '../../../../../modules/browse/models/VideoModel'
+import {LavaImage} from "../../atoms/LavaImage/LavaImage"
 
 export type VideoCardVariation =
     | 'feed'
@@ -258,13 +259,13 @@ const VideoCard: React.FC<VideoCardProps> = (props) => {
                     <Video
                         video={video}
                         ref={videoRef}
-                    /> : <Image source={{uri: thumbnailUrl}} style={styles.thumbnail}/>
+                    /> : <LavaImage source={{uri: thumbnailUrl}} style={styles.thumbnail}/>
                 }
 
                 {(variation === 'game-preview' ||
                     variation === 'game-preview-mini') || showPlayButton && (
                     <View style={styles.playIconContainer}>
-                        <Image source={require('./play.png')} style={styles.playIcon}/>
+                        <LavaImage source={require('./play.png')} style={styles.playIcon}/>
                     </View>
                 )}
 
