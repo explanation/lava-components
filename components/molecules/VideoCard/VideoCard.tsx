@@ -231,7 +231,7 @@ const VideoCard: React.FC<VideoCardProps> = (props) => {
     const handlePress = (event:any) => {
         if (onPress && typeof onPress === 'function') {
             const { locationX, locationY } = event.nativeEvent;
-            if(videoRef && playable && locationY > 130 && locationX < 50){
+            if(videoRef && playable && locationY > 120 && locationX < 65){
                 videoRef.current?.autoPause()
             } else {
                 onPress()
