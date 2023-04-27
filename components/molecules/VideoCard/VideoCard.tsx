@@ -6,6 +6,7 @@ import {getFormattedNumber, getTimeAgo, getVideoDuration,} from '../../utils/num
 import {Video} from "../../../../../modules/browse/views/Video"
 import VideoModel from '../../../../../modules/browse/models/VideoModel'
 import {LavaImage} from "../../atoms/LavaImage/LavaImage"
+import {AVPlaybackSource} from "expo-av/build/AV"
 
 export type VideoCardVariation =
     | 'feed'
@@ -34,6 +35,7 @@ export interface VideoCardProps {
     style?: ViewStyle
     video?: VideoModel
     playable?: boolean
+    videoPreRollSource?: AVPlaybackSource
 }
 
 const VideoCard: React.FC<VideoCardProps> = (props) => {
@@ -259,6 +261,7 @@ const VideoCard: React.FC<VideoCardProps> = (props) => {
                     <Video
                         video={video}
                         ref={videoRef}
+                        preRollSource={props.videoPreRollSource}
                     /> : <LavaImage source={{uri: thumbnailUrl}} style={styles.thumbnail}/>
                 }
 
