@@ -17,7 +17,7 @@ export const LavaImage = (props: Props) => {
     } else {
         return (
             <Image
-                cachePolicy={props.cachePolicy ?? 'memory-disk'}
+                cachePolicy={props.cachePolicy ?? 'disk'}
                 {...props} />
         )
     }
