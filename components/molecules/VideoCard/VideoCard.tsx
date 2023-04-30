@@ -257,13 +257,19 @@ const VideoCard: React.FC<VideoCardProps> = (props) => {
             onPress={handlePress}
         >
             <View style={styles.thumbnailContainer}>
-                {video && playable ?
-                    <Video
+                {
+                video &&
+                   <View style={{display: playable ? 'flex' : 'none'}}>
+                     <Video
                         video={video}
                         ref={videoRef}
                         preRollSource={props.videoPreRollSource}
-                    /> : <LavaImage source={{uri: thumbnailUrl}} style={styles.thumbnail}/>
+                    /> 
+                   </View>
                 }
+                    <View style={{display: !playable ? 'flex' : 'none'}}>
+                        <LavaImage source={{uri: thumbnailUrl}} style={styles.thumbnail}/>
+                    </View>
 
                 {(variation === 'game-preview' ||
                     variation === 'game-preview-mini') || showPlayButton && (
@@ -351,3 +357,4 @@ const VideoCard: React.FC<VideoCardProps> = (props) => {
 }
 
 export default VideoCard
+
