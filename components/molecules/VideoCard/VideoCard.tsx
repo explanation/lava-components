@@ -4,7 +4,6 @@ import Title from '../../atoms/Title/Title'
 import useTheme from '../../hooks/useTheme'
 import {getFormattedNumber, getTimeAgo, getVideoDuration,} from '../../utils/numbers'
 import {LavaImage} from "../../atoms/LavaImage/LavaImage"
-import {AVPlaybackSource} from "expo-av/build/AV"
 
 export type VideoCardVariation =
     | 'feed'
@@ -32,7 +31,6 @@ export interface VideoCardProps {
     isVerified?: boolean
     style?: ViewStyle
     playable?: boolean
-    videoPreRollSource?: AVPlaybackSource
     videoComponent?: React.ReactNode
 }
 
