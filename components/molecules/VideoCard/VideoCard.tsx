@@ -1,12 +1,9 @@
-import React, {Fragment, useEffect, useMemo, useRef} from 'react'
+import React, {Fragment, useMemo, useRef} from 'react'
 import {Image, Pressable, StyleSheet, View, ViewStyle,} from 'react-native'
 import Title from '../../atoms/Title/Title'
 import useTheme from '../../hooks/useTheme'
 import {getFormattedNumber, getTimeAgo, getVideoDuration,} from '../../utils/numbers'
-import {Video} from "../../../../../modules/browse/views/Video"
-import VideoModel from '../../../../../modules/browse/models/VideoModel'
 import {LavaImage} from "../../atoms/LavaImage/LavaImage"
-import {AVPlaybackSource} from "expo-av/build/AV"
 
 export type VideoCardVariation =
     | 'feed'
@@ -28,14 +25,13 @@ export interface VideoCardProps {
     creatorName?: string
     views?: number
     uploadedOn?: string
-    onPress?: () => void
+    onPress?: (event: any) => void
     onNext?: () => void
     showPlayButton?: boolean
     isVerified?: boolean
     style?: ViewStyle
-    video?: VideoModel
     playable?: boolean
-    videoPreRollSource?: AVPlaybackSource
+    videoComponent?: React.ReactNode
 }
 
 const VideoCard: React.FC<VideoCardProps> = (props) => {
@@ -49,22 +45,11 @@ const VideoCard: React.FC<VideoCardProps> = (props) => {
         showPlayButton = false,
         isVerified = false,
         variation = 'feed',
-        video,
-        playable = false
+        playable = false,
+        videoComponent: renderVideoComponent = null
     } = props
 
-    const videoRef = useRef<any>(null)
     const theme = useTheme()
-
-    useEffect(() => {
-        if(videoRef && video){
-            if(playable){
-                videoRef.current?.autoPlay()
-            } else {
-                videoRef.current?.autoPause()
-            }
-        }
-    },[videoRef, video, playable])
 
     const maxWidth = useMemo(() => {
         switch (variation) {
@@ -230,17 +215,6 @@ const VideoCard: React.FC<VideoCardProps> = (props) => {
         [],
     )
 
-    const handlePress = (event:any) => {
-        if (onPress && typeof onPress === 'function') {
-            const { locationX, locationY } = event.nativeEvent;
-            if(videoRef && playable && locationY > 120 && locationX < 65){
-                videoRef.current?.autoPause()
-            } else {
-                onPress()
-            }
-        }
-    }
-
     const handleNext = () => {
         if (onNext && typeof onNext === 'function') {
             onNext()
@@ -254,17 +228,12 @@ const VideoCard: React.FC<VideoCardProps> = (props) => {
                 props.style,
                 {opacity: pressed ? 0.8 : 1},
             ]}
-            onPress={handlePress}
+            onPress={onPress}
         >
             <View style={styles.thumbnailContainer}>
                 {
-                video &&
                    <View style={{display: playable ? 'flex' : 'none'}}>
-                     <Video
-                        video={video}
-                        ref={videoRef}
-                        preRollSource={props.videoPreRollSource}
-                    /> 
+                    {renderVideoComponent}
                    </View>
                 }
                     <View style={{display: !playable ? 'flex' : 'none'}}>
