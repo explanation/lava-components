@@ -10,7 +10,7 @@ import ButtonScreen from './catalog/ButtonScreen'
 import TopicCardScreen from './catalog/TopicCardScreen'
 import Title from './components/atoms/Title/Title'
 import theme from './components/config/theme'
-import GamePlayedStory from './components/molecules/GamePlayedStory/GamePlayedStory'
+import GamePlayedStoryScreen from './catalog/GamePlayedStoryScreen'
 
 type Views =
   | 'ROOT'
@@ -87,7 +87,7 @@ export default function App() {
     } else if (view === 'TOPIC_CARD') {
       screen = <TopicCardScreen />
     } else if (view === 'GAME_PLAYED_STORY') {
-      // screen = <GamePlayedStory />
+      screen = <GamePlayedStoryScreen />
     } else {
       screen = <View />
     }

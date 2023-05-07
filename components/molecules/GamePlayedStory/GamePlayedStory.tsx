@@ -1,10 +1,9 @@
 import React from 'react'
-import {StyleSheet, Text, View, ViewStyle} from "react-native"
-import {TouchableRipple} from "react-native-paper"
+import {Pressable, StyleSheet, Text, View, ViewStyle} from "react-native"
 import GameCard from '../GameCard/GameCard'
 import {FriendAvatar, FriendAvatarType} from '../FriendAvatar/FriendAvatar'
 
-interface GamePlayedStoryProps {
+export interface GamePlayedStoryProps {
     title: string
     style?: ViewStyle
     gameBookImageUrl: string | undefined
@@ -19,7 +18,7 @@ interface GamePlayedStoryProps {
 export const GamePlayedStory: React.FC<GamePlayedStoryProps> = (props) => {
     return (
         <View style={[styles.container, props.style]}>
-            <TouchableRipple onPress={props.onStroyTapped}>
+            <Pressable onPress={props.onStroyTapped}>
                 <View style={{flexDirection: 'row', marginVertical: 5, justifyContent: 'flex-start'}}>
                     <FriendAvatar
                         avatarImage={props.avatarImage}
@@ -32,7 +31,7 @@ export const GamePlayedStory: React.FC<GamePlayedStoryProps> = (props) => {
                         </Text>
                     </View>
                 </View>
-            </TouchableRipple>
+            </Pressable>
             <GameCard
                 containerStyle={{marginLeft: 71, marginTop: -26}}
                 variation={'mini'}

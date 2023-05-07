@@ -1,7 +1,7 @@
 import React from 'react'
 import {StyleSheet, Text, View, ViewStyle} from "react-native"
 import Avatar from "../../atoms/Avatar/Avatar"
-import {LavaImage} from "../../atoms/LavaImage/LavaImage"
+import useTheme from '../../hooks/useTheme'
 
 export enum FriendAvatarType {
      OFFLINE,
@@ -25,6 +25,7 @@ export const FriendAvatarSize = () => {
 }
 
 export const FriendAvatar = (props: Props) => {
+    const theme = useTheme()
     let source: string | undefined
     if (!props.avatarImage)
         source = require('./assets/img-profile-blank.png') as string
@@ -37,21 +38,24 @@ export const FriendAvatar = (props: Props) => {
         return (props.size ?? FriendAvatarSize()) * 0.8
     }
 
-    const overlayImage = () => {
+    const borderColor = () => {
         switch (props.type) {
-            case FriendAvatarType.OFFLINE: return <LavaImage style={styles(props).overlayImage} source={require('./assets/img-profile-offline.png')} />
-            case FriendAvatarType.ONLINE: return  <LavaImage style={styles(props).overlayImage} source={require('./assets/img-profile-online.png')} />
-            case FriendAvatarType.PENDING: return  <LavaImage style={styles(props).overlayImage} source={require('./assets/img-profile-pending.png')} />
+            case FriendAvatarType.OFFLINE: return theme.colors.primarySand40
+            case FriendAvatarType.ONLINE: return  theme.colors.tertiaryOnline
+            case FriendAvatarType.PENDING: return  'transparent'
         }
-    }
+      }
 
     return (
         <View style={[styles(props).container, props.style]}>
             <Avatar 
                 size={FriendAvatarInnerImageSize()} 
                 avatarUrl={source}
+                style={{
+                    borderWidth:3,
+                    borderColor: borderColor()
+                }}
             />
-            {overlayImage()}
             {props.initials && <View style={styles(props).overlayInitials}>
                 <Text style={{textAlign: 'center', fontWeight: 'bold', fontSize: 18, color: 'rgba(255,255,255,0.8)'}}>{props.initials}</Text>
             </View>}
