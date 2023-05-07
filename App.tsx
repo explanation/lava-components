@@ -10,6 +10,7 @@ import ButtonScreen from './catalog/ButtonScreen'
 import TopicCardScreen from './catalog/TopicCardScreen'
 import Title from './components/atoms/Title/Title'
 import theme from './components/config/theme'
+import GamePlayedStory from './components/molecules/GamePlayedStory/GamePlayedStory'
 
 type Views =
   | 'ROOT'
@@ -18,6 +19,7 @@ type Views =
   | 'VIDEO_CARD'
   | 'BUTTON'
   | 'TOPIC_CARD'
+  | 'GAME_PLAYED_STORY'
 
 export default function App() {
   const [view, setView] = useState<Views>('ROOT')
@@ -67,6 +69,9 @@ export default function App() {
         <View style={styles.button}>
           <Button onPress={() => setView('TOPIC_CARD')} title="<TopicCard />" />
         </View>
+        <View style={styles.button}>
+          <Button onPress={() => setView('GAME_PLAYED_STORY')} title="<GamePlayedStory />" />
+        </View>
       </View>
     )
   } else {
@@ -81,6 +86,8 @@ export default function App() {
       screen = <ButtonScreen />
     } else if (view === 'TOPIC_CARD') {
       screen = <TopicCardScreen />
+    } else if (view === 'GAME_PLAYED_STORY') {
+      // screen = <GamePlayedStory />
     } else {
       screen = <View />
     }
