@@ -36,7 +36,7 @@ type FriendCircleProps = Pick<FriendGroupItem, 'imageUrl' | 'networkStatus'> & {
     gap: number
 }
 
-const FriendCircle: React.FC<FriendCircleProps> = (props) => {
+export const FriendCircle: React.FC<FriendCircleProps> = (props) => {
     const {imageUrl, networkStatus, imageSize, containerSize, gap} = props
 
     const theme = useTheme()

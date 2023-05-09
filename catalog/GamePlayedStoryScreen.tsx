@@ -19,11 +19,11 @@ const commonVideoCardProps: GamePlayedStoryProps = {
   avatarImage: 'https://i.imgur.com/LK7ymaN.png',
   title: 'How to fly a bicycle in Brook..?',
   avatarUername: 'Maison',
-  avatarStatus: FriendAvatarType.PENDING,
+  avatarStatus: 'online',
   gameBookImageUrl: 'https://i.imgur.com/NPKsA9r.png',
   gameBookTitle: 'PHILIPS Tower Defense Simulator',
   onBookTapped: showAlert,
-  onStroyTapped: showAlert,
+  onStoryTapped: showAlert,
 }
 
 

@@ -1,7 +1,8 @@
 import React from 'react'
 import {Pressable, StyleSheet, Text, View, ViewStyle} from "react-native"
 import GameCard from '../GameCard/GameCard'
-import {FriendAvatar, FriendAvatarType} from '../FriendAvatar/FriendAvatar'
+import {FriendCircle} from '../Friend/FriendGroup'
+import {FriendNetworkStatus} from '../Friend/Friend'
 
 export interface GamePlayedStoryProps {
     title: string
@@ -9,21 +10,24 @@ export interface GamePlayedStoryProps {
     gameBookImageUrl: string | undefined
     gameBookTitle: string
     onBookTapped: () => void
-    onStroyTapped: () => void
+    onStoryTapped: () => void
     avatarImage: string | undefined
     avatarUername: string
-    avatarStatus: FriendAvatarType
+    avatarStatus: FriendNetworkStatus
 }
 
-export const GamePlayedStory: React.FC<GamePlayedStoryProps> = (props) => {
+export const GamePlayedStory = (props: GamePlayedStoryProps) => {
     return (
         <View style={[styles.container, props.style]}>
-            <Pressable onPress={props.onStroyTapped}>
+            <Pressable onPress={props.onStoryTapped}>
                 <View style={{flexDirection: 'row', marginVertical: 5, justifyContent: 'flex-start'}}>
-                    <FriendAvatar
-                        avatarImage={props.avatarImage}
-                        initials={props.avatarImage ? undefined : props.avatarUername.split(' ').map((s) => s[0]).join('')}
-                        type={props.avatarStatus}
+                    <FriendCircle
+                        imageUrl={props.avatarImage}
+                        networkStatus={'online'}
+                        imageSize={60 * 0.8}
+                        gap={0}
+                        containerSize={60 * 0.8}
+
                     />
                     <View style={{flex: 1, marginLeft: 10, marginTop: 10}}>
                         <Text style={{color: 'white', fontSize: 13}}>
