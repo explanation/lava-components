@@ -9,7 +9,6 @@ import {
 } from 'react-native'
 import useTheme from '../components/hooks/useTheme'
 import GamePlayedStory, {GamePlayedStoryProps} from '../components/molecules/GamePlayedStory/GamePlayedStory'
-import {FriendAvatarType} from '../components/molecules/FriendAvatar/FriendAvatar'
 
 const showAlert = () => {
   Alert.alert('Game is pressed!')
