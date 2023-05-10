@@ -53,19 +53,19 @@ export default function App() {
           Pick a Screen{'\n\n'}
         </Text>
         <View style={styles.button}>
-          <Button onPress={() => setView('GAME_CARD')} title="<GameCard />" />
+          <Button onPress={() => setView('GAME_CARD')} title="<GameCard/>" />
         </View>
         <View style={styles.button}>
-          <Button onPress={() => setView('FRIEND')} title="<Friend />" />
+          <Button onPress={() => setView('FRIEND')} title="<Friend/> and <FriendGroup/>" />
         </View>
         <View style={styles.button}>
-          <Button onPress={() => setView('VIDEO_CARD')} title="<VideoCard />" />
+          <Button onPress={() => setView('VIDEO_CARD')} title="<VideoCard/>" />
         </View>
         <View style={styles.button}>
-          <Button onPress={() => setView('BUTTON')} title="<Button />" />
+          <Button onPress={() => setView('BUTTON')} title="<Button/>" />
         </View>
         <View style={styles.button}>
-          <Button onPress={() => setView('TOPIC_CARD')} title="<TopicCard />" />
+          <Button onPress={() => setView('TOPIC_CARD')} title="<TopicCard/>" />
         </View>
       </View>
     )
