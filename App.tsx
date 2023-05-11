@@ -1,6 +1,5 @@
 import React, { Fragment, useCallback, useEffect, useState } from 'react'
 import { StyleSheet, Text, View, Button, Pressable } from 'react-native'
-import * as SplashScreen from 'expo-splash-screen'
 import GameCardScreen from './catalog/GameCardScreen'
 import { useFonts } from 'expo-font'
 import ThemeContextProvider from './components/contexts/ThemeContext'
@@ -10,7 +9,6 @@ import ButtonScreen from './catalog/ButtonScreen'
 import TopicCardScreen from './catalog/TopicCardScreen'
 import Title from './components/atoms/Title/Title'
 import theme from './components/config/theme'
-import GamePlayedStoryScreen from './catalog/GamePlayedStoryScreen'
 
 type Views =
   | 'ROOT'
@@ -19,9 +17,8 @@ type Views =
   | 'VIDEO_CARD'
   | 'BUTTON'
   | 'TOPIC_CARD'
-  | 'GAME_PLAYED_STORY'
 
-export default function App() {
+const App = () => {
   const [view, setView] = useState<Views>('ROOT')
   const [fontsLoaded] = useFonts({
     'Agrandir-Bold': require('./assets/fonts/Agrandir-Bold.otf'),
@@ -29,17 +26,7 @@ export default function App() {
     'Agrandir-Regular': require('./assets/fonts/Agrandir-Regular.otf'),
   })
 
-  useEffect(() => {
-    async function prepare() {
-      await SplashScreen.preventAutoHideAsync()
-    }
-    prepare()
-  }, [])
-
   const onLayoutRootView = useCallback(async () => {
-    if (fontsLoaded) {
-      await SplashScreen.hideAsync()
-    }
   }, [fontsLoaded])
 
   if (!fontsLoaded) {
@@ -55,22 +42,19 @@ export default function App() {
           Pick a Screen{'\n\n'}
         </Text>
         <View style={styles.button}>
-          <Button onPress={() => setView('GAME_CARD')} title="<GameCard/>" />
+          <Button onPress={() => setView('GAME_CARD')} title="<GameCard />" />
         </View>
         <View style={styles.button}>
-          <Button onPress={() => setView('FRIEND')} title="<Friend/> and <FriendGroup/>" />
+          <Button onPress={() => setView('FRIEND')} title="<Friend />" />
         </View>
         <View style={styles.button}>
-          <Button onPress={() => setView('VIDEO_CARD')} title="<VideoCard/>" />
+          <Button onPress={() => setView('VIDEO_CARD')} title="<VideoCard />" />
         </View>
         <View style={styles.button}>
-          <Button onPress={() => setView('BUTTON')} title="<Button/>" />
+          <Button onPress={() => setView('BUTTON')} title="<Button />" />
         </View>
         <View style={styles.button}>
-          <Button onPress={() => setView('TOPIC_CARD')} title="<TopicCard/>" />
-        </View>
-        <View style={styles.button}>
-          <Button onPress={() => setView('GAME_PLAYED_STORY')} title="<GamePlayedStory />" />
+          <Button onPress={() => setView('TOPIC_CARD')} title="<TopicCard />" />
         </View>
       </View>
     )
@@ -86,8 +70,6 @@ export default function App() {
       screen = <ButtonScreen />
     } else if (view === 'TOPIC_CARD') {
       screen = <TopicCardScreen />
-    } else if (view === 'GAME_PLAYED_STORY') {
-      screen = <GamePlayedStoryScreen />
     } else {
       screen = <View />
     }
@@ -135,3 +117,5 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
 })
+
+export default App
