@@ -83,6 +83,7 @@ export type TypographyItem = {
 export interface TypographyConfig {
   title1: TypographyItem
   title2: TypographyItem
+  title4: TypographyItem
   subtitle1: TypographyItem
   subtitle2: TypographyItem
   subtitle3: TypographyItem
@@ -136,6 +137,14 @@ export const getTypography = (
     fontSize: 14,
     lineHeight: 18.2,
     fontWeight: '500',
+    letterSpacing: 0.96,
+    color: themeColors.primarySand,
+  },
+  title4: {
+    fontFamily: fontFamily.Regular,
+    fontSize: 16,
+    lineHeight: 20.8,
+    fontWeight: '400',
     letterSpacing: 0.96,
     color: themeColors.primarySand,
   },

@@ -1,61 +1,91 @@
 import React from 'react'
-import {Pressable, StyleSheet, Text, View, ViewStyle} from "react-native"
+import {Pressable, ScrollView, StyleSheet, View} from "react-native"
 import GameCard from '../GameCard/GameCard'
-import {FriendCircle} from '../Friend/FriendGroup'
-import {FriendNetworkStatus} from '../Friend/Friend'
+import FriendGroup, {FriendCircle, FriendGroupItem} from '../Friend/FriendGroup'
+import Title from '../../atoms/Title/Title'
 
 export interface GamePlayedStoryProps {
-    title: string
-    style?: ViewStyle
-    gameBookImageUrl: string | undefined
-    gameBookTitle: string
-    onBookTapped: () => void
-    onStoryTapped: () => void
-    avatarImage: string | undefined
-    avatarUername: string
-    avatarStatus: FriendNetworkStatus
+    friends: FriendGroupItem[]
+    games: {imageUrl: string; name:string, onThumbnailTapped?: ()=> void}[]
+    timeString: string 
+    maxWidth?: number
 }
 
-export const GamePlayedStory = (props: GamePlayedStoryProps) => {
-    return (
-        <View style={[styles.container, props.style]}>
-            <Pressable onPress={props.onStoryTapped}>
-                <View style={{flexDirection: 'row', marginVertical: 5, justifyContent: 'flex-start'}}>
-                    <FriendCircle
-                        imageUrl={props.avatarImage}
-                        networkStatus={'online'}
-                        imageSize={60 * 0.8}
-                        gap={0}
-                        containerSize={60 * 0.8}
+const renderNames = (names: string[]) => 
+names.length === 2 ? names.join(" & ") : 
+names.length === 3 ? names.slice(0,2).join(", ") + " & " + names[2]:
+names.length > 3 ? names.slice(0,2).join(", ") + " & " + names[2] + " +" + (names.length -3) : names
 
-                    />
-                    <View style={{flex: 1, marginLeft: 10, marginTop: 10}}>
-                        <Text style={{color: 'white', fontSize: 13}}>
-                            {props.title}
-                        </Text>
+export const GamePlayedStory = (props: GamePlayedStoryProps) => {
+    const {
+        friends,
+        games,
+        maxWidth,
+        timeString
+    } = props
+    return (
+        <View style={[styles.container]}>
+            <Pressable>
+                <View style={styles.friendsContent}>
+                    <View>
+                        {
+                            friends.length === 1  ?
+                                <FriendCircle 
+                                    imageUrl={friends[0].imageUrl} 
+                                    networkStatus={friends[0].networkStatus} 
+                                    containerSize={54} 
+                                    imageSize={54} 
+                                    gap={0}
+                                /> :
+                                <FriendGroup
+                                    friends={friends}
+                                    showNames={false}
+                                />
+                        }
+                    </View>
+                    <View style={styles.rightContent}>
+                        <Title variation="title4" numberOfLines={1}>{renderNames(friends.map(f => f.firstName))}</Title>
+                        <Title variation="title4" numberOfLines={1}>Played {games.length === 1 ? games[0].name : "Roblox"}</Title>
+                        <Title variation="title4" numberOfLines={1}>{timeString}</Title>
+
+                        <ScrollView contentContainerStyle={{maxWidth}} horizontal={true}>
+                            {games.map((game) => (
+                                <GameCard
+                                    key={game.name}
+                                    containerStyle={{marginTop: 16, marginRight:16}}
+                                    variation={'mini'}
+                                    imageUrl={game.imageUrl}
+                                    name={game.name}
+                                    onPress={()=> game.onThumbnailTapped?.()}
+                                />
+                            ))}
+                        </ScrollView>
                     </View>
                 </View>
             </Pressable>
-            <GameCard
-                containerStyle={{marginLeft: 71, marginTop: -26}}
-                variation={'mini'}
-                imageUrl={props.gameBookImageUrl}
-                name={props.gameBookTitle}
-                onPress={props.onBookTapped}
-            />
+            
         </View>
     )
 }
+
 
 export default GamePlayedStory
 
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        marginRight: 7,
-        padding: 8,
-        backgroundColor: 'rgba(22,30,44,1)',
-        borderRadius: 8,
+        padding: 24,
+        backgroundColor: '#0F1017',
+        borderRadius: 4,
     },
+    friendsContent:{
+        flexDirection: 'row'
+    },
+    rightContent: {
+        marginLeft: 16
+    },
+    gameCardContent:{
+        // flexDirection:'row'
+    }
 })
 

@@ -120,10 +120,11 @@ const GameCard: React.FC<GameCardProps> = (props) => {
                     marginTop: theme.spacing.sm,
                 },
                 image: {
-                    height: 120,
-                    width: 120,
-                    borderRadius: theme.roundness.xs,
-                    borderWidth: 0.5,
+                    height: 100,
+                    width: 100,
+                    borderRadius: theme.roundness.md,
+                    borderWidth:1,
+                    borderStyle:'solid',
                     borderColor: theme.colors.primarySand60,
                 },
                 iconImage: {
@@ -143,7 +144,7 @@ const GameCard: React.FC<GameCardProps> = (props) => {
                     borderColor: theme.colors.primarySand60,
                 },
                 name: {
-                    width: 120,
+                    width: 100,
                     height: 32,
                     color: theme.colors.primarySand,
                     marginTop: theme.spacing.xl,

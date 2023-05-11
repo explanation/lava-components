@@ -28,6 +28,7 @@ export interface FriendProps {
     notificationSentOn?: string
     onAsidePress?: () => void
     onPress?: () => void
+    showNames?: boolean
 }
 
 type FriendCircleProps = Pick<FriendGroupItem, 'imageUrl' | 'networkStatus'> & {
@@ -88,6 +89,7 @@ const FriendGroup: React.FC<FriendProps> = (props) => {
         onPress,
         notificationType,
         messageSeen,
+        showNames = true
     } = props
     const theme = useTheme()
 
@@ -187,15 +189,14 @@ const FriendGroup: React.FC<FriendProps> = (props) => {
                 </Title>}
             </View>
 
-            <View
-                style={{marginRight: 'auto'}}>
-                <Title
+            <View style={{marginRight: 'auto'}}>
+                {showNames && <Title
                     variation="subtitle1"
                     numberOfLines={2}
                     style={{width: notificationType ? 178 : 213}}
                 >
                     {names}
-                </Title>
+                </Title>}
 
                 {message && (
                     <View style={styles.messageContainer}>
