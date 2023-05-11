@@ -182,7 +182,8 @@ export default function FriendScreen() {
         */}
         <View style={styles.compContainer}>
           <Text style={styles.labelText}>
-            #1 [Online, Playing a game, Unread Chat]
+              
+            {"<Friend/>"} - #1 [Online, Playing a game, Unread Chat]
           </Text>
           <Friend
             name={friendData.name}

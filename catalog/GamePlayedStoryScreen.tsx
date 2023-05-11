@@ -4,10 +4,10 @@ import {
   View,
   SafeAreaView,
   ScrollView,
+  Text
 } from 'react-native'
 import useTheme from '../components/hooks/useTheme'
 import GamePlayedStory, {GamePlayedStoryProps} from '../components/molecules/GamePlayedStory/GamePlayedStory'
-import {Text} from 'react-native'
 
 const showAlert = () => {
   alert('Game is pressed!')

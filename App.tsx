@@ -1,6 +1,5 @@
 import React, { Fragment, useCallback, useEffect, useState } from 'react'
 import { StyleSheet, Text, View, Button, Pressable } from 'react-native'
-import * as SplashScreen from 'expo-splash-screen'
 import GameCardScreen from './catalog/GameCardScreen'
 import { useFonts } from 'expo-font'
 import ThemeContextProvider from './components/contexts/ThemeContext'
@@ -21,7 +20,7 @@ type Views =
   | 'TOPIC_CARD'
   | 'GAME_PLAYED_STORY'
 
-export default function App() {
+const App = () => {
   const [view, setView] = useState<Views>('ROOT')
   const [fontsLoaded] = useFonts({
     'Agrandir-Bold': require('./assets/fonts/Agrandir-Bold.otf'),
@@ -29,17 +28,7 @@ export default function App() {
     'Agrandir-Regular': require('./assets/fonts/Agrandir-Regular.otf'),
   })
 
-  useEffect(() => {
-    async function prepare() {
-      await SplashScreen.preventAutoHideAsync()
-    }
-    prepare()
-  }, [])
-
   const onLayoutRootView = useCallback(async () => {
-    if (fontsLoaded) {
-      await SplashScreen.hideAsync()
-    }
   }, [fontsLoaded])
 
   if (!fontsLoaded) {
@@ -135,3 +124,5 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
 })
+
+export default App
