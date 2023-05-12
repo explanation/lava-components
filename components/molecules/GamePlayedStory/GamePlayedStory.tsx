@@ -1,8 +1,8 @@
 import React from 'react'
 import {Pressable, StyleSheet, Text, View, ViewStyle} from "react-native"
 import GameCard from '../GameCard/GameCard'
-import {FriendCircle} from '../Friend/FriendGroup'
 import {FriendNetworkStatus} from '../Friend/Friend'
+import FriendCircle from '../Friend/FriendCircle'
 
 export interface GamePlayedStoryProps {
     title: string

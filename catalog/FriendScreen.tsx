@@ -182,7 +182,6 @@ export default function FriendScreen() {
         */}
         <View style={styles.compContainer}>
           <Text style={styles.labelText}>
-              
             {"<Friend/>"} - #1 [Online, Playing a game, Unread Chat]
           </Text>
           <Friend
@@ -201,7 +200,7 @@ export default function FriendScreen() {
         */}
         <View style={styles.compContainer}>
           <Text style={styles.labelText}>
-            #2 [Online, Playing a game, Last chat is read]
+            {"<Friend/>"} - #2 [Online, Playing a game, Last chat is read]
           </Text>
 
           <Friend
@@ -221,7 +220,7 @@ export default function FriendScreen() {
         */}
         <View style={[styles.compContainer]}>
           <Text style={styles.labelText}>
-            #3 [Online, Playing a game, In a Call]
+            {"<Friend/>"} - #3 [Online, Playing a game, In a Call]
           </Text>
           <Friend
             onCall
@@ -238,7 +237,7 @@ export default function FriendScreen() {
         */}
         <View style={[styles.compContainer]}>
           <Text style={styles.labelText}>
-            #4 [Group w/ different status of users, online/offline]
+          {"<FriendGroup/>"} - #4 [Group w/ different status of users, online/offline]
           </Text>
           <FriendGroup friends={friendsOnlineOfflineSampleData} />
         </View>
@@ -248,7 +247,7 @@ export default function FriendScreen() {
         */}
         <View style={[styles.compContainer]}>
           <Text style={styles.labelText}>
-            #4.1 [Group w/ different status of users, online/online]
+            {"<FriendGroup/>"} - #4.1 [Group w/ different status of users, online/online]
           </Text>
           <FriendGroup friends={friendsOnlineOnlineSampleData} />
         </View>
@@ -258,7 +257,7 @@ export default function FriendScreen() {
         */}
         <View style={[styles.compContainer]}>
           <Text style={styles.labelText}>
-            #4.2 [Group w/ different status of users, offline/offline]
+          {"<FriendGroup/>"} - #4.2 [Group w/ different status of users, offline/offline]
           </Text>
           <FriendGroup friends={friendsOfflineOfflineSampleData} />
         </View>
@@ -270,7 +269,7 @@ export default function FriendScreen() {
         */}
         <View style={styles.compContainer}>
           <Text style={styles.labelText}>
-            # 5 [Offline, Last played game, last unread chat]
+            {"<Friend/>"} - # 5 [Offline, Last played game, last unread chat]
           </Text>
           <Friend
             networkStatus="offline"
@@ -289,7 +288,7 @@ export default function FriendScreen() {
         */}
         <View style={styles.compContainer}>
           <Text style={styles.labelText}>
-            #6 [Offline, Last played game, Last chat is read]
+            {"<Friend/>"} - #6 [Offline, Last played game, Last chat is read]
           </Text>
           <Friend
             messageSeen
@@ -306,7 +305,7 @@ export default function FriendScreen() {
           • Friend Request Sent
         */}
         <View style={styles.compContainer}>
-          <Text style={styles.labelText}>#7 [Friend Request Sent]</Text>
+          <Text style={styles.labelText}>{"<Friend/>"} - #7 [Friend Request Sent]</Text>
           <Friend
             friendRequestSent
             name={friendData.name}
@@ -319,7 +318,7 @@ export default function FriendScreen() {
           • No chat history
         */}
         <View style={styles.compContainer}>
-          <Text style={styles.labelText}>#8.1 [Online, No chat history]</Text>
+          <Text style={styles.labelText}>{"<Friend/>"} - #8.1 [Online, No chat history]</Text>
           <Friend
             name={friendData.name}
             imageUrl={friendData.imageUrl}
@@ -332,7 +331,7 @@ export default function FriendScreen() {
           • No chat history
         */}
         <View style={styles.compContainer}>
-          <Text style={styles.labelText}>#8.2 [Offline, No chat history]</Text>
+          <Text style={styles.labelText}>{"<Friend/>"} - #8.2 [Offline, No chat history]</Text>
           <Friend
             networkStatus="offline"
             lastSeen={lastSeen}
@@ -349,7 +348,7 @@ export default function FriendScreen() {
         */}
         <View style={styles.compContainer}>
           <Text style={styles.labelText}>
-            #9.1 [Online, Not playing game, No chat history]
+            {"<Friend/>"} - #9.1 [Online, Not playing game, No chat history]
           </Text>
           <Friend name={friendData.name} imageUrl={friendData.imageUrl} />
         </View>
@@ -361,7 +360,7 @@ export default function FriendScreen() {
         */}
         <View style={styles.compContainer}>
           <Text style={styles.labelText}>
-            #9.2 [Offline, Not playing game, No chat history]
+            {"<Friend/>"} - #9.2 [Offline, Not playing game, No chat history]
           </Text>
           <Friend
             networkStatus="offline"
@@ -378,7 +377,7 @@ export default function FriendScreen() {
         */}
         <View style={styles.compContainer}>
           <Text style={styles.labelText}>
-            #10.1 [Online, Not playing game, Chat history]
+            {"<Friend/>"} - #10.1 [Online, Not playing game, Chat history]
           </Text>
           <Friend
             name={friendData.name}
@@ -394,7 +393,7 @@ export default function FriendScreen() {
         */}
         <View style={styles.compContainer}>
           <Text style={styles.labelText}>
-            #10.2 [Offline, Not playing game, Chat history]
+            {"<Friend/>"} - #10.2 [Offline, Not playing game, Chat history]
           </Text>
           <Friend
             lastSeen={lastSeen}
@@ -410,7 +409,7 @@ export default function FriendScreen() {
           • Watching a video
         */}
         <View style={styles.compContainer}>
-          <Text style={styles.labelText}>#11 [Online, Watching a Video]</Text>
+          <Text style={styles.labelText}>{"<Friend/>"} - #11 [Online, Watching a Video]</Text>
           <Friend
             name={friendData.name}
             imageUrl={friendData.imageUrl}
@@ -426,7 +425,7 @@ export default function FriendScreen() {
         */}
         <View style={styles.compContainer}>
           <Text style={styles.labelText}>
-            #12 [Online, Playing a game, Friend not in lava]
+            {"<Friend/>"} - #12 [Online, Playing a game, Friend not in lava]
           </Text>
           <Friend
             friendInLava={false}
@@ -444,7 +443,7 @@ export default function FriendScreen() {
         */}
         <View style={styles.compContainer}>
           <Text style={styles.labelText}>
-            #13 [Offline, Playing a game, Friend not in lava]
+            {"<Friend/>"} - #13 [Offline, Playing a game, Friend not in lava]
           </Text>
           <Friend
             networkStatus="offline"
@@ -460,7 +459,7 @@ export default function FriendScreen() {
           • New Friend Request
         */}
         <View style={styles.compContainer}>
-          <Text style={styles.labelText}>#14 [New friend request]</Text>
+          <Text style={styles.labelText}>{"<Friend/>"} - #14 [New friend request]</Text>
           <Friend
             notificationType="new-friend-request"
             name="Ethan SuperNoob"
@@ -474,7 +473,7 @@ export default function FriendScreen() {
           • Chat
         */}
         <View style={styles.compContainer}>
-          <Text style={styles.labelText}>#15 [Chat Notification]</Text>
+          <Text style={styles.labelText}>{"<Friend/>"} - #15 [Chat Notification]</Text>
           <Friend
             notificationType="chat"
             name="Lily Woofers 10"
@@ -488,7 +487,7 @@ export default function FriendScreen() {
           • Chat
         */}
         <View style={styles.compContainer}>
-          <Text style={styles.labelText}>#16 [Chat Group]</Text>
+          <Text style={styles.labelText}>{"<FriendGroup/>"} - #16 [Chat Group]</Text>
           <FriendGroup
             messageSeen
             message="hey where are you?"
@@ -501,7 +500,7 @@ export default function FriendScreen() {
           • Call
         */}
         <View style={styles.compContainer}>
-          <Text style={styles.labelText}>#17.1 [Call]</Text>
+          <Text style={styles.labelText}>{"<Friend/>"} - #17.1 [Call]</Text>
           <Friend
             name="Lily Woofers 10"
             notificationType="video"
@@ -514,7 +513,7 @@ export default function FriendScreen() {
           • Call
         */}
         <View style={styles.compContainer}>
-          <Text style={styles.labelText}>#17.2 [Group Call]</Text>
+          <Text style={styles.labelText}>{"<FriendGroup/>"} - #17.2 [Group Call]</Text>
           <FriendGroup
             notificationType="video"
             notificationSentOn={notificationSentOn}
@@ -526,7 +525,7 @@ export default function FriendScreen() {
           • Call
         */}
         <View style={styles.compContainer}>
-          <Text style={styles.labelText}>#18 [Call]</Text>
+          <Text style={styles.labelText}>{"<Friend/>"} - #18 [Call]</Text>
           <Friend
             name="Lily Woofers 10"
             notificationType="new-friend-joined"
