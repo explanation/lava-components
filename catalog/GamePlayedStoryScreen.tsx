@@ -17,82 +17,84 @@ const storyProps: GamePlayedStoryProps = {
   friends:[
     {
       firstName:'Josie',
-      networkStatus:'offline',
+      status:'offline',
       imageUrl: 'https://i.imgur.com/LK7ymaN.png',
+      onPress: showAlert
     },
     {
       firstName:'Evan',
-      networkStatus:'offline',
+      status:'offline',
       imageUrl: 'https://i.imgur.com/LK7ymaN.png',
     },
     {
       firstName:'Analena',
-      networkStatus:'offline',
+      status:'offline',
       imageUrl: 'https://i.imgur.com/LK7ymaN.png',
     },
     {
       firstName:'Josh',
-      networkStatus:'offline',
+      status:'offline',
       imageUrl: 'https://i.imgur.com/LK7ymaN.png',
     }
   ],
   games:[
     {
-      name:'How to fly a bicycle in Brook..?',
-      imageUrl:'https://i.imgur.com/WNoRKtS.png',
-      onThumbnailTapped: showAlert
+      name:'Legends of Speed',
+      imageUrl:'https://i.ytimg.com/vi/YtSlp3ANPHA/maxresdefault.jpg',
+      onTapped: showAlert
     },
     {
-      name: 'PHILIPS Tower Defense Simulator',
+      name: 'Tower Defense Simulator.',
       imageUrl: 'https://i.imgur.com/NPKsA9r.png',
-      onThumbnailTapped: showAlert
+      onTapped: showAlert
     },
   ],
-  timeString:"For 2.5h today"
+  timeAgo:"For 2.5 hrs today"
 }
 
 const storyProps1: GamePlayedStoryProps = {
   friends:[
     {
       firstName:'Josie',
-      networkStatus:'offline',
+      status:'offline',
       imageUrl: 'https://i.imgur.com/LK7ymaN.png',
     }
   ],
   games:[
     {
-      name:'How to fly a bicycle in Brook..?',
-      imageUrl:'https://i.imgur.com/WNoRKtS.png',
-      onThumbnailTapped: showAlert
+      name:'Legends of Speed',
+      imageUrl:'https://i.ytimg.com/vi/YtSlp3ANPHA/maxresdefault.jpg',
+      onTapped: showAlert
     },
     {
-      name: 'PHILIPS Tower Defense Simulator',
+      name: 'Tower Defense Simulator.',
       imageUrl: 'https://i.imgur.com/NPKsA9r.png',
     },
     {
-      name:'How to fly a bicycle in Brook..?',
-      imageUrl:'https://i.imgur.com/WNoRKtS.png'
+      name:'Legends of Speed',
+      imageUrl:'https://i.ytimg.com/vi/YtSlp3ANPHA/maxresdefault.jpg'
     },
   ],
-  timeString:"For 2.5h today"
-}
+  timeAgo: "For 2.5 hrs today"
+} 
 
 const storyProps2: GamePlayedStoryProps = {
   friends:[
     {
       firstName:'Josie',
-      networkStatus:'offline',
+      status:'offline',
       imageUrl: 'https://i.imgur.com/LK7ymaN.png',
+      onPress: showAlert
     }
   ],
   games:[
     {
-      name:'How to fly a bicycle in Brook..?',
-      imageUrl:'https://i.imgur.com/WNoRKtS.png',
-      onThumbnailTapped: showAlert
+      name:'Legends of Speed',
+      imageUrl:'https://i.ytimg.com/vi/YtSlp3ANPHA/maxresdefault.jpg',
+      onTapped: showAlert
     }
   ],
-  timeString:"For 2.5h today"
+  timeAgo: "For 2.5 hrs today"
 }
 
 
@@ -105,41 +107,43 @@ const GamePlayedStoryScreen: React.FC = () => {
         container: {
           padding: 20,
           justifyContent: 'center',
-          backgroundColor: theme.colors.secondaryBk,
+          backgroundColor: theme.colors.primarySand40,
         },
         storyContainer: {
           marginBottom: 20,
+          flex: 1,
+          alignItems: 'baseline'
         },
         label: {
           fontSize: 10,
           marginBottom: 5,
-          color: theme.colors.primarySand,
+          color: theme.colors.secondaryBk,
         },
       }),
     [theme],
   )
 
   return (
-    <SafeAreaView style={{ flex: 1 }}>
+    <SafeAreaView>
       <ScrollView contentContainerStyle={styles.container}>
         <View style={styles.storyContainer}>
-          <GamePlayedStory {...storyProps} />
           <Text style={styles.label}>[With many users]</Text>
-        </View>
+          <GamePlayedStory {...storyProps} />
+       </View>
 
         <View style={styles.storyContainer}>
-          <GamePlayedStory {...storyProps1} />
           <Text style={styles.label}>[One user with maxWidth undefined]</Text>
+          <GamePlayedStory {...storyProps1} />
         </View>
 
         <View style={styles.storyContainer}>
-          <GamePlayedStory {...storyProps1} maxWidth={240}/>
           <Text style={styles.label}>[horizontal scroll view]</Text>
+          <GamePlayedStory {...storyProps1} maxWidth={240}/>
         </View>
 
         <View style={styles.storyContainer}>
-          <GamePlayedStory {...storyProps2}/>
           <Text style={styles.label}>[One game]</Text>
+          <GamePlayedStory {...storyProps2}/>
         </View>
       </ScrollView>
     </SafeAreaView>

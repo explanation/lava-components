@@ -4,59 +4,55 @@ import GameCard from '../GameCard/GameCard'
 import FriendGroup, {FriendCircle, FriendGroupItem} from '../Friend/FriendGroup'
 import Title from '../../atoms/Title/Title'
 
+const MAXIMUM_WIDTH_OF_FEED_STORY = 296
+
 export interface GamePlayedStoryProps {
-    friends: FriendGroupItem[]
-    games: {imageUrl: string; name:string, onThumbnailTapped?: ()=> void}[]
-    timeString: string 
+    friends: { firstName: string, imageUrl?: string, status: 'online' | 'offline', onPress?: ()=>void }[]
+    games: { name: string, imageUrl: string; onTapped?: ()=> void}[]
+    timeAgo: string
     maxWidth?: number
 }
 
 const renderNames = (names: string[]) => 
-names.length === 2 ? names.join(" & ") : 
-names.length === 3 ? names.slice(0,2).join(", ") + " & " + names[2]:
-names.length > 3 ? names.slice(0,2).join(", ") + " & " + names[2] + " +" + (names.length -3) : names
+    names.length < 4 ? names.join(", ") :
+    names.length > 3 ? names.slice(0,3).join(", ") + " +" + (names.length -3) : names
 
 export const GamePlayedStory = (props: GamePlayedStoryProps) => {
-    const {
-        friends,
-        games,
-        maxWidth,
-        timeString
-    } = props
     return (
-        <View style={[styles.container]}>
+        <View style={[styles.container, {maxWidth: props.games.length === 1 ? MAXIMUM_WIDTH_OF_FEED_STORY : undefined}]}>
             <Pressable>
                 <View style={styles.friendsContent}>
                     <View>
                         {
-                            friends.length === 1  ?
+                            props.friends.length === 1  ?
                                 <FriendCircle 
-                                    imageUrl={friends[0].imageUrl} 
-                                    networkStatus={friends[0].networkStatus} 
+                                    imageUrl={props.friends[0].imageUrl} 
+                                    status={props.friends[0].status} 
                                     containerSize={54} 
                                     imageSize={54} 
                                     gap={0}
+                                    onPress={props.friends[0].onPress}
                                 /> :
                                 <FriendGroup
-                                    friends={friends}
+                                    friends={props.friends}
                                     showNames={false}
                                 />
                         }
                     </View>
                     <View style={styles.rightContent}>
-                        <Title variation="title4" numberOfLines={1}>{renderNames(friends.map(f => f.firstName))}</Title>
-                        <Title variation="title4" numberOfLines={1}>Played {games.length === 1 ? games[0].name : "Roblox"}</Title>
-                        <Title variation="title4" numberOfLines={1}>{timeString}</Title>
+                        <Title style={styles.text} variation="title4" numberOfLines={1}>{renderNames(props.friends.map(f => f.firstName))}</Title>
+                        <Title style={styles.text} variation="title4" numberOfLines={1}>Played {props.games.length === 1 ? props.games[0].name : "Roblox"}</Title>
+                        <Title style={styles.text} variation="title4" numberOfLines={1}>{props.timeAgo}</Title>
 
-                        <ScrollView contentContainerStyle={{maxWidth}} horizontal={true}>
-                            {games.map((game) => (
+                        <ScrollView contentContainerStyle={{maxWidth: props.maxWidth}} horizontal={true}>
+                            {props.games.map((game, index) => (
                                 <GameCard
                                     key={game.name}
-                                    containerStyle={{marginTop: 16, marginRight:16}}
+                                    containerStyle={{marginTop: 16, marginRight: index === props.games.length -1 ? 0 : 16}}
                                     variation={'mini'}
                                     imageUrl={game.imageUrl}
                                     name={game.name}
-                                    onPress={()=> game.onThumbnailTapped?.()}
+                                    onPress={()=> game.onTapped?.()}
                                 />
                             ))}
                         </ScrollView>
@@ -82,10 +78,11 @@ const styles = StyleSheet.create({
         flexDirection: 'row'
     },
     rightContent: {
-        marginLeft: 16
+        marginLeft: 16,
+        flex: 1
     },
-    gameCardContent:{
-        // flexDirection:'row'
+    text: {
+        marginBottom: 6
     }
 })
 

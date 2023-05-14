@@ -13,7 +13,8 @@ export type FriendGroupNotificationType = 'chat' | 'video'
 export interface FriendGroupItem {
     firstName: string
     imageUrl?: string
-    networkStatus: FriendNetworkStatus
+    status: FriendNetworkStatus
+    onPress?: () => void
 }
 
 export interface FriendProps {
@@ -31,19 +32,19 @@ export interface FriendProps {
     showNames?: boolean
 }
 
-type FriendCircleProps = Pick<FriendGroupItem, 'imageUrl' | 'networkStatus'> & {
+type FriendCircleProps = Pick<FriendGroupItem, 'imageUrl' | 'status'> & {
     imageSize: number
     containerSize: number
     gap: number
+    onPress?: () => void
 }
 
 export const FriendCircle: React.FC<FriendCircleProps> = (props) => {
-    const {imageUrl, networkStatus, imageSize, containerSize, gap} = props
 
     const theme = useTheme()
 
     const imageContainerBorderColor = useMemo(() => {
-        return networkStatus === 'offline'
+        return props.status === 'offline'
             ? theme.colors.primarySand40
             : theme.colors.tertiaryOnline
     }, [])
@@ -52,9 +53,9 @@ export const FriendCircle: React.FC<FriendCircleProps> = (props) => {
         () =>
             StyleSheet.create({
                 imageContainer: {
-                    height: containerSize + gap + 2,
-                    width: containerSize + gap + 2,
-                    borderRadius: containerSize,
+                    height: props.containerSize + props.gap + 2,
+                    width: props.containerSize + props.gap + 2,
+                    borderRadius: props.containerSize,
                     justifyContent: 'center',
                     alignItems: 'center',
                     backgroundColor: theme.colors.secondaryContainers,
@@ -62,42 +63,34 @@ export const FriendCircle: React.FC<FriendCircleProps> = (props) => {
                     borderColor: imageContainerBorderColor,
                 },
                 image: {
-                    width: imageSize,
-                    height: imageSize,
-                    borderRadius: imageSize,
+                    width: props.imageSize,
+                    height: props.imageSize,
+                    borderRadius: props.imageSize,
                 },
             }),
         [],
     )
     return (
-        <View style={styles.imageContainer}>
-            <Image
-                source={{uri: imageUrl}}
-                style={styles.image}
-                resizeMode="cover"
-            />
-        </View>
+       <Pressable onPress={props.onPress}>
+            <View style={styles.imageContainer}>
+                <Image
+                    source={{uri: props.imageUrl}}
+                    style={styles.image}
+                    resizeMode="cover"
+                />
+            </View>
+       </Pressable>
     )
 }
 
-const FriendGroup: React.FC<FriendProps> = (props) => {
-    const {
-        friends = [],
-        message,
-        notificationSentOn,
-        onAsidePress,
-        onPress,
-        notificationType,
-        messageSeen,
-        showNames = true
-    } = props
+const FriendGroup: React.FC<FriendProps> = ({friends = [], showNames = true, ...props}) => {
     const theme = useTheme()
 
     const [friend1, friend2] = friends
 
     const handleAsidePress = useCallback(() => {
-        if (onAsidePress && typeof onAsidePress === 'function') {
-            onAsidePress()
+        if (props.onAsidePress && typeof props.onAsidePress === 'function') {
+            props.onAsidePress()
         }
     }, [])
 
@@ -137,7 +130,7 @@ const FriendGroup: React.FC<FriendProps> = (props) => {
                     height: 12,
                 },
                 message: {
-                    color: messageSeen
+                    color: props.messageSeen
                         ? theme.colors.primarySand60
                         : theme.colors.primarySand,
                 },
@@ -159,7 +152,7 @@ const FriendGroup: React.FC<FriendProps> = (props) => {
 
     return (
         <Pressable
-            onPress={onPress}
+            onPress={props.onPress}
             style={({pressed}) => [
                 styles.container,
                 {opacity: pressed ? 0.8 : 1},
@@ -171,7 +164,8 @@ const FriendGroup: React.FC<FriendProps> = (props) => {
                     imageSize={36}
                     containerSize={40}
                     imageUrl={friend1.imageUrl}
-                    networkStatus={friend1.networkStatus}
+                    status={friend1.status}
+                    onPress={friend1.onPress}
                 />
 
                 <View style={styles.friend2}>
@@ -180,7 +174,7 @@ const FriendGroup: React.FC<FriendProps> = (props) => {
                         imageSize={24}
                         containerSize={28}
                         imageUrl={friend2.imageUrl}
-                        networkStatus={friend2.networkStatus}
+                        status={friend2.status}
                     />
                 </View>
 
@@ -193,12 +187,12 @@ const FriendGroup: React.FC<FriendProps> = (props) => {
                 {showNames && <Title
                     variation="subtitle1"
                     numberOfLines={2}
-                    style={{width: notificationType ? 178 : 213}}
+                    style={{width: props.notificationType ? 178 : 213}}
                 >
                     {names}
                 </Title>}
 
-                {message && (
+                {props.message && (
                     <View style={styles.messageContainer}>
                         <Text>“</Text>
                         <Title
@@ -206,23 +200,23 @@ const FriendGroup: React.FC<FriendProps> = (props) => {
                             numberOfLines={1}
                             style={styles.message}
                         >
-                            {message}
+                            {props.message}
                         </Title>
                         <Text>”</Text>
                     </View>
                 )}
             </View>
 
-            {notificationType && (
+            {props.notificationType && (
                 <Title variation="subtitle3" style={styles.notificationSentOn}>
                     {getTimeAgo(
-                        new Date(!!notificationSentOn ? notificationSentOn : 0),
+                        new Date(!!props.notificationSentOn ? props.notificationSentOn : 0),
                         intervalMapping,
                     ).replace(' ago', '')}
                 </Title>
             )}
 
-            {notificationType && (
+            {props.notificationType && (
                 <Button
                     onPress={handleAsidePress}
                     variation="gravity"
@@ -232,7 +226,7 @@ const FriendGroup: React.FC<FriendProps> = (props) => {
                             resizeMode="contain"
                             style={{width: 20, height: 20}}
                             source={
-                                notificationType === 'chat'
+                                props.notificationType === 'chat'
                                     ? require('./assets/chat.png')
                                     : require('./assets/VideoCall.png')
                             }
