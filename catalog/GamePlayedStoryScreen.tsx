@@ -19,7 +19,6 @@ const storyProps: GamePlayedStoryProps = {
       firstName:'Josie',
       status:'offline',
       imageUrl: 'https://i.imgur.com/LK7ymaN.png',
-      onPress: showAlert
     },
     {
       firstName:'Evan',
@@ -37,14 +36,15 @@ const storyProps: GamePlayedStoryProps = {
       imageUrl: 'https://i.imgur.com/LK7ymaN.png',
     }
   ],
+  onFriendsTapped: showAlert,
   games:[
     {
-      name:'Legends of Speed',
+      title:'Legends of Speed',
       imageUrl:'https://i.ytimg.com/vi/YtSlp3ANPHA/maxresdefault.jpg',
       onTapped: showAlert
     },
     {
-      name: 'Tower Defense Simulator.',
+      title: 'Tower Defense Simulator.',
       imageUrl: 'https://i.imgur.com/NPKsA9r.png',
       onTapped: showAlert
     },
@@ -62,16 +62,16 @@ const storyProps1: GamePlayedStoryProps = {
   ],
   games:[
     {
-      name:'Legends of Speed',
+      title:'Legends of Speed',
       imageUrl:'https://i.ytimg.com/vi/YtSlp3ANPHA/maxresdefault.jpg',
       onTapped: showAlert
     },
     {
-      name: 'Tower Defense Simulator.',
+      title: 'Tower Defense Simulator.',
       imageUrl: 'https://i.imgur.com/NPKsA9r.png',
     },
     {
-      name:'Legends of Speed',
+      title:'Legends of Speed',
       imageUrl:'https://i.ytimg.com/vi/YtSlp3ANPHA/maxresdefault.jpg'
     },
   ],
@@ -84,12 +84,12 @@ const storyProps2: GamePlayedStoryProps = {
       firstName:'Josie',
       status:'offline',
       imageUrl: 'https://i.imgur.com/LK7ymaN.png',
-      onPress: showAlert
     }
   ],
+  onFriendsTapped: showAlert,
   games:[
     {
-      name:'Legends of Speed',
+      title:'Legends of Speed',
       imageUrl:'https://i.ytimg.com/vi/YtSlp3ANPHA/maxresdefault.jpg',
       onTapped: showAlert
     }

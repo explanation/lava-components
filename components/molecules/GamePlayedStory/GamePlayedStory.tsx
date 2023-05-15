@@ -7,8 +7,9 @@ import Title from '../../atoms/Title/Title'
 const MAXIMUM_WIDTH_OF_FEED_STORY = 296
 
 export interface GamePlayedStoryProps {
-    friends: { firstName: string, imageUrl?: string, status: 'online' | 'offline', onPress?: ()=>void }[]
-    games: { name: string, imageUrl: string; onTapped?: ()=> void}[]
+    friends: { firstName: string, imageUrl?: string, status: 'online' | 'offline' }[]
+    onFriendsTapped?: ()=>void
+    games: { title: string, imageUrl: string; onTapped?: ()=> void}[]
     timeAgo: string
     maxWidth?: number
 }
@@ -20,46 +21,45 @@ const renderNames = (names: string[]) =>
 export const GamePlayedStory = (props: GamePlayedStoryProps) => {
     return (
         <View style={[styles.container, {maxWidth: props.games.length === 1 ? MAXIMUM_WIDTH_OF_FEED_STORY : undefined}]}>
-            <Pressable>
-                <View style={styles.friendsContent}>
-                    <View>
-                        {
-                            props.friends.length === 1  ?
+            <View style={styles.friendsContent}>
+                <View>
+                    {
+                        props.friends.length === 1  ?
+                            <Pressable onPress={props.onFriendsTapped}>
                                 <FriendCircle 
                                     imageUrl={props.friends[0].imageUrl} 
                                     status={props.friends[0].status} 
                                     containerSize={54} 
                                     imageSize={54} 
                                     gap={0}
-                                    onPress={props.friends[0].onPress}
-                                /> :
-                                <FriendGroup
-                                    friends={props.friends}
-                                    showNames={false}
                                 />
-                        }
-                    </View>
-                    <View style={styles.rightContent}>
-                        <Title style={styles.text} variation="title4" numberOfLines={1}>{renderNames(props.friends.map(f => f.firstName))}</Title>
-                        <Title style={styles.text} variation="title4" numberOfLines={1}>Played {props.games.length === 1 ? props.games[0].name : "Roblox"}</Title>
-                        <Title style={styles.text} variation="title4" numberOfLines={1}>{props.timeAgo}</Title>
-
-                        <ScrollView contentContainerStyle={{maxWidth: props.maxWidth}} horizontal={true}>
-                            {props.games.map((game, index) => (
-                                <GameCard
-                                    key={game.name}
-                                    containerStyle={{marginTop: 16, marginRight: index === props.games.length -1 ? 0 : 16}}
-                                    variation={'mini'}
-                                    imageUrl={game.imageUrl}
-                                    name={game.name}
-                                    onPress={()=> game.onTapped?.()}
-                                />
-                            ))}
-                        </ScrollView>
-                    </View>
+                            </Pressable> :
+                            <FriendGroup
+                                friends={props.friends}
+                                showNames={false}
+                                onPress={props.onFriendsTapped}
+                            />
+                    }
                 </View>
-            </Pressable>
-            
+                <View style={styles.rightContent}>
+                    <Title style={styles.text} variation="title4" numberOfLines={1}>{renderNames(props.friends.map(f => f.firstName))}</Title>
+                    <Title style={styles.text} variation="title4" numberOfLines={1}>Played {props.games.length === 1 ? props.games[0].title : "Roblox"}</Title>
+                    <Title style={styles.text} variation="title4" numberOfLines={1}>{props.timeAgo}</Title>
+
+                    <ScrollView contentContainerStyle={{maxWidth: props.maxWidth}} horizontal={true}>
+                        {props.games.map((game, index) => (
+                            <GameCard
+                                key={game.title}
+                                containerStyle={{marginTop: 16, marginRight: index === props.games.length -1 ? 0 : 16}}
+                                variation={'mini'}
+                                imageUrl={game.imageUrl}
+                                name={game.title}
+                                onPress={()=> game.onTapped?.()}
+                            />
+                        ))}
+                    </ScrollView>
+                </View>
+            </View>
         </View>
     )
 }

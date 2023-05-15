@@ -14,7 +14,6 @@ export interface FriendGroupItem {
     firstName: string
     imageUrl?: string
     status: FriendNetworkStatus
-    onPress?: () => void
 }
 
 export interface FriendProps {
@@ -36,7 +35,6 @@ type FriendCircleProps = Pick<FriendGroupItem, 'imageUrl' | 'status'> & {
     imageSize: number
     containerSize: number
     gap: number
-    onPress?: () => void
 }
 
 export const FriendCircle: React.FC<FriendCircleProps> = (props) => {
@@ -71,15 +69,13 @@ export const FriendCircle: React.FC<FriendCircleProps> = (props) => {
         [],
     )
     return (
-       <Pressable onPress={props.onPress}>
-            <View style={styles.imageContainer}>
-                <Image
-                    source={{uri: props.imageUrl}}
-                    style={styles.image}
-                    resizeMode="cover"
-                />
-            </View>
-       </Pressable>
+        <View style={styles.imageContainer}>
+            <Image
+                source={{uri: props.imageUrl}}
+                style={styles.image}
+                resizeMode="cover"
+            />
+        </View>
     )
 }
 
@@ -165,7 +161,6 @@ const FriendGroup: React.FC<FriendProps> = ({friends = [], showNames = true, ...
                     containerSize={40}
                     imageUrl={friend1.imageUrl}
                     status={friend1.status}
-                    onPress={friend1.onPress}
                 />
 
                 <View style={styles.friend2}>
