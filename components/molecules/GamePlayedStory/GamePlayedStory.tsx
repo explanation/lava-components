@@ -86,7 +86,7 @@ const styles = StyleSheet.create({
         flex: 1
     },
     text: {
-        marginBottom: 6
+        marginBottom: 3
     }
 })
 
