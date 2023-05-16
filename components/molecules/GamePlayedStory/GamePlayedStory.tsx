@@ -34,17 +34,19 @@ export const GamePlayedStory = (props: GamePlayedStoryProps) => {
                                     gap={0}
                                 />
                             </Pressable> :
-                            <FriendGroup
-                                friends={props.friends}
-                                showNames={false}
-                                onPress={props.onFriendsTapped}
-                            />
+                            <View style={{marginTop: -10}}>
+                                <FriendGroup
+                                    friends={props.friends}
+                                    showNames={false}
+                                    onPress={props.onFriendsTapped}
+                                />
+                            </View>
                     }
                 </View>
                 <View style={styles.rightContent}>
-                    <Title style={styles.text} variation="title4" numberOfLines={1}>{renderNames(props.friends.map(f => f.firstName))}</Title>
-                    <Title style={styles.text} variation="title4" numberOfLines={1}>Played {props.games.length === 1 ? props.games[0].title : "Roblox"}</Title>
-                    <Title style={styles.text} variation="title4" numberOfLines={1}>{props.timeAgo}</Title>
+                    <Title style={styles.text} variation="title3" numberOfLines={1}>{renderNames(props.friends.map(f => f.firstName))}</Title>
+                    <Title style={styles.text} variation="title3" numberOfLines={1}>Played {props.games.length === 1 ? props.games[0].title : "Roblox"}</Title>
+                    <Title style={styles.text} variation="title3" numberOfLines={1}>{props.timeAgo}</Title>
 
                     <ScrollView contentContainerStyle={{maxWidth: props.maxWidth}} horizontal={true}>
                         {props.games.map((game, index) => (
@@ -73,6 +75,8 @@ const styles = StyleSheet.create({
         padding: 24,
         backgroundColor: '#0F1017',
         borderRadius: 4,
+        borderWidth: 1,
+        borderColor: 'rgba(255, 255, 255, 0.45)'
     },
     friendsContent:{
         flexDirection: 'row'

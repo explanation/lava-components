@@ -6,7 +6,7 @@ import useTheme from '../../hooks/useTheme'
 export type TitleVariation =
   | 'title1'
   | 'title2'
-  | 'title4'
+  | 'title3'
   | 'subtitle1'
   | 'subtitle2'
   | 'subtitle3'

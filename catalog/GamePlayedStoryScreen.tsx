@@ -45,7 +45,7 @@ const storyProps: GamePlayedStoryProps = {
     },
     {
       title: 'Tower Defense Simulator.',
-      imageUrl: 'https://i.imgur.com/NPKsA9r.png',
+      imageUrl: 'https://tr.rbxcdn.com/b46265f21b2f53eaa2bef11e8187c84a/512/512/Image/Png',
       onTapped: showAlert
     },
   ],
@@ -107,7 +107,7 @@ const GamePlayedStoryScreen: React.FC = () => {
         container: {
           padding: 20,
           justifyContent: 'center',
-          backgroundColor: theme.colors.primarySand40,
+          backgroundColor: theme.colors.secondaryBk,
         },
         storyContainer: {
           marginBottom: 20,
@@ -117,7 +117,7 @@ const GamePlayedStoryScreen: React.FC = () => {
         label: {
           fontSize: 10,
           marginBottom: 5,
-          color: theme.colors.secondaryBk,
+          color: theme.colors.sand,
         },
       }),
     [theme],
@@ -138,7 +138,7 @@ const GamePlayedStoryScreen: React.FC = () => {
 
         <View style={styles.storyContainer}>
           <Text style={styles.label}>[horizontal scroll view]</Text>
-          <GamePlayedStory {...storyProps1} maxWidth={240}/>
+          <GamePlayedStory {...storyProps1} maxWidth={220}/>
         </View>
 
         <View style={styles.storyContainer}>

@@ -119,10 +119,20 @@ const GameCard: React.FC<GameCardProps> = (props) => {
                     marginTop: theme.spacing.sm,
                 },
                 image: {
+                    height: 120,
+                    width: 120,
+                    borderRadius: theme.roundness.xs,
+                    borderWidth: 0.5,
+                    marginRight: 8,
+                    borderColor: theme.colors.primarySand60,
+                },
+                minImage: {
                     height: 100,
                     width: 100,
                     borderRadius: theme.roundness.md,
-                    opacity: 0.9
+                    borderWidth: 1,
+                    borderStyle: 'solid',
+                    borderColor: 'rgba(255, 255, 255, 0.4)',
                 },
                 iconImage: {
                     width: 38,
@@ -141,9 +151,16 @@ const GameCard: React.FC<GameCardProps> = (props) => {
                     borderColor: theme.colors.primarySand60,
                 },
                 name: {
-                    width: 100,
+                    width: 120,
                     height: 32,
                     color: theme.colors.primarySand,
+                    marginTop: theme.spacing.xl,
+                    ...titleStyle,
+                },
+                miniName:{
+                    width:100,
+                    height: 32,
+                    color: 'rgba(166, 166, 166, 1)',
                     marginTop: theme.spacing.xl,
                     ...titleStyle,
                 },
@@ -155,14 +172,11 @@ const GameCard: React.FC<GameCardProps> = (props) => {
                 gradient: {
                     top:0,
                     left:0,
-                    height: 100,
-                    width: 100,
+                    height: 102,
+                    width: 102,
                     position: 'absolute',
                     zIndex: 14,
                     borderRadius: theme.roundness.md,
-                    borderWidth: 1,
-                    borderStyle: 'solid',
-                    borderColor: 'rgba(255, 255, 255, 0.2)',
                 },
                 miniContainer: {
                     flexDirection: 'row',
@@ -217,16 +231,14 @@ const GameCard: React.FC<GameCardProps> = (props) => {
     } else if (variation === 'mini') {
         content = (
             <View>
-                    <LinearGradient 
-                        colors={['#0F1017', 'rgba(0, 0, 0, 0)']}
-                        start={{ x: 0.1, y: 0.85 }}
-                        locations={[0.0277, 0.5961]}
-                        style={styles.gradient}
-                    />
-                    <LavaImage source={{uri: imageUrl}} style={styles.image}/>
-                <Title numberOfLines={2} variation="subtitle2" style={styles.name}>
-                    {name}
-                </Title>
+                <LinearGradient 
+                    colors={['#0F1017', 'rgba(0, 0, 0, 0)']}
+                    start={{ x: 0.1, y: 0.85 }}
+                    locations={[0.0277, 0.5961]}
+                    style={styles.gradient}
+                />
+                <LavaImage source={{uri: imageUrl}} style={styles.minImage}/>
+                <Title numberOfLines={2} variation="subtitle2" style={styles.miniName}>{name}</Title>
             </View>
         )
     } else if (variation === 'icon') {
