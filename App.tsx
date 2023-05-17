@@ -9,6 +9,7 @@ import ButtonScreen from './catalog/ButtonScreen'
 import TopicCardScreen from './catalog/TopicCardScreen'
 import Title from './components/atoms/Title/Title'
 import theme from './components/config/theme'
+import NewVideoStoryScreen from './catalog/NewVideoStoryScreen'
 
 type Views =
   | 'ROOT'
@@ -17,6 +18,7 @@ type Views =
   | 'VIDEO_CARD'
   | 'BUTTON'
   | 'TOPIC_CARD'
+  | 'NEW_VIDEO_STORY'
 
 const App = () => {
   const [view, setView] = useState<Views>('ROOT')
@@ -56,6 +58,9 @@ const App = () => {
         <View style={styles.button}>
           <Button onPress={() => setView('TOPIC_CARD')} title="<TopicCard />" />
         </View>
+        <View style={styles.button}>
+          <Button onPress={() => setView('NEW_VIDEO_STORY')} title="<NewVideoStory />" />
+        </View>
       </View>
     )
   } else {
@@ -70,6 +75,8 @@ const App = () => {
       screen = <ButtonScreen />
     } else if (view === 'TOPIC_CARD') {
       screen = <TopicCardScreen />
+    } else if (view === 'NEW_VIDEO_STORY') {
+      screen = <NewVideoStoryScreen />
     } else {
       screen = <View />
     }
