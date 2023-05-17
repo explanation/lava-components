@@ -15,7 +15,7 @@ const showAlert = () => {
 }
 
 const newVideoStoryProps: NewVideoStoryProps = {
-  title: 'Has a new secret Bicycle Hack abcdef',
+  title: 'Has a new secret Bicycle Hack, This is a sample long text for testing',
   book: {
     imageUrl: 'https://i.imgur.com/NPKsA9r.png',
     title: 'Brookhaven',
@@ -65,7 +65,7 @@ const NewVideoStoryScreen: React.FC = () => {
         </View>
         <View style={styles.storyContainer}>
           <Text style={styles.label}>[With custom width]</Text>
-          <NewVideoStory {...newVideoStoryProps} width={360}/>
+          <NewVideoStory {...newVideoStoryProps} width={420}/>
         </View>
       </ScrollView>
     </SafeAreaView>

@@ -4,7 +4,7 @@ import Title from '../../atoms/Title/Title'
 import {LavaImage} from '../../atoms/LavaImage/LavaImage'
 import { LinearGradient } from 'expo-linear-gradient';
 
-const DEFAULT_WIDTH_OF_VIDEO_STORY = 296
+const DEFAULT_WIDTH_OF_VIDEO_STORY = 369
 
 export interface NewVideoStoryProps {
     book: { title: string, imageUrl: string }  // thing in top-left
@@ -26,9 +26,14 @@ export const NewVideoStory = (props: NewVideoStoryProps) => {
                 </View>
                 <View style={styles.rightContent}>
                     <Title style={styles.text} variation="title2" numberOfLines={1}>{props.book.title}</Title>
-                    <View style={styles.titleContent}>
-                        <Title style={[styles.text]} variation="title2">{props.title}</Title>
-                        {props.showVerified && <LavaImage source={require("./verified-mark.png")} style={styles.verifiedMarker}/>}
+                    <View>
+                    {props.showVerified && <View style={styles.verifyContent}>
+                        <LavaImage source={require("./verified-mark.png")} style={styles.verifiedMarker}/>
+                    </View>}
+                    <Title variation="title2" numberOfLines={2}>
+                        <Title variation="title2" style={{marginLeft: props.showVerified ? 24 : 0}}>{props.title.split('\n')[0]}</Title>
+                            {props.title.split('\n').slice(1).join('\n')}
+                        </Title>
                     </View>
                     <View style={styles.videoContent}>
                         <View>
@@ -85,7 +90,8 @@ const styles = StyleSheet.create({
     },
     videoContent: {
         marginTop: 20,
-        marginBottom: 8
+        marginBottom: 8,
+        width: 176,
     },
     overlay: {
         ...StyleSheet.absoluteFillObject,
@@ -97,14 +103,9 @@ const styles = StyleSheet.create({
         width: 36,
         height: 36
     },
-    titleContent: {
-        flexDirection:'row', 
-        alignItems:'flex-end'
-    },
     verifiedMarker: {
         width: 32,
         height: 32,
-        marginLeft:8
     },
     playContent: {
         ...StyleSheet.absoluteFillObject,
@@ -123,4 +124,9 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         borderColor: 'rgba(255, 255, 255, 0.2)'
     },
+    verifyContent: {
+        ...StyleSheet.absoluteFillObject,
+        marginTop: -10,
+        marginLeft: -6
+    }
 })
