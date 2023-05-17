@@ -15,7 +15,7 @@ const showAlert = () => {
 }
 
 const newVideoStoryProps: NewVideoStoryProps = {
-  title: 'Has a new secret Bicycle Hack',
+  title: 'Has a new secret Bicycle Hack abcdef',
   book: {
     imageUrl: 'https://i.imgur.com/NPKsA9r.png',
     title: 'Brookhaven',
