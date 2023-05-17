@@ -23,7 +23,7 @@ const newVideoStoryProps: NewVideoStoryProps = {
   onTapped: showAlert,
   video: {
     imageUrl: 'https://i.imgur.com/WNoRKtS.png',
-    title: 'Bicycle Hack'
+    title: 'Has a new secret Bicycle Hack, This is a sample long text for testing'
   }, 
 }
 

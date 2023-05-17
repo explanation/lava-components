@@ -26,15 +26,7 @@ export const NewVideoStory = (props: NewVideoStoryProps) => {
                 </View>
                 <View style={styles.rightContent}>
                     <Title style={styles.text} variation="title2" numberOfLines={1}>{props.book.title}</Title>
-                    <View>
-                    {props.showVerified && <View style={styles.verifyContent}>
-                        <LavaImage source={require("./verified-mark.png")} style={styles.verifiedMarker}/>
-                    </View>}
-                    <Title variation="title2" numberOfLines={2}>
-                        <Title variation="title2" style={{marginLeft: props.showVerified ? 24 : 0}}>{props.title.split('\n')[0]}</Title>
-                            {props.title.split('\n').slice(1).join('\n')}
-                        </Title>
-                    </View>
+                    <Title variation="title2" numberOfLines={2}>{props.title}</Title>
                     <View style={styles.videoContent}>
                         <View>
                             <LinearGradient 
@@ -49,7 +41,10 @@ export const NewVideoStory = (props: NewVideoStoryProps) => {
                             </View>
                         </View>
                     </View>
-                    <Title style={[styles.text, {color:'rgba(166, 166, 166, 1)'}]} variation="title2">{props.video.title}</Title>
+                    <View style={styles.titleContent}>
+                        <Title style={[styles.text, {color:'rgba(166, 166, 166, 1)', width:'90%'}]} variation="subtitle3" numberOfLines={2}>{props.video.title}</Title>
+                        {props.showVerified && <LavaImage source={require("./verified-mark.png")} style={styles.verifiedMarker}/>}
+                    </View>
                 </View>
             </View>
         </View>
@@ -104,8 +99,10 @@ const styles = StyleSheet.create({
         height: 36
     },
     verifiedMarker: {
-        width: 32,
-        height: 32,
+        width: 24,
+        height: 24,
+        marginTop: -4,
+        marginRight: -4
     },
     playContent: {
         ...StyleSheet.absoluteFillObject,
@@ -124,9 +121,9 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         borderColor: 'rgba(255, 255, 255, 0.2)'
     },
-    verifyContent: {
-        ...StyleSheet.absoluteFillObject,
-        marginTop: -10,
-        marginLeft: -6
+    titleContent: {
+        flexDirection:'row',
+        justifyContent: 'space-between',
+        width: 176,
     }
 })
