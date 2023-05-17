@@ -10,6 +10,7 @@ import TopicCardScreen from './catalog/TopicCardScreen'
 import Title from './components/atoms/Title/Title'
 import theme from './components/config/theme'
 import NewVideoStoryScreen from './catalog/NewVideoStoryScreen'
+import ThemeScreen from './catalog/ThemeScreen'
 
 type Views =
   | 'ROOT'
@@ -19,6 +20,8 @@ type Views =
   | 'BUTTON'
   | 'TOPIC_CARD'
   | 'NEW_VIDEO_STORY'
+  | 'THEME'
+
 
 const App = () => {
   const [view, setView] = useState<Views>('ROOT')
@@ -47,7 +50,7 @@ const App = () => {
           <Button onPress={() => setView('GAME_CARD')} title="<GameCard />" />
         </View>
         <View style={styles.button}>
-          <Button onPress={() => setView('FRIEND')} title="<Friend />" />
+          <Button onPress={() => setView('FRIEND')} title="<Friend />, <FriendGroup/>" />
         </View>
         <View style={styles.button}>
           <Button onPress={() => setView('VIDEO_CARD')} title="<VideoCard />" />
@@ -60,6 +63,9 @@ const App = () => {
         </View>
         <View style={styles.button}>
           <Button onPress={() => setView('NEW_VIDEO_STORY')} title="<NewVideoStory />" />
+        </View>
+        <View style={styles.button}>
+          <Button onPress={() => setView('THEME')} title="Theme" />
         </View>
       </View>
     )
@@ -77,6 +83,8 @@ const App = () => {
       screen = <TopicCardScreen />
     } else if (view === 'NEW_VIDEO_STORY') {
       screen = <NewVideoStoryScreen />
+    } else if (view === 'THEME') {
+      screen = <ThemeScreen />
     } else {
       screen = <View />
     }

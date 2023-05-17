@@ -7,6 +7,7 @@ import useTheme from '../../hooks/useTheme'
 import {FriendNetworkStatus} from './Friend'
 import {getTimeAgo} from '../../utils/numbers'
 import {intervalMapping} from '../../config/date'
+import FriendCircle from './FriendCircle'
 
 export type FriendGroupNotificationType = 'chat' | 'video'
 
@@ -28,55 +29,6 @@ export interface FriendProps {
     notificationSentOn?: string
     onAsidePress?: () => void
     onPress?: () => void
-}
-
-type FriendCircleProps = Pick<FriendGroupItem, 'imageUrl' | 'networkStatus'> & {
-    imageSize: number
-    containerSize: number
-    gap: number
-}
-
-export const FriendCircle: React.FC<FriendCircleProps> = (props) => {
-    const {imageUrl, networkStatus, imageSize, containerSize, gap} = props
-
-    const theme = useTheme()
-
-    const imageContainerBorderColor = useMemo(() => {
-        return networkStatus === 'offline'
-            ? theme.colors.primarySand40
-            : theme.colors.tertiaryOnline
-    }, [])
-
-    const styles = useMemo(
-        () =>
-            StyleSheet.create({
-                imageContainer: {
-                    height: containerSize + gap + 2,
-                    width: containerSize + gap + 2,
-                    borderRadius: containerSize,
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                    backgroundColor: theme.colors.secondaryContainers,
-                    borderWidth: 2,
-                    borderColor: imageContainerBorderColor,
-                },
-                image: {
-                    width: imageSize,
-                    height: imageSize,
-                    borderRadius: imageSize,
-                },
-            }),
-        [],
-    )
-    return (
-        <View style={styles.imageContainer}>
-            <Image
-                source={{uri: imageUrl}}
-                style={styles.image}
-                resizeMode="cover"
-            />
-        </View>
-    )
 }
 
 const FriendGroup: React.FC<FriendProps> = (props) => {
