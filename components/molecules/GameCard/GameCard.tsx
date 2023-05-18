@@ -132,7 +132,7 @@ const GameCard: React.FC<GameCardProps> = (props) => {
                     borderRadius: theme.roundness.md,
                     borderWidth: 1,
                     borderStyle: 'solid',
-                    borderColor: 'rgba(255, 255, 255, 0.4)',
+                    borderColor: 'rgba(255, 255, 255, 0.2)',
                 },
                 iconImage: {
                     width: 38,
@@ -238,7 +238,7 @@ const GameCard: React.FC<GameCardProps> = (props) => {
                     style={styles.gradient}
                 />
                 <LavaImage source={{uri: imageUrl}} style={styles.minImage}/>
-                <Title numberOfLines={2} variation="subtitle2" style={styles.miniName}>{name}</Title>
+                <Title numberOfLines={2} variation="subtitle3" style={styles.miniName}>{name}</Title>
             </View>
         )
     } else if (variation === 'icon') {

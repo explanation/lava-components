@@ -76,7 +76,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#0F1017',
         borderRadius: 4,
         borderWidth: 1,
-        borderColor: 'rgba(255, 255, 255, 0.45)'
+        borderColor: 'rgba(255, 255, 255, 0.35)'
     },
     friendsContent:{
         flexDirection: 'row'
