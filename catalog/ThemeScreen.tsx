@@ -6,6 +6,8 @@ import {
   Text,
   ScrollView,
   ColorValue,
+  Platform,
+  Dimensions,
 } from 'react-native'
 import useTheme from '../components/hooks/useTheme'
 import Title from '../components/atoms/Title/Title'
@@ -18,9 +20,9 @@ const ThemeScreen: React.FC = () => {
     () =>
       StyleSheet.create({
         container: {
-            flex: 1,
             padding: 20,
             justifyContent: 'center',
+            width: Platform.OS === 'web' ? undefined : Dimensions.get('screen').width,
             backgroundColor: theme.colors.secondaryBk,
         },
         content: {
@@ -91,12 +93,12 @@ const ThemeScreen: React.FC = () => {
                         <Text style={styles.label}>Variant</Text>
                     </View>
                     <View style={[styles.cell, {justifyContent:'space-evenly'}]}>
-                        <Text style={styles.label}>light</Text>
+                        <Text style={[styles.label, {textAlign:'center'} ]}>light</Text>
                         <Text style={styles.label}>dark</Text>
                     </View>
                 </View>
                 {Object.keys(colors.light).map((colorKey) => 
-                    <View style={styles.row}>
+                    <View style={styles.row} key={colorKey}>
                         <View style={styles.cell}>
                             <Text style={styles.label}>{colorKey}</Text>
                         </View>

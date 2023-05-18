@@ -1,5 +1,5 @@
 import React, { Fragment, useCallback, useEffect, useState } from 'react'
-import { StyleSheet, Text, View, Button, Pressable } from 'react-native'
+import { StyleSheet, Text, View, Button, Pressable, SafeAreaView } from 'react-native'
 import GameCardScreen from './catalog/GameCardScreen'
 import { useFonts } from 'expo-font'
 import ThemeContextProvider from './components/contexts/ThemeContext'
@@ -105,9 +105,11 @@ const App = () => {
 
   return (
     <ThemeContextProvider mode="light">
-      <View style={styles.container} onLayout={onLayoutRootView}>
-        {content}
-      </View>
+      <SafeAreaView style={{flex:1}}>
+        <View style={styles.container} onLayout={onLayoutRootView}>
+          {content}
+        </View>
+      </SafeAreaView>
     </ThemeContextProvider>
   )
 }
