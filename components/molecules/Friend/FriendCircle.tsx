@@ -1,4 +1,3 @@
-import {useMemo} from 'react'
 import {Image, StyleSheet, View} from 'react-native'
 import useTheme from '../../hooks/useTheme'
 import {FriendGroupItem} from './FriendGroup'
@@ -14,38 +13,37 @@ export const FriendCircle: React.FC<FriendCircleProps> = (props) => {
 
     const theme = useTheme()
 
-    const imageContainerBorderColor = useMemo(() => {
+    const imageContainerBorderColor = () => {
         return networkStatus === 'offline'
             ? theme.colors.primarySand40
             : theme.colors.tertiaryOnline
-    }, [])
+    }
 
-    const styles = useMemo(
-        () =>
-            StyleSheet.create({
-                imageContainer: {
-                    height: containerSize + gap + 2,
-                    width: containerSize + gap + 2,
-                    borderRadius: containerSize,
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                    backgroundColor: theme.colors.secondaryContainers,
-                    borderWidth: 2,
-                    borderColor: imageContainerBorderColor,
-                },
-                image: {
-                    width: imageSize,
-                    height: imageSize,
-                    borderRadius: imageSize,
-                },
-            }),
-        [],
-    )
+    const styles = () => {
+        return StyleSheet.create({
+            imageContainer: {
+                height: containerSize + gap + 2,
+                width: containerSize + gap + 2,
+                borderRadius: containerSize,
+                justifyContent: 'center',
+                alignItems: 'center',
+                backgroundColor: theme.colors.secondaryContainers,
+                borderWidth: 2,
+                borderColor: imageContainerBorderColor(),
+            },
+            image: {
+                width: imageSize,
+                height: imageSize,
+                borderRadius: imageSize,
+            },
+        })
+    }
+
     return (
-        <View style={styles.imageContainer}>
+        <View style={styles().imageContainer}>
             <Image
                 source={{uri: imageUrl}}
-                style={styles.image}
+                style={styles().image}
                 resizeMode="cover"
             />
         </View>
