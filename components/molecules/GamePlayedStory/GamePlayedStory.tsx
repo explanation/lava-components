@@ -75,7 +75,7 @@ const styles = StyleSheet.create({
         padding: 24,
         backgroundColor: '#0F1017',
         borderRadius: 4,
-        borderWidth: 1,
+        borderWidth: 0.5,
         borderColor: 'rgba(255, 255, 255, 0.35)'
     },
     friendsContent:{

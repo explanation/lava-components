@@ -130,7 +130,7 @@ const GameCard: React.FC<GameCardProps> = (props) => {
                     height: 100,
                     width: 100,
                     borderRadius: theme.roundness.md,
-                    borderWidth: 1,
+                    borderWidth: 0.5,
                     borderStyle: 'solid',
                     borderColor: 'rgba(255, 255, 255, 0.2)',
                 },
