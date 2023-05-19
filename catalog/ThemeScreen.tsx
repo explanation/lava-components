@@ -92,9 +92,9 @@ const ThemeScreen: React.FC = () => {
                     <View style={styles.cell}>
                         <Text style={styles.label}>Variant</Text>
                     </View>
-                    <View style={[styles.cell, {justifyContent:'space-evenly'}]}>
-                        <Text style={[styles.label, {textAlign:'center'} ]}>light</Text>
-                        <Text style={styles.label}>dark</Text>
+                    <View style={[styles.cell]}>
+                        <View style={{width:60}}><Text style={[styles.label, {textAlign:'center'}]}>light</Text></View>
+                        <View style={{width:60}}><Text style={[styles.label, {textAlign:'center'}]}>dark</Text></View>
                     </View>
                 </View>
                 {Object.keys(colors.light).map((colorKey) => 

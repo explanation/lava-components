@@ -10,6 +10,8 @@ import TopicCardScreen from './catalog/TopicCardScreen'
 import Title from './components/atoms/Title/Title'
 import theme from './components/config/theme'
 import ThemeScreen from './catalog/ThemeScreen'
+import AvatarScreen from './catalog/AvatarScreen'
+import FriendCircleScreen from './catalog/FriendCircleScreen'
 
 type Views =
   | 'ROOT'
@@ -19,6 +21,8 @@ type Views =
   | 'BUTTON'
   | 'TOPIC_CARD'
   | 'THEME'
+  | 'AVATAR'
+  | 'FRIENDCIRCLE'
 
 
 const App = () => {
@@ -60,6 +64,12 @@ const App = () => {
           <Button onPress={() => setView('TOPIC_CARD')} title="<TopicCard />" />
         </View>
         <View style={styles.button}>
+          <Button onPress={() => setView('AVATAR')} title="<Avatar/>" />
+        </View>
+        <View style={styles.button}>
+          <Button onPress={() => setView('FRIENDCIRCLE')} title="<FriendCircle/>" />
+        </View>
+        <View style={styles.button}>
           <Button onPress={() => setView('THEME')} title="Theme" />
         </View>
       </View>
@@ -78,7 +88,12 @@ const App = () => {
       screen = <TopicCardScreen />
     } else if (view === 'THEME') {
       screen = <ThemeScreen />
-    } else {
+    } else if (view === 'AVATAR') {
+      screen = <AvatarScreen/>
+    } else if (view === 'FRIENDCIRCLE') {
+      screen = <FriendCircleScreen/>
+    }
+     else {
       screen = <View />
     }
     content = (
