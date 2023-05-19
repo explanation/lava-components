@@ -161,7 +161,7 @@ const GameCard: React.FC<GameCardProps> = (props) => {
                     width:100,
                     height: 32,
                     color: 'rgba(166, 166, 166, 1)',
-                    marginTop: theme.spacing.xl,
+                    marginTop: theme.spacing.md,
                     ...titleStyle,
                 },
                 notificationLabelContainer: {
@@ -177,6 +177,7 @@ const GameCard: React.FC<GameCardProps> = (props) => {
                     position: 'absolute',
                     zIndex: 14,
                     borderRadius: theme.roundness.md,
+                    transform: [{rotate:'90deg'}]
                 },
                 miniContainer: {
                     flexDirection: 'row',
@@ -233,7 +234,7 @@ const GameCard: React.FC<GameCardProps> = (props) => {
             <View>
                 <LinearGradient 
                     colors={['#0F1017', 'rgba(0, 0, 0, 0)']}
-                    start={{ x: 0.1, y: 0.85 }}
+                    start={{ x: 0.1, y: 0.87 }}
                     locations={[0.0277, 0.5961]}
                     style={styles.gradient}
                 />

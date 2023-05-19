@@ -52,7 +52,7 @@ export const GamePlayedStory = (props: GamePlayedStoryProps) => {
                         {props.games.map((game, index) => (
                             <GameCard
                                 key={game.title}
-                                containerStyle={{marginTop: 16, marginRight: index === props.games.length -1 ? 0 : 16}}
+                                containerStyle={{marginTop: 28, marginRight: index === props.games.length -1 ? 0 : 16}}
                                 variation={'mini'}
                                 imageUrl={game.imageUrl}
                                 name={game.title}
