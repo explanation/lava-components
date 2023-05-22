@@ -168,7 +168,7 @@ export const getTypography = (
     fontFamily: fontFamily.Regular,
     fontSize: 10,
     lineHeight: 13,
-    letterSpacing: 0.96,
+    letterSpacing: 0.8,
     fontWeight: '400',
     color: themeColors.primarySand,
   },
