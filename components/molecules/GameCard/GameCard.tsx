@@ -130,6 +130,9 @@ const GameCard: React.FC<GameCardProps> = (props) => {
                     height: 100,
                     width: 100,
                     borderRadius: theme.roundness.md,
+                    borderWidth: 0.5,
+                    borderStyle: 'solid',
+                    borderColor: 'rgba(255, 255, 255, 0.2)',
                 },
                 iconImage: {
                     width: 38,
@@ -166,17 +169,15 @@ const GameCard: React.FC<GameCardProps> = (props) => {
                     right: 1,
                 },
                 gradient: {
-                    top:0,
-                    left:0,
-                    height: 101,
+                    top:1,
+                    left:1,
+                    height: 100,
                     width: 101,
                     position: 'absolute',
                     zIndex: 14,
                     borderRadius: theme.roundness.md,
                     transform: [{rotate:'90deg'}],
-                    borderWidth: 0.5,
-                    borderStyle: 'solid',
-                    borderColor: 'rgba(255, 255, 255, 0.2)',
+                    
                 },
                 miniContainer: {
                     flexDirection: 'row',
