@@ -15,7 +15,7 @@ const showAlert = () => {
 }
 
 const newVideoStoryProps: NewVideoStoryProps = {
-  title: 'Has a new secret Bicycle Hack, This is a sample long text for testing',
+  title: 'Bicycle Hack, This is a sample long text for testing',
   book: {
     imageUrl: 'https://i.imgur.com/NPKsA9r.png',
     title: 'Brookhaven',
@@ -23,7 +23,7 @@ const newVideoStoryProps: NewVideoStoryProps = {
   onTapped: showAlert,
   video: {
     imageUrl: 'https://i.imgur.com/WNoRKtS.png',
-    title: 'Has a new secret Bicycle Hack, This is a sample long text for testing'
+    title: 'Bicycle Hack, This is not a sample long text for testing'
   }, 
 }
 

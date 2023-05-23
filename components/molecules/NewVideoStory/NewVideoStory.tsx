@@ -3,6 +3,7 @@ import { StyleSheet, View} from "react-native"
 import Title from '../../atoms/Title/Title'
 import {LavaImage} from '../../atoms/LavaImage/LavaImage'
 import { LinearGradient } from 'expo-linear-gradient';
+import theme from '../../config/theme'
 
 const DEFAULT_WIDTH_OF_VIDEO_STORY = 369
 
@@ -21,17 +22,18 @@ export const NewVideoStory = (props: NewVideoStoryProps) => {
         <View style={[styles.container, {width: props.width ?? DEFAULT_WIDTH_OF_VIDEO_STORY}]}>
             <View style={styles.bookContent}>
                 <View>
-                    <LavaImage source={{uri: props.book.imageUrl}} style={styles.book}/>
                     <View style={styles.overlay} />
+                    <LavaImage source={{uri: props.book.imageUrl}} style={styles.book}/>
                 </View>
                 <View style={styles.rightContent}>
                     <Title style={styles.text} variation="title2" numberOfLines={1}>{props.book.title}</Title>
-                    <Title variation="title2" numberOfLines={2}>{props.title}</Title>
+                    <Title  style={styles.text} variation="title2" numberOfLines={1}>Has a new secret</Title>
+                    <Title  variation="title2" numberOfLines={1}>{props.title}</Title>
                     <View style={styles.videoContent}>
                         <View>
                             <LinearGradient 
                                 colors={['#0F1017', 'rgba(0, 0, 0, 0)']}
-                                start={{ x: 0.1, y: 0.85 }}
+                                start={{ x: 0.1, y: 0.922 }}
                                 locations={[0.0277, 0.5961]}
                                 style={styles.gradient}
                             />
@@ -42,7 +44,7 @@ export const NewVideoStory = (props: NewVideoStoryProps) => {
                         </View>
                     </View>
                     <View style={styles.titleContent}>
-                        <Title style={[styles.text, {color:'rgba(166, 166, 166, 1)', width:'90%'}]} variation="subtitle3" numberOfLines={2}>{props.video.title}</Title>
+                        <Title style={[styles.text, {color:'rgba(166, 166, 166, 1)', width: props.showVerified ? '90%' : '100%'}]} variation="subtitle3" numberOfLines={2}>{props.video.title}</Title>
                         {props.showVerified && <LavaImage source={require("./verified-mark.png")} style={styles.verifiedMarker}/>}
                     </View>
                 </View>
@@ -69,7 +71,10 @@ const styles = StyleSheet.create({
     book: {
         width: 54,
         height: 54,
-        borderRadius: 2
+        borderRadius: 2,
+        borderWidth: 0.5,
+        borderStyle: 'solid',
+        borderColor: 'rgba(255, 255, 255, 0.2)',
     },
     rightContent: {
         marginLeft: 16,
@@ -82,6 +87,9 @@ const styles = StyleSheet.create({
         width: 176,
         height: 100,
         borderRadius: 4,
+        borderWidth: 0.5,
+        borderStyle: 'solid',
+        borderColor: 'rgba(255, 255, 255, 0.2)',
     },
     videoContent: {
         marginTop: 20,
@@ -93,6 +101,7 @@ const styles = StyleSheet.create({
         backgroundColor: 'rgba(15, 16, 23, 1)',
         opacity: 0.2,
         borderRadius: 2,
+        zIndex: 14
     },
     play: {
         width: 36,
@@ -111,15 +120,14 @@ const styles = StyleSheet.create({
         justifyContent: 'center'
     },
     gradient: {
-        position: 'absolute',
-        right: 0,
-        opacity: 0.1,
+        top:0,
+        right:0,
+        height: 103,
         width: 100,
-        height: 170,
+        position: 'absolute',
         zIndex: 14,
-        borderRadius: 4,
-        borderWidth: 1,
-        borderColor: 'rgba(255, 255, 255, 0.2)'
+        borderRadius: theme.roundness.md,
+        transform: [{rotate:'90deg'}]
     },
     titleContent: {
         flexDirection:'row',
