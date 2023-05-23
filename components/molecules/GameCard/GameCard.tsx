@@ -177,7 +177,7 @@ const GameCard: React.FC<GameCardProps> = (props) => {
                     zIndex: 14,
                     borderRadius: theme.roundness.md,
                     transform: [{rotate:'90deg'}],
-                    
+                    opacity: 0.9
                 },
                 miniContainer: {
                     flexDirection: 'row',

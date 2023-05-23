@@ -63,7 +63,7 @@ const storyProps1: GamePlayedStoryProps = {
   games:[
     {
       title:'Legends of Speed',
-      imageUrl:'https://i.ytimg.com/vi/YtSlp3ANPHA/maxresdefault.jpg',
+      imageUrl:'https://www.play-games.com/files/img/roblox-online-1647528660.jpg',
       onTapped: showAlert
     },
     {
@@ -72,7 +72,7 @@ const storyProps1: GamePlayedStoryProps = {
     },
     {
       title:'Legends of Speed',
-      imageUrl:'https://i.ytimg.com/vi/YtSlp3ANPHA/maxresdefault.jpg'
+      imageUrl:'https://www.play-games.com/files/img/pg-memory-roblox-1647521266.jpg'
     },
   ],
   timeAgo: "For 2.5 hrs today"
