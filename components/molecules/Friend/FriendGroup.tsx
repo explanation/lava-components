@@ -1,4 +1,4 @@
-import {useCallback, useMemo} from 'react'
+import {useCallback} from 'react'
 import {Image, Pressable, StyleSheet, View} from 'react-native'
 import Button from '../../atoms/Button/Button'
 import Title from '../../atoms/Title/Title'
@@ -7,6 +7,7 @@ import useTheme from '../../hooks/useTheme'
 import {FriendNetworkStatus} from './Friend'
 import {getTimeAgo} from '../../utils/numbers'
 import {intervalMapping} from '../../config/date'
+import FriendCircle from './FriendCircle'
 
 export type FriendGroupNotificationType = 'chat' | 'video'
 
@@ -29,54 +30,7 @@ export interface FriendProps {
     onAsidePress?: () => void
     onPress?: () => void
     showNames?: boolean
-}
 
-type FriendCircleProps = Pick<FriendGroupItem, 'imageUrl' | 'status'> & {
-    imageSize: number
-    containerSize: number
-    gap: number
-}
-
-export const FriendCircle: React.FC<FriendCircleProps> = (props) => {
-
-    const theme = useTheme()
-
-    const imageContainerBorderColor = useMemo(() => {
-        return props.status === 'offline'
-            ? theme.colors.primarySand40
-            : theme.colors.tertiaryOnline
-    }, [])
-
-    const styles = useMemo(
-        () =>
-            StyleSheet.create({
-                imageContainer: {
-                    height: props.containerSize + props.gap + 2,
-                    width: props.containerSize + props.gap + 2,
-                    borderRadius: props.containerSize,
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                    backgroundColor: theme.colors.secondaryContainers,
-                    borderWidth: 2,
-                    borderColor: imageContainerBorderColor,
-                },
-                image: {
-                    width: props.imageSize,
-                    height: props.imageSize,
-                    borderRadius: props.imageSize,
-                },
-            }),
-        [],
-    )
-    return (
-        <View style={styles.imageContainer}>
-            <Image
-                source={{uri: props.imageUrl}}
-                style={styles.image}
-                resizeMode="cover"
-            />
-        </View>
-    )
 }
 
 const FriendGroup: React.FC<FriendProps> = ({friends = [], showNames = true, ...props}) => {
@@ -90,71 +44,68 @@ const FriendGroup: React.FC<FriendProps> = ({friends = [], showNames = true, ...
         }
     }, [])
 
-    const styles = useMemo(
-        () =>
-            StyleSheet.create({
-                container: {
-                    flexDirection: 'row',
-                    alignItems: 'center',
-                    position: 'relative',
-                    paddingVertical: theme.spacing.xl,
-                    maxWidth: 290,
-                },
-                imageWrapper: {
-                    alignItems: 'center',
-                    paddingRight: theme.spacing.xxxl,
-                },
-                friend2: {
-                    marginTop: -7,
-                    backgroundColor: theme.colors.secondaryBk,
-                    width: 36,
-                    height: 36,
-                    borderRadius: 36,
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                },
-                remainingFriendsCount: {
-                    position: 'absolute',
-                    right: 1,
-                    bottom: 0,
-                },
-                messageContainer: {
-                    marginTop: theme.spacing.xxl,
-                    flexDirection: 'row',
-                    alignItems: 'center',
-                    minWidth: 127,
-                    height: 12,
-                },
-                message: {
-                    color: props.messageSeen
-                        ? theme.colors.primarySand60
-                        : theme.colors.primarySand,
-                },
-                notificationSentOn: {
-                    height: 12,
-                    position: 'absolute',
-                    top: theme.spacing.sm,
-                    right: theme.spacing.xs,
-                    color: theme.colors.primarySand60,
-                },
-            }),
-        [],
-    )
+    const styles = () => {
+        return StyleSheet.create({
+            container: {
+                flexDirection: 'row',
+                alignItems: 'center',
+                position: 'relative',
+                paddingVertical: theme.spacing.xl,
+                maxWidth: 290,
+            },
+            imageWrapper: {
+                alignItems: 'center',
+                paddingRight: theme.spacing.xxxl,
+            },
+            friend2: {
+                marginTop: -7,
+                backgroundColor: theme.colors.secondaryBk,
+                width: 36,
+                height: 36,
+                borderRadius: 36,
+                justifyContent: 'center',
+                alignItems: 'center',
+            },
+            remainingFriendsCount: {
+                position: 'absolute',
+                right: 1,
+                bottom: 0,
+            },
+            messageContainer: {
+                marginTop: theme.spacing.xxl,
+                flexDirection: 'row',
+                alignItems: 'center',
+                minWidth: 127,
+                height: 12,
+            },
+            message: {
+                color: props.messageSeen
+                    ? theme.colors.primarySand60
+                    : theme.colors.primarySand,
+            },
+            notificationSentOn: {
+                height: 12,
+                position: 'absolute',
+                top: theme.spacing.sm,
+                right: theme.spacing.xs,
+                color: theme.colors.primarySand60,
+            },
+        })
+    }
 
-    const names = useMemo(
-        () => friends.map((friend) => friend.firstName).join(', '),
-        [],
-    )
+    const names = () => {
+        return friends.map((friend) => friend.firstName).join(', ')
+    }
 
     return (
         <Pressable
             onPress={props.onPress}
             style={({pressed}) => [
-                styles.container,
+                styles().container,
                 {opacity: pressed ? 0.8 : 1},
             ]}
         >
-            <View style={styles.imageWrapper}>
+            <View style={styles().imageWrapper}>
                 <FriendCircle
                     gap={2}
                     imageSize={36}
@@ -163,7 +114,7 @@ const FriendGroup: React.FC<FriendProps> = ({friends = [], showNames = true, ...
                     status={friend1.status}
                 />
 
-                <View style={styles.friend2}>
+                <View style={styles().friend2}>
                     <FriendCircle
                         gap={2}
                         imageSize={24}
@@ -173,7 +124,7 @@ const FriendGroup: React.FC<FriendProps> = ({friends = [], showNames = true, ...
                     />
                 </View>
 
-                {(friends.length - 2 > 0) && <Title variation="subtitle1" style={styles.remainingFriendsCount}>
+                {(friends.length - 2 > 0) && <Title variation="subtitle1" style={styles().remainingFriendsCount}>
                     + {friends.length - 2}
                 </Title>}
             </View>
@@ -184,16 +135,16 @@ const FriendGroup: React.FC<FriendProps> = ({friends = [], showNames = true, ...
                     numberOfLines={2}
                     style={{width: props.notificationType ? 178 : 213}}
                 >
-                    {names}
+                    {names()}
                 </Title>}
 
                 {props.message && (
-                    <View style={styles.messageContainer}>
+                    <View style={styles().messageContainer}>
                         <Text>“</Text>
                         <Title
                             variation="subtitle2"
                             numberOfLines={1}
-                            style={styles.message}
+                            style={styles().message}
                         >
                             {props.message}
                         </Title>
@@ -203,7 +154,7 @@ const FriendGroup: React.FC<FriendProps> = ({friends = [], showNames = true, ...
             </View>
 
             {props.notificationType && (
-                <Title variation="subtitle3" style={styles.notificationSentOn}>
+                <Title variation="subtitle3" style={styles().notificationSentOn}>
                     {getTimeAgo(
                         new Date(!!props.notificationSentOn ? props.notificationSentOn : 0),
                         intervalMapping,

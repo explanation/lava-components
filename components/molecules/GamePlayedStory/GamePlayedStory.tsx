@@ -1,11 +1,11 @@
 import React from 'react'
 import {Pressable, ScrollView, StyleSheet, View} from "react-native"
 import GameCard from '../GameCard/GameCard'
-import FriendGroup, {FriendCircle, FriendGroupItem} from '../Friend/FriendGroup'
+import FriendGroup from '../Friend/FriendGroup'
 import Title from '../../atoms/Title/Title'
+import FriendCircle from '../Friend/FriendCircle'
 
 const MAXIMUM_WIDTH_OF_FEED_STORY = 296
-
 export interface GamePlayedStoryProps {
     friends: { firstName: string, imageUrl?: string, status: 'online' | 'offline' }[]
     onFriendsTapped?: ()=>void

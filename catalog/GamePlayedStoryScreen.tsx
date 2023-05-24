@@ -4,7 +4,9 @@ import {
   View,
   SafeAreaView,
   ScrollView,
-  Text
+  Text,
+  Platform,
+  Dimensions
 } from 'react-native'
 import useTheme from '../components/hooks/useTheme'
 import GamePlayedStory, {GamePlayedStoryProps} from '../components/molecules/GamePlayedStory/GamePlayedStory'
@@ -105,14 +107,13 @@ const GamePlayedStoryScreen: React.FC = () => {
     () =>
       StyleSheet.create({
         container: {
+          width: Platform.OS === 'web' ? undefined : Dimensions.get('screen').width,
           padding: 20,
           justifyContent: 'center',
           backgroundColor: theme.colors.secondaryBk,
         },
         storyContainer: {
           marginBottom: 20,
-          flex: 1,
-          alignItems: 'baseline'
         },
         label: {
           fontSize: 10,
@@ -124,7 +125,7 @@ const GamePlayedStoryScreen: React.FC = () => {
   )
 
   return (
-    <SafeAreaView>
+    <SafeAreaView style={{flex:1}}>
       <ScrollView contentContainerStyle={styles.container}>
         <View style={styles.storyContainer}>
           <Text style={styles.label}>[With many users]</Text>
