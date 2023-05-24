@@ -20,7 +20,7 @@ export interface FriendProps {
   imageUrl?: string
   name: string
   message?: string
-  networkStatus?: FriendNetworkStatus
+  status?: FriendNetworkStatus
   inRoblox?: boolean
   messageSeen?: boolean
   /**
@@ -67,7 +67,7 @@ const Friend: React.FC<FriendProps> = (props) => {
     imageUrl,
     name,
     message,
-    networkStatus = 'online',
+    status = 'online',
     inRoblox: isInRoblox = false,
     friendRequestSent = false,
     notificationType,
@@ -93,7 +93,7 @@ const Friend: React.FC<FriendProps> = (props) => {
     let borderColor = null
     if (friendRequestSent || notificationType === 'new-friend-request') {
       borderColor = theme.colors.primarySand
-    } else if (networkStatus === 'offline') {
+    } else if (status === 'offline') {
       borderColor = theme.colors.primarySand40
     } else {
       borderColor = theme.colors.tertiaryOnline
@@ -239,7 +239,7 @@ const Friend: React.FC<FriendProps> = (props) => {
         status: {
           maxWidth: 170,
           color:
-            networkStatus === 'online'
+            status === 'online'
               ? theme.colors.primarySand
               : theme.colors.primarySand60,
         },
@@ -286,7 +286,7 @@ const Friend: React.FC<FriendProps> = (props) => {
           borderRadius: 5,
           borderWidth: 2,
           borderColor:
-            networkStatus === 'online'
+            status === 'online'
               ? theme.colors.tertiaryOnline
               : 'transparent',
         },
@@ -327,7 +327,7 @@ const Friend: React.FC<FriendProps> = (props) => {
     statusContent = 'Friend Request Sent'
   } else if (notificationType === 'new-friend-request') {
     statusContent = `${name} sent a friend request`
-  } else if (networkStatus === 'online') {
+  } else if (status === 'online') {
     statusContent = 'Online'
     if (activityType === 'playing') statusContentDetail = ', Playing'
     if (activityType === 'watching') statusContentDetail = ', Watching'
@@ -336,7 +336,7 @@ const Friend: React.FC<FriendProps> = (props) => {
     // TODO: Fix with typescript
     if (__DEV__ && !lastSeen && !lastSeenLabel) {
       console.log(
-        'In the Friend.tsx lava-component, you set `networkStatus` to offline but `lastSeen` was undefined. Maybe this is an old user missing data.',
+        'In the Friend.tsx lava-component, you set `status` to offline but `lastSeen` was undefined. Maybe this is an old user missing data.',
       )
     }
     if (lastSeen) {
