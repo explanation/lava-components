@@ -64,10 +64,10 @@ const App = () => {
           <Button onPress={() => setView('TOPIC_CARD')} title="<TopicCard />" />
         </View>
         <View style={styles.button}>
-          <Button onPress={() => setView('NEW_VIDEO_STORY')} title="<NewVideoStory />" />
+          <Button onPress={() => setView('GAME_PLAYED_STORY')} title="<GamePlayedStory />" />
         </View>
         <View style={styles.button}>
-          <Button onPress={() => setView('GAME_PLAYED_STORY')} title="<GamePlayedStory />" />
+          <Button onPress={() => setView('NEW_VIDEO_STORY')} title="<NewVideoStory />" />
         </View>
         <View style={styles.button}>
           <Button onPress={() => setView('THEME')} title="Theme" />

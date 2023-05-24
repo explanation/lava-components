@@ -26,9 +26,9 @@ export const NewVideoStory = (props: NewVideoStoryProps) => {
                     <LavaImage source={{uri: props.book.imageUrl}} style={styles.book}/>
                 </View>
                 <View style={styles.rightContent}>
-                    <Title style={styles.text} variation="title2" numberOfLines={1}>{props.book.title}</Title>
-                    <Title  style={styles.text} variation="title2" numberOfLines={1}>Has a new secret</Title>
-                    <Title  variation="title2" numberOfLines={1}>{props.title}</Title>
+                    <Title style={styles.text} variation="title3" numberOfLines={1}>{props.book.title}</Title>
+                    <Title  style={styles.text} variation="title3" numberOfLines={1}>Has a new secret</Title>
+                    <Title  variation="title3" numberOfLines={1}>{props.title}</Title>
                     <View style={styles.videoContent}>
                         <View>
                             <LinearGradient 
@@ -127,7 +127,8 @@ const styles = StyleSheet.create({
         position: 'absolute',
         zIndex: 14,
         borderRadius: theme.roundness.md,
-        transform: [{rotate:'90deg'}]
+        transform: [{rotate:'90deg'}],
+        opacity: 0.9
     },
     titleContent: {
         flexDirection:'row',
