@@ -9,6 +9,7 @@ import ButtonScreen from './catalog/ButtonScreen'
 import TopicCardScreen from './catalog/TopicCardScreen'
 import Title from './components/atoms/Title/Title'
 import theme from './components/config/theme'
+import GamePlayedStoryScreen from './catalog/GamePlayedStoryScreen'
 import ThemeScreen from './catalog/ThemeScreen'
 
 type Views =
@@ -18,6 +19,7 @@ type Views =
   | 'VIDEO_CARD'
   | 'BUTTON'
   | 'TOPIC_CARD'
+  | 'GAME_PLAYED_STORY'
   | 'THEME'
 
 
@@ -60,6 +62,9 @@ const App = () => {
           <Button onPress={() => setView('TOPIC_CARD')} title="<TopicCard />" />
         </View>
         <View style={styles.button}>
+          <Button onPress={() => setView('GAME_PLAYED_STORY')} title="<GamePlayedStory />" />
+        </View>
+        <View style={styles.button}>
           <Button onPress={() => setView('THEME')} title="Theme" />
         </View>
       </View>
@@ -76,6 +81,8 @@ const App = () => {
       screen = <ButtonScreen />
     } else if (view === 'TOPIC_CARD') {
       screen = <TopicCardScreen />
+    } else if (view === 'GAME_PLAYED_STORY') {
+      screen = <GamePlayedStoryScreen />
     } else if (view === 'THEME') {
       screen = <ThemeScreen />
     } else {
