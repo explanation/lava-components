@@ -14,7 +14,7 @@ import FriendCircle, {FriendCircleProps} from '../components/molecules/Friend/Fr
 const friendCircleProps: FriendCircleProps = {
     imageUrl: 'https://i.imgur.com/LK7ymaN.png',
     imageSize: 48,
-    networkStatus: 'online',
+    status: 'online',
     gap:0,
     containerSize:60
 }
@@ -52,7 +52,7 @@ const FriendCircleScreen: React.FC = () => {
         </View>
         <View style={styles.videoCardContainer}>
           <Text style={styles.label}>2. [FriendCircle with offline newtwork status]</Text>
-            <FriendCircle {...friendCircleProps} networkStatus='offline'/>
+            <FriendCircle {...friendCircleProps} status='offline'/>
         </View>
       </ScrollView>
     </SafeAreaView>
