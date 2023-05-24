@@ -26,37 +26,37 @@ const friendsOnlineOfflineSampleData: FriendGroupItem[] = [
   {
     firstName: 'Charlie',
     imageUrl: friendData.imageUrl,
-    networkStatus: 'online',
+    status: 'online',
   },
   {
     firstName: 'Doug',
     imageUrl: friendData.imageUrl,
-    networkStatus: 'offline',
+    status: 'offline',
   },
   {
     firstName: 'Devin',
     imageUrl: friendData.imageUrl,
-    networkStatus: 'online',
+    status: 'online',
   },
   {
     firstName: 'Pranay',
     imageUrl: friendData.imageUrl,
-    networkStatus: 'online',
+    status: 'online',
   },
   {
     firstName: 'Nihar',
     imageUrl: friendData.imageUrl,
-    networkStatus: 'offline',
+    status: 'offline',
   },
   {
     firstName: 'Josie',
     imageUrl: friendData.imageUrl,
-    networkStatus: 'online',
+    status: 'online',
   },
   {
     firstName: 'Evan',
     imageUrl: friendData.imageUrl,
-    networkStatus: 'online',
+    status: 'online',
   },
 ]
 
@@ -64,37 +64,37 @@ const friendsOnlineOnlineSampleData: FriendGroupItem[] = [
   {
     firstName: 'Charlie',
     imageUrl: friendData.imageUrl,
-    networkStatus: 'online',
+    status: 'online',
   },
   {
     firstName: 'Doug',
     imageUrl: friendData.imageUrl,
-    networkStatus: 'online',
+    status: 'online',
   },
   {
     firstName: 'Devin',
     imageUrl: friendData.imageUrl,
-    networkStatus: 'online',
+    status: 'online',
   },
   {
     firstName: 'Pranay',
     imageUrl: friendData.imageUrl,
-    networkStatus: 'online',
+    status: 'online',
   },
   {
     firstName: 'Nihar',
     imageUrl: friendData.imageUrl,
-    networkStatus: 'offline',
+    status: 'offline',
   },
   {
     firstName: 'Josie',
     imageUrl: friendData.imageUrl,
-    networkStatus: 'online',
+    status: 'online',
   },
   {
     firstName: 'Evan',
     imageUrl: friendData.imageUrl,
-    networkStatus: 'online',
+    status: 'online',
   },
 ]
 
@@ -102,37 +102,37 @@ const friendsOfflineOfflineSampleData: FriendGroupItem[] = [
   {
     firstName: 'Charlie',
     imageUrl: friendData.imageUrl,
-    networkStatus: 'offline',
+    status: 'offline',
   },
   {
     firstName: 'Doug',
     imageUrl: friendData.imageUrl,
-    networkStatus: 'offline',
+    status: 'offline',
   },
   {
     firstName: 'Devin',
     imageUrl: friendData.imageUrl,
-    networkStatus: 'online',
+    status: 'online',
   },
   {
     firstName: 'Pranay',
     imageUrl: friendData.imageUrl,
-    networkStatus: 'online',
+    status: 'online',
   },
   {
     firstName: 'Nihar',
     imageUrl: friendData.imageUrl,
-    networkStatus: 'offline',
+    status: 'offline',
   },
   {
     firstName: 'Josie',
     imageUrl: friendData.imageUrl,
-    networkStatus: 'online',
+    status: 'online',
   },
   {
     firstName: 'Evan',
     imageUrl: friendData.imageUrl,
-    networkStatus: 'online',
+    status: 'online',
   },
 ]
 
@@ -273,7 +273,7 @@ export default function FriendScreen() {
             {"<Friend/>"} - # 5 [Offline, Last played game, last unread chat]
           </Text>
           <Friend
-            networkStatus="offline"
+            status="offline"
             lastSeen={lastSeen}
             name={friendData.name}
             imageUrl={friendData.imageUrl}
@@ -293,7 +293,7 @@ export default function FriendScreen() {
           </Text>
           <Friend
             messageSeen
-            networkStatus="offline"
+            status="offline"
             lastSeen={lastSeen}
             name={friendData.name}
             imageUrl={friendData.imageUrl}
@@ -334,7 +334,7 @@ export default function FriendScreen() {
         <View style={styles.compContainer}>
           <Text style={styles.labelText}>{"<Friend/>"} - #8.2 [Offline, No chat history]</Text>
           <Friend
-            networkStatus="offline"
+            status="offline"
             lastSeen={lastSeen}
             name={friendData.name}
             imageUrl={friendData.imageUrl}
@@ -364,7 +364,7 @@ export default function FriendScreen() {
             {"<Friend/>"} - #9.2 [Offline, Not playing game, No chat history]
           </Text>
           <Friend
-            networkStatus="offline"
+            status="offline"
             lastSeen={lastSeen}
             name={friendData.name}
             imageUrl={friendData.imageUrl}
@@ -398,7 +398,7 @@ export default function FriendScreen() {
           </Text>
           <Friend
             lastSeen={lastSeen}
-            networkStatus="offline"
+            status="offline"
             name={friendData.name}
             imageUrl={friendData.imageUrl}
             message={friendData.message}
@@ -447,7 +447,7 @@ export default function FriendScreen() {
             {"<Friend/>"} - #13 [Offline, Playing a game, Friend not in lava]
           </Text>
           <Friend
-            networkStatus="offline"
+            status="offline"
             friendInLava={false}
             lastSeen={lastSeen}
             name={friendData.name}

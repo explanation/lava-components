@@ -14,7 +14,7 @@ export type FriendGroupNotificationType = 'chat' | 'video'
 export interface FriendGroupItem {
     firstName: string
     imageUrl?: string
-    networkStatus: FriendNetworkStatus
+    status: FriendNetworkStatus
 }
 
 export interface FriendProps {
@@ -29,25 +29,18 @@ export interface FriendProps {
     notificationSentOn?: string
     onAsidePress?: () => void
     onPress?: () => void
+    showNames?: boolean
+
 }
 
-const FriendGroup: React.FC<FriendProps> = (props) => {
-    const {
-        friends = [],
-        message,
-        notificationSentOn,
-        onAsidePress,
-        onPress,
-        notificationType,
-        messageSeen,
-    } = props
+const FriendGroup: React.FC<FriendProps> = ({friends = [], showNames = true, ...props}) => {
     const theme = useTheme()
 
     const [friend1, friend2] = friends
 
     const handleAsidePress = useCallback(() => {
-        if (onAsidePress && typeof onAsidePress === 'function') {
-            onAsidePress()
+        if (props.onAsidePress && typeof props.onAsidePress === 'function') {
+            props.onAsidePress()
         }
     }, [])
 
@@ -86,7 +79,7 @@ const FriendGroup: React.FC<FriendProps> = (props) => {
                 height: 12,
             },
             message: {
-                color: messageSeen
+                color: props.messageSeen
                     ? theme.colors.primarySand60
                     : theme.colors.primarySand,
             },
@@ -106,7 +99,7 @@ const FriendGroup: React.FC<FriendProps> = (props) => {
 
     return (
         <Pressable
-            onPress={onPress}
+            onPress={props.onPress}
             style={({pressed}) => [
                 styles().container,
                 {opacity: pressed ? 0.8 : 1},
@@ -118,7 +111,7 @@ const FriendGroup: React.FC<FriendProps> = (props) => {
                     imageSize={36}
                     containerSize={40}
                     imageUrl={friend1.imageUrl}
-                    networkStatus={friend1.networkStatus}
+                    status={friend1.status}
                 />
 
                 <View style={styles().friend2}>
@@ -127,7 +120,7 @@ const FriendGroup: React.FC<FriendProps> = (props) => {
                         imageSize={24}
                         containerSize={28}
                         imageUrl={friend2.imageUrl}
-                        networkStatus={friend2.networkStatus}
+                        status={friend2.status}
                     />
                 </View>
 
@@ -136,17 +129,16 @@ const FriendGroup: React.FC<FriendProps> = (props) => {
                 </Title>}
             </View>
 
-            <View
-                style={{marginRight: 'auto'}}>
-                <Title
+            <View style={{marginRight: 'auto'}}>
+                {showNames && <Title
                     variation="subtitle1"
                     numberOfLines={2}
-                    style={{width: notificationType ? 178 : 213}}
+                    style={{width: props.notificationType ? 178 : 213}}
                 >
                     {names()}
-                </Title>
+                </Title>}
 
-                {message && (
+                {props.message && (
                     <View style={styles().messageContainer}>
                         <Text>“</Text>
                         <Title
@@ -154,23 +146,23 @@ const FriendGroup: React.FC<FriendProps> = (props) => {
                             numberOfLines={1}
                             style={styles().message}
                         >
-                            {message}
+                            {props.message}
                         </Title>
                         <Text>”</Text>
                     </View>
                 )}
             </View>
 
-            {notificationType && (
+            {props.notificationType && (
                 <Title variation="subtitle3" style={styles().notificationSentOn}>
                     {getTimeAgo(
-                        new Date(!!notificationSentOn ? notificationSentOn : 0),
+                        new Date(!!props.notificationSentOn ? props.notificationSentOn : 0),
                         intervalMapping,
                     ).replace(' ago', '')}
                 </Title>
             )}
 
-            {notificationType && (
+            {props.notificationType && (
                 <Button
                     onPress={handleAsidePress}
                     variation="gravity"
@@ -180,7 +172,7 @@ const FriendGroup: React.FC<FriendProps> = (props) => {
                             resizeMode="contain"
                             style={{width: 20, height: 20}}
                             source={
-                                notificationType === 'chat'
+                                props.notificationType === 'chat'
                                     ? require('./assets/chat.png')
                                     : require('./assets/VideoCall.png')
                             }

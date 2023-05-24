@@ -1,13 +1,12 @@
 import React, {Fragment, useMemo} from 'react'
 import {
     View,
-    Image,
     StyleSheet,
     Pressable,
-    StyleProp,
     ViewStyle,
     TextStyle,
 } from 'react-native'
+import { LinearGradient } from 'expo-linear-gradient';
 import Title from '../../atoms/Title/Title'
 import Label from '../../atoms/Label/Label'
 import Text from '../../atoms/Text/Text'
@@ -124,7 +123,16 @@ const GameCard: React.FC<GameCardProps> = (props) => {
                     width: 120,
                     borderRadius: theme.roundness.xs,
                     borderWidth: 0.5,
+                    marginRight: 8,
                     borderColor: theme.colors.primarySand60,
+                },
+                minImage: {
+                    height: 100,
+                    width: 100,
+                    borderRadius: theme.roundness.md,
+                    borderWidth: 0.5,
+                    borderStyle: 'solid',
+                    borderColor: 'rgba(255, 255, 255, 0.2)',
                 },
                 iconImage: {
                     width: 38,
@@ -139,7 +147,7 @@ const GameCard: React.FC<GameCardProps> = (props) => {
                     height: 32,
                     marginRight: 10,
                     borderRadius: theme.roundness.xs,
-                    borderWidth: 0.5,
+                    borderWidth: 1,
                     borderColor: theme.colors.primarySand60,
                 },
                 name: {
@@ -149,15 +157,32 @@ const GameCard: React.FC<GameCardProps> = (props) => {
                     marginTop: theme.spacing.xl,
                     ...titleStyle,
                 },
+                miniName:{
+                    width:100,
+                    color: 'rgba(166, 166, 166, 1)',
+                    marginTop: theme.spacing.md,
+                    ...titleStyle,
+                },
                 notificationLabelContainer: {
                     position: 'absolute',
                     top: 1,
                     right: 1,
                 },
+                gradient: {
+                    top:1,
+                    left:1,
+                    height: 100,
+                    width: 101,
+                    position: 'absolute',
+                    zIndex: 14,
+                    borderRadius: theme.roundness.md,
+                    transform: [{rotate:'90deg'}],
+                    opacity: 0.9
+                },
                 miniContainer: {
                     flexDirection: 'row',
                     alignItems: 'center',
-                },
+                }
             }),
         [theme],
     )
@@ -207,10 +232,14 @@ const GameCard: React.FC<GameCardProps> = (props) => {
     } else if (variation === 'mini') {
         content = (
             <View>
-                <LavaImage source={{uri: imageUrl}} style={styles.image}/>
-                <Title numberOfLines={2} variation="subtitle2" style={styles.name}>
-                    {name}
-                </Title>
+                <LinearGradient 
+                    colors={['#0F1017', 'rgba(0, 0, 0, 0)']}
+                    start={{ x: 0.1, y: 0.87 }}
+                    locations={[0.0277, 0.5961]}
+                    style={styles.gradient}
+                />
+                <LavaImage source={{uri: imageUrl}} style={styles.minImage}/>
+                <Title numberOfLines={2} variation="subtitle3" style={styles.miniName}>{name}</Title>
             </View>
         )
     } else if (variation === 'icon') {
