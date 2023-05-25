@@ -44,7 +44,7 @@ export const NewVideoStory = (props: NewVideoStoryProps) => {
                         </View>
                     </View>
                     <View style={styles.titleContent}>
-                        <Title style={[styles.text, {color:'rgba(166, 166, 166, 1)', width: props.showVerified ? '90%' : '100%'}]} variation="subtitle3" numberOfLines={2}>{props.video.title}</Title>
+                        <Title style={[styles.text, {color:theme.colors.dark.primarySand20, width: props.showVerified ? '90%' : '100%'}]} variation="subtitle3" numberOfLines={2}>{props.video.title}</Title>
                         {props.showVerified && <LavaImage source={require("./verified-mark.png")} style={styles.verifiedMarker}/>}
                     </View>
                 </View>
@@ -60,7 +60,7 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         padding: 24,
-        backgroundColor: '#0F1017',
+        backgroundColor: theme.colors.dark.bgSurface1,
         borderRadius: 4,
         borderWidth: 1,
         borderColor: 'rgba(255, 255, 255, 0.2)'
