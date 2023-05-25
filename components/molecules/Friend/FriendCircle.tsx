@@ -2,7 +2,7 @@ import {Image, StyleSheet, View} from 'react-native'
 import useTheme from '../../hooks/useTheme'
 import {FriendGroupItem} from './FriendGroup'
 
-type FriendCircleProps = Pick<FriendGroupItem, 'imageUrl' | 'status'> & {
+export type FriendCircleProps = Pick<FriendGroupItem, 'imageUrl' | 'status'> & {
     imageSize: number
     containerSize: number
     gap: number

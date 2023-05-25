@@ -6,6 +6,8 @@ import {
   SafeAreaView,
   Alert,
   ScrollView,
+  Platform,
+  Dimensions,
 } from 'react-native'
 import useTheme from '../components/hooks/useTheme'
 import TopicCard, {
@@ -31,6 +33,7 @@ const TopicCardScreen: React.FC = () => {
         container: {
           padding: 20,
           justifyContent: 'center',
+          width: Platform.OS === 'web' ? undefined : Dimensions.get('screen').width,
           backgroundColor: '#58595e',
         },
         videoCardContainer: {
