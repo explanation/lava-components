@@ -16,6 +16,8 @@ export const colors = {
     // Secondary Colors
     secondaryContainers: '#161E2C',
     secondaryBk: '#13141C',
+    bgSurface1: '#0F1017',
+    bgSurface2:'#3E4146',
     secondaryGravity100: '#398FE4',
 
     // Tertiary Colors
@@ -45,6 +47,8 @@ export const colors = {
     // Secondary Colors
     secondaryContainers: '#161E2C',
     secondaryBk: '#13141C',
+    bgSurface1: '#0F1017',
+    bgSurface2:'#3E4146',
     secondaryGravity100: '#398FE4',
 
     // Tertiary Colors
@@ -53,7 +57,7 @@ export const colors = {
     tertiaryGravityDark: '#265180',
     tertiarySand20: '#EAEADF33',
     tertiarySand5: '#EAEADF0D',
-    tertiaryOnline: '#0A741C',
+    tertiaryOnline: '#0B8620',
 
     // Others
     pureBlack: '#000000',
