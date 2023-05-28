@@ -487,7 +487,8 @@ const Friend: React.FC<FriendProps> = (props) => {
             <Avatar
               username={name}
               avatarUrl={imageUrl}
-              size={44} />
+              variant='primaryLarge'
+              />
           </View>
 
           {badgeIcon && <Image source={badgeIcon()} style={styles().lBadge} />}

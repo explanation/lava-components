@@ -4,10 +4,11 @@ import GameCard from '../GameCard/GameCard'
 import FriendGroup from '../Friend/FriendGroup'
 import Title from '../../atoms/Title/Title'
 import FriendCircle from '../Friend/FriendCircle'
+import {FriendDotProps} from '../Friend/FriendDot'
 
 const MAXIMUM_WIDTH_OF_FEED_STORY = 296
 export interface GamePlayedStoryProps {
-    friends: { firstName: string, imageUrl?: string, status: 'online' | 'offline' }[]
+    friends: FriendDotProps[]
     onFriendsTapped?: ()=>void
     games: { title: string, imageUrl: string; onTapped?: ()=> void}[]
     timeAgo: string
@@ -27,7 +28,7 @@ export const GamePlayedStory = (props: GamePlayedStoryProps) => {
                         props.friends.length === 1  ?
                             <Pressable onPress={props.onFriendsTapped}>
                                 <FriendCircle 
-                                    imageUrl={props.friends[0].imageUrl} 
+                                    imageUrl={props.friends[0].avatarUrl} 
                                     status={props.friends[0].status} 
                                     containerSize={54} 
                                     imageSize={54} 
@@ -36,15 +37,15 @@ export const GamePlayedStory = (props: GamePlayedStoryProps) => {
                             </Pressable> :
                             <View style={{marginTop: -10}}>
                                 <FriendGroup
-                                    friends={props.friends}
-                                    showNames={false}
+                                    friendCircles={props.friends}
                                     onPress={props.onFriendsTapped}
+                                    variation='feed'
                                 />
                             </View>
                     }
                 </View>
                 <View style={styles.rightContent}>
-                    <Title style={styles.text} variation="title3" numberOfLines={1}>{renderNames(props.friends.map(f => f.firstName))}</Title>
+                    <Title style={styles.text} variation="title3" numberOfLines={1}>{renderNames(props.friends.map(f => f.username || ''))}</Title>
                     <Title style={styles.text} variation="title3" numberOfLines={1}>Played {props.games.length === 1 ? props.games[0].title : "Roblox"}</Title>
                     <Title style={styles.text} variation="title3" numberOfLines={1}>{props.timeAgo}</Title>
 
