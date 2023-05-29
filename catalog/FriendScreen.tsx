@@ -6,6 +6,7 @@ import {
   SafeAreaView,
   Alert,
   ScrollView,
+  Platform,
 } from 'react-native'
 import useTheme from '../components/hooks/useTheme'
 import Friend, { FriendProps } from '../components/molecules/Friend/Friend'
@@ -157,7 +158,7 @@ export default function FriendScreen() {
         container: {
           backgroundColor: theme.colors.secondaryBk,
           marginTop: 10,
-          paddingHorizontal: 100,
+          paddingHorizontal:  Platform.OS === "web" ? 100 : 40,
           paddingVertical: 50,
         },
         compContainer: {
