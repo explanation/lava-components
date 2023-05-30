@@ -1,5 +1,5 @@
 import React, { Fragment, useCallback, useEffect, useState } from 'react'
-import { StyleSheet, Text, View, Button, Pressable } from 'react-native'
+import { StyleSheet, Text, View, Button, Pressable, SafeAreaView } from 'react-native'
 import GameCardScreen from './catalog/GameCardScreen'
 import { useFonts } from 'expo-font'
 import ThemeContextProvider from './components/contexts/ThemeContext'
@@ -12,6 +12,8 @@ import theme from './components/config/theme'
 import NewVideoStoryScreen from './catalog/NewVideoStoryScreen'
 import GamePlayedStoryScreen from './catalog/GamePlayedStoryScreen'
 import ThemeScreen from './catalog/ThemeScreen'
+import AvatarScreen from './catalog/AvatarScreen'
+import FriendCircleScreen from './catalog/FriendCircleScreen'
 
 type Views =
   | 'ROOT'
@@ -23,6 +25,8 @@ type Views =
   | 'NEW_VIDEO_STORY'
   | 'GAME_PLAYED_STORY'
   | 'THEME'
+  | 'AVATAR'
+  | 'FRIENDCIRCLE'
 
 
 const App = () => {
@@ -64,6 +68,12 @@ const App = () => {
           <Button onPress={() => setView('TOPIC_CARD')} title="<TopicCard />" />
         </View>
         <View style={styles.button}>
+          <Button onPress={() => setView('AVATAR')} title="<Avatar/>" />
+        </View>
+        <View style={styles.button}>
+          <Button onPress={() => setView('FRIENDCIRCLE')} title="<FriendCircle/>" />
+        </View>
+        <View style={styles.button}>
           <Button onPress={() => setView('GAME_PLAYED_STORY')} title="<GamePlayedStory />" />
         </View>
         <View style={styles.button}>
@@ -92,7 +102,12 @@ const App = () => {
       screen = <GamePlayedStoryScreen />
     } else if (view === 'THEME') {
       screen = <ThemeScreen />
-    } else {
+    } else if (view === 'AVATAR') {
+      screen = <AvatarScreen/>
+    } else if (view === 'FRIENDCIRCLE') {
+      screen = <FriendCircleScreen/>
+    }
+     else {
       screen = <View />
     }
     content = (
@@ -119,9 +134,11 @@ const App = () => {
 
   return (
     <ThemeContextProvider mode="light">
-      <View style={styles.container} onLayout={onLayoutRootView}>
-        {content}
-      </View>
+      <SafeAreaView style={{flex:1}}>
+        <View style={styles.container} onLayout={onLayoutRootView}>
+          {content}
+        </View>
+      </SafeAreaView>
     </ThemeContextProvider>
   )
 }

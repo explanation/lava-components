@@ -3,14 +3,14 @@ import useTheme from "../../hooks/useTheme"
 import {LavaImage} from "../LavaImage/LavaImage"
 import Text from "../Text/Text"
 
-type Props = {
+export type AvatarProps = {
     avatarUrl?: string
     username?: string
     size: number,
     style?: ViewStyle
 }
 
-const Avatar = (props: Props) => {
+const Avatar = (props: AvatarProps) => {
     const theme = useTheme()
 
     const initials = () => {

@@ -6,6 +6,7 @@ import {
   SafeAreaView,
   Alert,
   ScrollView,
+  Platform,
 } from 'react-native'
 import useTheme from '../components/hooks/useTheme'
 import GameCard from '../components/molecules/GameCard/GameCard'
@@ -41,7 +42,7 @@ const VideoCardScreen: React.FC = () => {
           backgroundColor: theme.colors.secondaryBk,
         },
         videoCardContainer: {
-          marginBottom: 20,
+          marginBottom: Platform.OS === 'web' ?  20 : 60,
         },
         label: {
           fontSize: 10,

@@ -7,6 +7,7 @@ import {
   Image,
   ScrollView,
   Pressable,
+  Platform,
 } from 'react-native'
 import Button from '../components/atoms/Button/Button'
 import Title from '../components/atoms/Title/Title'
@@ -16,6 +17,9 @@ const commonButtonProps = {
   onPress: () => {
     console.log('Button is pressed')
   },
+  style: {
+    marginBottom:15
+  }
 }
 
 const ButtonScreen: React.FC = () => {
@@ -27,7 +31,7 @@ const ButtonScreen: React.FC = () => {
         container: {
           backgroundColor: theme.colors.secondaryBk,
           marginTop: 10,
-          paddingHorizontal: 100,
+          paddingHorizontal: Platform.OS === 'web' ? 100 : 20,
           paddingVertical: 50,
         },
         compContainer: {
@@ -70,6 +74,7 @@ const ButtonScreen: React.FC = () => {
           </Text>
           <Button
             {...commonButtonProps}
+           
             full
             variation="play"
             roundness="flat"
@@ -450,7 +455,7 @@ const ButtonScreen: React.FC = () => {
               variation="tertiary"
               roundness="rounded"
               size="large"
-              style={{ marginRight: 10 }}
+              style={{ marginRight: 10, marginBottom:10 }}
               icon={
                 <Image
                   source={require('../assets/icons/chevron-left.png')}
@@ -504,7 +509,7 @@ const ButtonScreen: React.FC = () => {
               variation="tertiary"
               roundness="rounded"
               size="large"
-              style={{ marginRight: 10 }}
+              style={{ marginRight: 10, marginBottom:10 }}
               icon={
                 <Image
                   source={require('../assets/icons/close-solid.png')}
@@ -521,7 +526,7 @@ const ButtonScreen: React.FC = () => {
               variation="gravity"
               roundness="rounded"
               size="large"
-              style={{ marginRight: 10 }}
+              style={{ marginRight: 10, marginBottom:10 }}
               icon={
                 <Image
                   source={require('../assets/icons/rating-like.png')}

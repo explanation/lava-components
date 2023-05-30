@@ -201,7 +201,7 @@ const GameCard: React.FC<GameCardProps> = (props) => {
                 </View>
 
                 {/* Card Footer */}
-                {likesOnPlatform || likesOnPlatform && <View style={styles.footerContainer}>
+                {!!(likesOnPlatform || likesOnPlatform) && <View style={styles.footerContainer}>
                     <LikeStat likes={likesByFriends!} suffix="friends"/>
                     <LikeStat likes={likesOnPlatform!}/>
                 </View>}
