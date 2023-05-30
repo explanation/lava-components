@@ -14,6 +14,7 @@ import ThemeScreen from './catalog/ThemeScreen'
 import AvatarScreen from './catalog/AvatarScreen'
 import FriendCircleScreen from './catalog/FriendCircleScreen'
 import FriendDotScreen from './catalog/FriendDotScreen'
+import FriendOfflineRowScreen from './catalog/FriendOfflineRowScreen'
 
 type Views =
   | 'ROOT'
@@ -27,6 +28,7 @@ type Views =
   | 'AVATAR'
   | 'FRIENDCIRCLE'
   | 'FRIENDDOT'
+  | 'FRIENDOFFLINEROW'
 
 const App = () => {
   const [view, setView] = useState<Views>('ROOT')
@@ -81,6 +83,9 @@ const App = () => {
         <View style={styles.button}>
           <Button onPress={() => setView('FRIENDDOT')} title="<FriendDot/>" />
         </View>
+        <View style={styles.button}>
+          <Button onPress={() => setView('FRIENDOFFLINEROW')} title="<FriendOfflineRow/>" />
+        </View>
       </View>
     )
   } else {
@@ -105,6 +110,8 @@ const App = () => {
       screen = <FriendCircleScreen/>
     }else if (view === 'FRIENDDOT') {
       screen = <FriendDotScreen/>
+    }else if (view === 'FRIENDOFFLINEROW') {
+      screen = <FriendOfflineRowScreen/>
     }else {
       screen = <View />
     }

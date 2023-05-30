@@ -141,7 +141,7 @@ const FriendGroup: React.FC<FriendGroupProps> = ({friendCircles = [], ...props})
                         </View>}
                     </>
                     )}
-                    {remainingFriends.length > 0 && <Title variation='subtitle1' style={{marginLeft:-8}}>+{remainingFriends.length}</Title>}
+                    {remainingFriends.length > 0 && <Title variation='subtitle1' style={{marginLeft:-8, marginTop:5}}>+{remainingFriends.length}</Title>}
                 </View>
             }
 
