@@ -134,7 +134,7 @@ export const getTypography = (
     lineHeight: 28.6,
     fontWeight: '400',
     letterSpacing: 0.96,
-    color: themeColors.primarySand,
+    color: themeColors.pureWhite,
   },
   title2: {
     fontFamily: fontFamily.Medium,
@@ -142,7 +142,7 @@ export const getTypography = (
     lineHeight: 18.2,
     fontWeight: '500',
     letterSpacing: 0.96,
-    color: themeColors.primarySand,
+    color: themeColors.pureWhite,
   },
   title3: {
     fontFamily: fontFamily.Regular,
@@ -150,7 +150,7 @@ export const getTypography = (
     lineHeight: 20.8,
     fontWeight: '400',
     letterSpacing: 0.96,
-    color: themeColors.primarySand,
+    color: themeColors.pureWhite,
   },
   subtitle1: {
     fontFamily: fontFamily.Medium,
@@ -158,7 +158,7 @@ export const getTypography = (
     lineHeight: 15.6,
     fontWeight: '500',
     letterSpacing: 0.96,
-    color: themeColors.primarySand,
+    color: themeColors.pureWhite,
   },
   subtitle2: {
     fontFamily: fontFamily.Regular,
@@ -166,7 +166,7 @@ export const getTypography = (
     lineHeight: 15.6,
     letterSpacing: 0.96,
     fontWeight: '400',
-    color: themeColors.primarySand,
+    color: themeColors.pureWhite,
   },
   subtitle3: {
     fontFamily: fontFamily.Regular,
@@ -174,7 +174,7 @@ export const getTypography = (
     lineHeight: 13,
     letterSpacing: 0.8,
     fontWeight: '400',
-    color: themeColors.primarySand,
+    color: themeColors.pureWhite,
   },
   subtitle4: {
     fontFamily: fontFamily.Regular,
@@ -182,13 +182,13 @@ export const getTypography = (
     fontWeight: '400',
     letterSpacing: 0.96,
     lineHeight: 10.4,
-    color: themeColors.primarySand,
+    color: themeColors.pureWhite,
   },
   base: {
     fontFamily: fontFamily.Regular,
     fontSize: 12,
     fontWeight: '400',
-    color: themeColors.primarySand,
+    color: themeColors.pureWhite,
   },
 })
 
