@@ -26,7 +26,7 @@ export const colors = {
     tertiaryGravityDark: '#265180',
     tertiarySand20: '#EAEADF33',
     tertiarySand5: '#EAEADF0D',
-    tertiaryOnline: '#0A741C',
+    tertiaryOnline: '#0B8620',
 
     // Others
     pureBlack: '#000000',

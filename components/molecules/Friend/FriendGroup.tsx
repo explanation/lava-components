@@ -88,7 +88,7 @@ const FriendGroup: React.FC<FriendGroupProps> = ({friendCircles = [], ...props})
 
                     </View>
                     )}
-                    {remainingFriends.length > 0 && <Title variation='title3' style={{marginLeft:6}}>+{remainingFriends.length}</Title>}
+                    {remainingFriends.length > 0 && <Title variation='subtitle1' style={{marginLeft:6}}>+{remainingFriends.length}</Title>}
                 </View>
             }
             
@@ -116,7 +116,7 @@ const FriendGroup: React.FC<FriendGroupProps> = ({friendCircles = [], ...props})
 
                     </View>
                     )}
-                    {remainingFriends.length > 0 && <Title variation='title3' style={{marginLeft:6}}>+{remainingFriends.length}</Title>}
+                    {remainingFriends.length > 0 && <Title variation='subtitle1' style={{marginLeft:6}}>+{remainingFriends.length}</Title>}
                 </View>
             }
 
@@ -134,7 +134,7 @@ const FriendGroup: React.FC<FriendGroupProps> = ({friendCircles = [], ...props})
                         </View>}
                     </>
                     )}
-                    {remainingFriends.length > 0 && <Title variation='title3' style={{marginLeft:-8}}>+{remainingFriends.length}</Title>}
+                    {remainingFriends.length > 0 && <Title variation='subtitle1' style={{marginLeft:-8}}>+{remainingFriends.length}</Title>}
                 </View>
             }
 
@@ -162,7 +162,7 @@ const FriendGroup: React.FC<FriendGroupProps> = ({friendCircles = [], ...props})
 
                     </View>
                     )}
-                    {remainingFriends.length > 0 && <Title variation='title3' style={{marginLeft:6}}>+{remainingFriends.length}</Title>}
+                    {remainingFriends.length > 0 && <Title variation='subtitle1' style={{marginLeft:6}}>+{remainingFriends.length}</Title>}
                 </View>
             }
         </Pressable>
