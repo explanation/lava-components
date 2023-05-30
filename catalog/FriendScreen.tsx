@@ -89,13 +89,19 @@ export default function FriendScreen() {
         </View>
         <View>
           <Text style={styles.labelText}>
-            #3 [Friend Group for variant friends]
+            #3 [Friend Group for variant offline with more than 2 friends]
+          </Text>
+          <FriendGroup {...friendData} friendCircles={friendData1.friendCircles} variation='offline'/>
+        </View>
+        <View>
+          <Text style={styles.labelText}>
+            #4 [Friend Group for variant friends]
           </Text>
           <FriendGroup {...friendData1} variation='friends'/>
         </View>
         <View>
           <Text style={styles.labelText}>
-            #4 [Friend Group for variant inbox]
+            #5 [Friend Group for variant inbox]
           </Text>
           <FriendGroup {...friendData1} variation='inbox'/>
         </View>
