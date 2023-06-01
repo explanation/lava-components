@@ -20,7 +20,7 @@ export const FriendOfflineRow = (props: FriendOfflineRowProps) => {
             <View style={[styles.container, props.style]}>
                 <FriendGroup friendCircles={props.friendCircles} variation="offline"/>
                 <Title variation="subtitle1" style={styles.text} numberOfLines={1}>{props.title}</Title>
-                <LavaImage source={require("./assets/chevron.png")} style={{width: 12, height: 6, marginTop: -2}}/>
+                <LavaImage source={require("./assets/chevron.png")} style={{width: 10, height: 6, marginTop: -2}}/>
             </View>
         </Pressable>
     )
