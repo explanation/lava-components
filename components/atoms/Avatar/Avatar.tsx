@@ -87,7 +87,8 @@ export default Avatar
 const styles = StyleSheet.create({
     container: {
         borderWidth: 0.25,
-        borderColor:'rgba(255, 255, 255, 0.35)',
+        borderColor:'rgba(255, 255, 255, 0.10)',
+        overflow:'hidden',
     },
     text: {
         fontWeight: '400',
