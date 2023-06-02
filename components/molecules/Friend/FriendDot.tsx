@@ -10,21 +10,21 @@ export type FriendDotProps = AvatarProps & {
 export const FriendDot = (props: FriendDotProps) => {
     const variants = {
         primaryLarge: {
+            width: 16,
+            height: 16,
+            borderRadius: 16/2,
+            bottom: 2
+        },
+        secondary: {
             width: 14,
             height: 14,
             borderRadius: 14/2,
             bottom: 2
         },
-        secondary: {
+        primarySmall: {
             width: 12,
             height: 12,
             borderRadius: 12/2,
-            bottom: 2
-        },
-        primarySmall: {
-            width: 10,
-            height: 10,
-            borderRadius: 10/2,
             bottom: 2
         },
     }
@@ -41,7 +41,7 @@ export const FriendDot = (props: FriendDotProps) => {
 const styles = StyleSheet.create({
     dot: {
         backgroundColor: theme.colors.dark.tertiaryOnline,
-        right: 0,
+        right: -2,
         position: 'absolute',
         borderWidth: 2,
         borderColor: theme.colors.dark.bgSurface1
