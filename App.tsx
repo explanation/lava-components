@@ -13,6 +13,7 @@ import GamePlayedStoryScreen from './catalog/GamePlayedStoryScreen'
 import ThemeScreen from './catalog/ThemeScreen'
 import AvatarScreen from './catalog/AvatarScreen'
 import FriendCircleScreen from './catalog/FriendCircleScreen'
+import NewGameCardScreen from './catalog/NewGameCardScreen'
 
 type Views =
   | 'ROOT'
@@ -25,7 +26,7 @@ type Views =
   | 'THEME'
   | 'AVATAR'
   | 'FRIENDCIRCLE'
-
+  | 'NEW_GAME_CARD'
 
 const App = () => {
   const [view, setView] = useState<Views>('ROOT')
@@ -77,6 +78,9 @@ const App = () => {
         <View style={styles.button}>
           <Button onPress={() => setView('THEME')} title="Theme" />
         </View>
+        <View style={styles.button}>
+          <Button onPress={() => setView('NEW_GAME_CARD')} title="<NewGameCard/>" />
+        </View>
       </View>
     )
   } else {
@@ -99,8 +103,9 @@ const App = () => {
       screen = <AvatarScreen/>
     } else if (view === 'FRIENDCIRCLE') {
       screen = <FriendCircleScreen/>
-    }
-     else {
+    } else if (view === 'NEW_GAME_CARD') {
+      screen = <NewGameCardScreen/>
+    } else {
       screen = <View />
     }
     content = (

@@ -33,7 +33,6 @@ const LikeStat: React.FC<LikeStatProps> = (props) => {
         likes: {
           ...theme.typography.subtitle3,
           marginLeft: theme.spacing.sm,
-          opacity: 0.6,
         },
         suffix: {
           ...theme.typography.subtitle3,
