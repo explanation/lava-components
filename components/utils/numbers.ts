@@ -38,7 +38,6 @@ export const getTimeAgo = (date: Date, intervalMapping?: IntervalMapping[]) => {
 }
 
 export const getVideoDuration = (durationInSeconds: number) => {
-  console.log('getVideoDuration')
   const h = Math.floor(durationInSeconds / 3600)
   const m = Math.floor((durationInSeconds % 3600) / 60)
   const s = Math.round(durationInSeconds % 60)
