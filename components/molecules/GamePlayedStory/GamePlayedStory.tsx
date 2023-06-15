@@ -4,6 +4,7 @@ import GameCard from '../GameCard/GameCard'
 import FriendGroup from '../Friend/FriendGroup'
 import Title from '../../atoms/Title/Title'
 import FriendCircle from '../Friend/FriendCircle'
+import theme from '../../config/theme'
 
 const MAXIMUM_WIDTH_OF_FEED_STORY = 296
 export interface GamePlayedStoryProps {
@@ -73,7 +74,7 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         padding: 24,
-        backgroundColor: '#0F1017',
+        backgroundColor: theme.colors.dark.bgSurface1,
         borderRadius: 4,
         borderWidth: 0.5,
         borderColor: 'rgba(255, 255, 255, 0.35)'
