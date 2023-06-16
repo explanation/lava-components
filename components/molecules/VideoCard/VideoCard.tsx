@@ -250,13 +250,13 @@ const VideoCard: React.FC<VideoCardProps> = (props) => {
                 {(variation === 'feed' || variation === 'secrets') && !showPlayButton &&
                     <Fragment>
                         <View style={styles.thumbnailOverlay}/>
-                        {props.duration && (
+                        {props.duration != undefined && (props.duration > 0) &&
                             <View style={styles.durationLabel}>
                                 <Title variation="subtitle3" style={styles.durationText}>
                                     {getVideoDuration(props.duration)}
                                 </Title>
                             </View>
-                        )}
+                        }
                     </Fragment>
                 }
             </View>

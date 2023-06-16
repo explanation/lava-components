@@ -9,12 +9,14 @@ import ButtonScreen from './catalog/ButtonScreen'
 import TopicCardScreen from './catalog/TopicCardScreen'
 import Title from './components/atoms/Title/Title'
 import theme from './components/config/theme'
+import NewVideoStoryScreen from './catalog/NewVideoStoryScreen'
 import GamePlayedStoryScreen from './catalog/GamePlayedStoryScreen'
 import ThemeScreen from './catalog/ThemeScreen'
 import AvatarScreen from './catalog/AvatarScreen'
 import FriendCircleScreen from './catalog/FriendCircleScreen'
 import FriendDotScreen from './catalog/FriendDotScreen'
 import FriendOfflineRowScreen from './catalog/FriendOfflineRowScreen'
+import FriendRowScreen from './catalog/FriendRowScreen'
 
 type Views =
   | 'ROOT'
@@ -23,12 +25,14 @@ type Views =
   | 'VIDEO_CARD'
   | 'BUTTON'
   | 'TOPIC_CARD'
+  | 'NEW_VIDEO_STORY'
   | 'GAME_PLAYED_STORY'
   | 'THEME'
   | 'AVATAR'
   | 'FRIENDCIRCLE'
   | 'FRIENDDOT'
   | 'FRIENDOFFLINEROW'
+  | 'FRIENDROW'
 
 const App = () => {
   const [view, setView] = useState<Views>('ROOT')
@@ -86,6 +90,15 @@ const App = () => {
         <View style={styles.button}>
           <Button onPress={() => setView('FRIENDOFFLINEROW')} title="<FriendOfflineRow/>" />
         </View>
+        <View style={styles.button}>
+          <Button onPress={() => setView('FRIENDROW')} title="<FriendRow/>" />
+        </View>
+        <View style={styles.button}>
+          <Button onPress={() => setView('NEW_VIDEO_STORY')} title="<NewVideoStory />" />
+        </View>
+        <View style={styles.button}>
+          <Button onPress={() => setView('THEME')} title="Theme" />
+        </View>
       </View>
     )
   } else {
@@ -100,6 +113,8 @@ const App = () => {
       screen = <ButtonScreen />
     } else if (view === 'TOPIC_CARD') {
       screen = <TopicCardScreen />
+    } else if (view === 'NEW_VIDEO_STORY') {
+      screen = <NewVideoStoryScreen />
     } else if (view === 'GAME_PLAYED_STORY') {
       screen = <GamePlayedStoryScreen />
     } else if (view === 'THEME') {
@@ -108,11 +123,13 @@ const App = () => {
       screen = <AvatarScreen/>
     } else if (view === 'FRIENDCIRCLE') {
       screen = <FriendCircleScreen/>
-    }else if (view === 'FRIENDDOT') {
+    } else if (view === 'FRIENDDOT') {
       screen = <FriendDotScreen/>
-    }else if (view === 'FRIENDOFFLINEROW') {
+    } else if (view === 'FRIENDOFFLINEROW') {
       screen = <FriendOfflineRowScreen/>
-    }else {
+    } else if (view === 'FRIENDROW') {
+      screen = <FriendRowScreen/>
+    } else {
       screen = <View />
     }
     content = (

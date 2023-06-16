@@ -1,15 +1,8 @@
-import {useCallback} from 'react'
-import {Image, Pressable, StyleProp, StyleSheet, View, ViewStyle} from 'react-native'
-import Button from '../../atoms/Button/Button'
+import {Pressable, StyleSheet, View} from 'react-native'
 import Title from '../../atoms/Title/Title'
-import Text from '../../atoms/Text/Text'
 import useTheme from '../../hooks/useTheme'
-import {FriendNetworkStatus} from './Friend'
-import {getTimeAgo} from '../../utils/numbers'
-import {intervalMapping} from '../../config/date'
 import {FriendDot, FriendDotProps} from './FriendDot'
 import {avatarVariants} from '../../atoms/Avatar/Avatar'
-
 
 export interface FriendGroupProps {
     variation: 'feed' | 'friends' | 'offline' | 'inbox'
