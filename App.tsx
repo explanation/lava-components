@@ -15,6 +15,7 @@ import ThemeScreen from './catalog/ThemeScreen'
 import AvatarScreen from './catalog/AvatarScreen'
 import FriendCircleScreen from './catalog/FriendCircleScreen'
 import FriendDotScreen from './catalog/FriendDotScreen'
+import FriendOfflineRowScreen from './catalog/FriendOfflineRowScreen'
 import FriendRowScreen from './catalog/FriendRowScreen'
 
 type Views =
@@ -30,6 +31,7 @@ type Views =
   | 'AVATAR'
   | 'FRIENDCIRCLE'
   | 'FRIENDDOT'
+  | 'FRIENDOFFLINEROW'
   | 'FRIENDROW'
 
 const App = () => {
@@ -86,6 +88,9 @@ const App = () => {
           <Button onPress={() => setView('FRIENDDOT')} title="<FriendDot/>" />
         </View>
         <View style={styles.button}>
+          <Button onPress={() => setView('FRIENDOFFLINEROW')} title="<FriendOfflineRow/>" />
+        </View>
+        <View style={styles.button}>
           <Button onPress={() => setView('FRIENDROW')} title="<FriendRow/>" />
         </View>
         <View style={styles.button}>
@@ -120,10 +125,11 @@ const App = () => {
       screen = <FriendCircleScreen/>
     } else if (view === 'FRIENDDOT') {
       screen = <FriendDotScreen/>
+    } else if (view === 'FRIENDOFFLINEROW') {
+      screen = <FriendOfflineRowScreen/>
     } else if (view === 'FRIENDROW') {
       screen = <FriendRowScreen/>
-    }
-    else {
+    } else {
       screen = <View />
     }
     content = (
