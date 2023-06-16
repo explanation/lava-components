@@ -9,11 +9,15 @@ import ButtonScreen from './catalog/ButtonScreen'
 import TopicCardScreen from './catalog/TopicCardScreen'
 import Title from './components/atoms/Title/Title'
 import theme from './components/config/theme'
+import NewVideoStoryScreen from './catalog/NewVideoStoryScreen'
 import GamePlayedStoryScreen from './catalog/GamePlayedStoryScreen'
 import ThemeScreen from './catalog/ThemeScreen'
 import AvatarScreen from './catalog/AvatarScreen'
 import FriendCircleScreen from './catalog/FriendCircleScreen'
 import NewGameCardScreen from './catalog/NewGameCardScreen'
+import FriendDotScreen from './catalog/FriendDotScreen'
+import FriendOfflineRowScreen from './catalog/FriendOfflineRowScreen'
+import FriendRowScreen from './catalog/FriendRowScreen'
 
 type Views =
   | 'ROOT'
@@ -22,11 +26,15 @@ type Views =
   | 'VIDEO_CARD'
   | 'BUTTON'
   | 'TOPIC_CARD'
+  | 'NEW_VIDEO_STORY'
   | 'GAME_PLAYED_STORY'
   | 'THEME'
   | 'AVATAR'
   | 'FRIENDCIRCLE'
   | 'NEW_GAME_CARD'
+  | 'FRIENDDOT'
+  | 'FRIENDOFFLINEROW'
+  | 'FRIENDROW'
 
 const App = () => {
   const [view, setView] = useState<Views>('ROOT')
@@ -52,6 +60,9 @@ const App = () => {
           Pick a Screen{'\n\n'}
         </Text>
         <View style={styles.button}>
+          <Button onPress={() => setView('THEME')} title="Theme" />
+        </View>
+        <View style={styles.button}>
           <Button onPress={() => setView('GAME_CARD')} title="<GameCard />" />
         </View>
         <View style={styles.button}>
@@ -76,6 +87,18 @@ const App = () => {
           <Button onPress={() => setView('GAME_PLAYED_STORY')} title="<GamePlayedStory />" />
         </View>
         <View style={styles.button}>
+          <Button onPress={() => setView('FRIENDDOT')} title="<FriendDot/>" />
+        </View>
+        <View style={styles.button}>
+          <Button onPress={() => setView('FRIENDOFFLINEROW')} title="<FriendOfflineRow/>" />
+        </View>
+        <View style={styles.button}>
+          <Button onPress={() => setView('FRIENDROW')} title="<FriendRow/>" />
+        </View>
+        <View style={styles.button}>
+          <Button onPress={() => setView('NEW_VIDEO_STORY')} title="<NewVideoStory />" />
+        </View>
+        <View style={styles.button}>
           <Button onPress={() => setView('THEME')} title="Theme" />
         </View>
         <View style={styles.button}>
@@ -95,6 +118,8 @@ const App = () => {
       screen = <ButtonScreen />
     } else if (view === 'TOPIC_CARD') {
       screen = <TopicCardScreen />
+    } else if (view === 'NEW_VIDEO_STORY') {
+      screen = <NewVideoStoryScreen />
     } else if (view === 'GAME_PLAYED_STORY') {
       screen = <GamePlayedStoryScreen />
     } else if (view === 'THEME') {
@@ -105,6 +130,12 @@ const App = () => {
       screen = <FriendCircleScreen/>
     } else if (view === 'NEW_GAME_CARD') {
       screen = <NewGameCardScreen/>
+    } else if (view === 'FRIENDDOT') {
+      screen = <FriendDotScreen/>
+    } else if (view === 'FRIENDOFFLINEROW') {
+      screen = <FriendOfflineRowScreen/>
+    } else if (view === 'FRIENDROW') {
+      screen = <FriendRowScreen/>
     } else {
       screen = <View />
     }

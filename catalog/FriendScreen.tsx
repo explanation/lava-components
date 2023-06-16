@@ -4,165 +4,64 @@ import {
   Text,
   View,
   SafeAreaView,
-  Alert,
   ScrollView,
   Platform,
 } from 'react-native'
 import useTheme from '../components/hooks/useTheme'
-import Friend, { FriendProps } from '../components/molecules/Friend/Friend'
-import FriendGroup, {
-  FriendGroupItem,
-} from '../components/molecules/Friend/FriendGroup'
+import FriendGroup, {FriendGroupProps} from '../components/molecules/Friend/FriendGroup'
 
-const friendData: FriendProps = {
-  imageUrl: 'https://i.imgur.com/LK7ymaN.png',
-  name: 'Lily Woofers',
-  message: 'where are you. what are you doing...?',
-  activityImageUrl: 'https://i.imgur.com/vC81osj.png',
-  activityType: 'playing',
+const friendData: FriendGroupProps = {
+  friendCircles: [
+    {
+      avatarUrl: 'https://i.imgur.com/LK7ymaN.png',
+      username: 'Lily Woofers',
+      variant:'primaryLarge',
+      status: 'online'
+    },
+    {
+      avatarUrl: 'https://i.imgur.com/LK7ymaN.png',
+      username: 'Lily Woofers',
+      variant:'primaryLarge',
+      status: 'offline'
+    }
+  ],
+  variation:'feed'
 }
 
-const friendsOnlineOfflineSampleData: FriendGroupItem[] = [
-  {
-    firstName: 'Charlie',
-    imageUrl: friendData.imageUrl,
-    status: 'online',
-  },
-  {
-    firstName: 'Doug',
-    imageUrl: friendData.imageUrl,
-    status: 'offline',
-  },
-  {
-    firstName: 'Devin',
-    imageUrl: friendData.imageUrl,
-    status: 'online',
-  },
-  {
-    firstName: 'Pranay',
-    imageUrl: friendData.imageUrl,
-    status: 'online',
-  },
-  {
-    firstName: 'Nihar',
-    imageUrl: friendData.imageUrl,
-    status: 'offline',
-  },
-  {
-    firstName: 'Josie',
-    imageUrl: friendData.imageUrl,
-    status: 'online',
-  },
-  {
-    firstName: 'Evan',
-    imageUrl: friendData.imageUrl,
-    status: 'online',
-  },
-]
-
-const friendsOnlineOnlineSampleData: FriendGroupItem[] = [
-  {
-    firstName: 'Charlie',
-    imageUrl: friendData.imageUrl,
-    status: 'online',
-  },
-  {
-    firstName: 'Doug',
-    imageUrl: friendData.imageUrl,
-    status: 'online',
-  },
-  {
-    firstName: 'Devin',
-    imageUrl: friendData.imageUrl,
-    status: 'online',
-  },
-  {
-    firstName: 'Pranay',
-    imageUrl: friendData.imageUrl,
-    status: 'online',
-  },
-  {
-    firstName: 'Nihar',
-    imageUrl: friendData.imageUrl,
-    status: 'offline',
-  },
-  {
-    firstName: 'Josie',
-    imageUrl: friendData.imageUrl,
-    status: 'online',
-  },
-  {
-    firstName: 'Evan',
-    imageUrl: friendData.imageUrl,
-    status: 'online',
-  },
-]
-
-const friendsOfflineOfflineSampleData: FriendGroupItem[] = [
-  {
-    firstName: 'Charlie',
-    imageUrl: friendData.imageUrl,
-    status: 'offline',
-  },
-  {
-    firstName: 'Doug',
-    imageUrl: friendData.imageUrl,
-    status: 'offline',
-  },
-  {
-    firstName: 'Devin',
-    imageUrl: friendData.imageUrl,
-    status: 'online',
-  },
-  {
-    firstName: 'Pranay',
-    imageUrl: friendData.imageUrl,
-    status: 'online',
-  },
-  {
-    firstName: 'Nihar',
-    imageUrl: friendData.imageUrl,
-    status: 'offline',
-  },
-  {
-    firstName: 'Josie',
-    imageUrl: friendData.imageUrl,
-    status: 'online',
-  },
-  {
-    firstName: 'Evan',
-    imageUrl: friendData.imageUrl,
-    status: 'online',
-  },
-]
-
-const lastSeen = new Date(new Date().getTime() - 20 * 60 * 1000).toISOString()
-
-const notificationSentOn = new Date(
-  new Date().getTime() - 2 * 60 * 60 * 1000,
-).toISOString()
+const friendData1: FriendGroupProps = {
+  friendCircles: [
+    {
+      avatarUrl: 'https://i.imgur.com/LK7ymaN.png',
+      username: 'Lily Woofers',
+      variant:'primaryLarge',
+      status: 'online'
+    },
+    {
+      avatarUrl: 'https://i.imgur.com/LK7ymaN.png',
+      username: 'Lily Woofers',
+      variant:'primaryLarge',
+      status: 'offline'
+    },
+    {
+      avatarUrl: 'https://i.imgur.com/LK7ymaN.png',
+      username: 'Lily Woofers',
+      variant:'primaryLarge',
+      status: 'offline'
+    }
+  ],
+  variation:'feed'
+}
 
 export default function FriendScreen() {
   const theme = useTheme()
-  const showFriendAreaPressAlert = () => {
-    Alert.alert('Friend is Pressed')
-  }
-
-  const showCurrentActivityPressAlert = () => {
-    Alert.alert('Current Activity Pressed')
-  }
-
   const styles = useMemo(
     () =>
       StyleSheet.create({
         container: {
-          backgroundColor: theme.colors.secondaryBk,
+          backgroundColor: '#242323',
           marginTop: 10,
           paddingHorizontal:  Platform.OS === "web" ? 100 : 40,
           paddingVertical: 50,
-        },
-        compContainer: {
-          marginBottom: 35,
         },
         labelText: {
           color: theme.colors.primarySand,
@@ -176,363 +75,35 @@ export default function FriendScreen() {
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <ScrollView contentContainerStyle={styles.container}>
-        {/* #1
-          • Online
-          • Playing a game
-          • Unread Chat
-        */}
-        <View style={styles.compContainer}>
+        <View>
           <Text style={styles.labelText}>
-            {"<Friend/>"} - #1 [Online, Playing a game, Unread Chat]
+            #1 [Friend Group for variant feed]
           </Text>
-          <Friend
-            name={friendData.name}
-            imageUrl={friendData.imageUrl}
-            message={friendData.message}
-            activityImageUrl={friendData.activityImageUrl}
-            activityType={'playing'}
-          />
+          <FriendGroup {...friendData}/>
         </View>
-
-        {/* #2
-          • Online
-          • Playing a game
-          • Last chat is read
-        */}
-        <View style={styles.compContainer}>
+        <View>
           <Text style={styles.labelText}>
-            {"<Friend/>"} - #2 [Online, Playing a game, Last chat is read]
+            #2 [Friend Group for variant offline]
           </Text>
-
-          <Friend
-            messageSeen
-            name={friendData.name}
-            imageUrl={friendData.imageUrl}
-            message={friendData.message}
-            activityImageUrl={friendData.activityImageUrl}
-            activityType={'playing'}
-          />
+          <FriendGroup {...friendData} variation='offline'/>
         </View>
-
-        {/* #3
-          • Online
-          • Playing a game
-          • In a call
-        */}
-        <View style={[styles.compContainer]}>
+        <View>
           <Text style={styles.labelText}>
-            {"<Friend/>"} - #3 [Online, Playing a game, In a Call]
+            #3 [Friend Group for variant offline with more than 2 friends]
           </Text>
-          <Friend
-            onCall
-            name={friendData.name}
-            imageUrl={friendData.imageUrl}
-            message={friendData.message}
-            activityImageUrl={friendData.activityImageUrl}
-            activityType={'playing'}
-          />
+          <FriendGroup {...friendData} friendCircles={friendData1.friendCircles} variation='offline'/>
         </View>
-
-        {/* #4
-          • Group w/ different status of users
-        */}
-        <View style={[styles.compContainer]}>
+        <View>
           <Text style={styles.labelText}>
-          {"<FriendGroup/>"} - #4 [Group w/ different status of users, online/offline]
+            #4 [Friend Group for variant friends]
           </Text>
-          <FriendGroup friends={friendsOnlineOfflineSampleData} />
+          <FriendGroup {...friendData1} variation='friends'/>
         </View>
-
-        {/* #4.1
-          • Group w/ different status of users
-        */}
-        <View style={[styles.compContainer]}>
+        <View>
           <Text style={styles.labelText}>
-            {"<FriendGroup/>"} - #4.1 [Group w/ different status of users, online/online]
+            #5 [Friend Group for variant inbox]
           </Text>
-          <FriendGroup friends={friendsOnlineOnlineSampleData} />
-        </View>
-
-        {/* #4.2
-          • Group w/ different status of users
-        */}
-        <View style={[styles.compContainer]}>
-          <Text style={styles.labelText}>
-          {"<FriendGroup/>"} - #4.2 [Group w/ different status of users, offline/offline]
-          </Text>
-          <FriendGroup friends={friendsOfflineOfflineSampleData} />
-        </View>
-
-        {/* #5
-          • Offline
-          • Last played game
-          • Last Unread Chat
-        */}
-        <View style={styles.compContainer}>
-          <Text style={styles.labelText}>
-            {"<Friend/>"} - # 5 [Offline, Last played game, last unread chat]
-          </Text>
-          <Friend
-            status="offline"
-            lastSeen={lastSeen}
-            name={friendData.name}
-            imageUrl={friendData.imageUrl}
-            message={friendData.message}
-            activityImageUrl={friendData.activityImageUrl}
-          />
-        </View>
-
-        {/* #6
-          • Offline
-          • Last played game
-          • Last chat is read
-        */}
-        <View style={styles.compContainer}>
-          <Text style={styles.labelText}>
-            {"<Friend/>"} - #6 [Offline, Last played game, Last chat is read]
-          </Text>
-          <Friend
-            messageSeen
-            status="offline"
-            lastSeen={lastSeen}
-            name={friendData.name}
-            imageUrl={friendData.imageUrl}
-            message={friendData.message}
-            activityImageUrl={friendData.activityImageUrl}
-          />
-        </View>
-
-        {/* #7
-          • Friend Request Sent
-        */}
-        <View style={styles.compContainer}>
-          <Text style={styles.labelText}>{"<Friend/>"} - #7 [Friend Request Sent]</Text>
-          <Friend
-            friendRequestSent
-            name={friendData.name}
-            imageUrl={friendData.imageUrl}
-          />
-        </View>
-
-        {/* #8.1
-          • Online
-          • No chat history
-        */}
-        <View style={styles.compContainer}>
-          <Text style={styles.labelText}>{"<Friend/>"} - #8.1 [Online, No chat history]</Text>
-          <Friend
-            name={friendData.name}
-            imageUrl={friendData.imageUrl}
-            activityImageUrl={friendData.activityImageUrl}
-          />
-        </View>
-
-        {/* #8.2
-          • Offline
-          • No chat history
-        */}
-        <View style={styles.compContainer}>
-          <Text style={styles.labelText}>{"<Friend/>"} - #8.2 [Offline, No chat history]</Text>
-          <Friend
-            status="offline"
-            lastSeen={lastSeen}
-            name={friendData.name}
-            imageUrl={friendData.imageUrl}
-            activityImageUrl={friendData.activityImageUrl}
-          />
-        </View>
-
-        {/* #9.1
-          • Online
-          • Not playing game
-          • No chat history
-        */}
-        <View style={styles.compContainer}>
-          <Text style={styles.labelText}>
-            {"<Friend/>"} - #9.1 [Online, Not playing game, No chat history]
-          </Text>
-          <Friend name={friendData.name} imageUrl={friendData.imageUrl} />
-        </View>
-
-        {/* #9.2
-          • Offline
-          • Not playing game
-          • No chat history
-        */}
-        <View style={styles.compContainer}>
-          <Text style={styles.labelText}>
-            {"<Friend/>"} - #9.2 [Offline, Not playing game, No chat history]
-          </Text>
-          <Friend
-            status="offline"
-            lastSeen={lastSeen}
-            name={friendData.name}
-            imageUrl={friendData.imageUrl}
-          />
-        </View>
-
-        {/* #10.1
-          • Online
-          • Not playing game
-          • Chat history
-        */}
-        <View style={styles.compContainer}>
-          <Text style={styles.labelText}>
-            {"<Friend/>"} - #10.1 [Online, Not playing game, Chat history]
-          </Text>
-          <Friend
-            name={friendData.name}
-            imageUrl={friendData.imageUrl}
-            message={friendData.message}
-          />
-        </View>
-
-        {/* #10.2
-          • Offline
-          • Not playing game
-          • Chat history
-        */}
-        <View style={styles.compContainer}>
-          <Text style={styles.labelText}>
-            {"<Friend/>"} - #10.2 [Offline, Not playing game, Chat history]
-          </Text>
-          <Friend
-            lastSeen={lastSeen}
-            status="offline"
-            name={friendData.name}
-            imageUrl={friendData.imageUrl}
-            message={friendData.message}
-          />
-        </View>
-
-        {/* #11
-          • Online
-          • Watching a video
-        */}
-        <View style={styles.compContainer}>
-          <Text style={styles.labelText}>{"<Friend/>"} - #11 [Online, Watching a Video]</Text>
-          <Friend
-            name={friendData.name}
-            imageUrl={friendData.imageUrl}
-            activityImageUrl={friendData.activityImageUrl}
-            activityType="watching"
-          />
-        </View>
-
-        {/* #12
-          • Online
-          • Playing a game
-          * Friend not in lava
-        */}
-        <View style={styles.compContainer}>
-          <Text style={styles.labelText}>
-            {"<Friend/>"} - #12 [Online, Playing a game, Friend not in lava]
-          </Text>
-          <Friend
-            friendInLava={false}
-            name={friendData.name}
-            imageUrl={friendData.imageUrl}
-            activityImageUrl={friendData.activityImageUrl}
-            activityType="playing"
-          />
-        </View>
-
-        {/* #13
-          • Offline
-          • Last Played Game
-          * Friend not in lava
-        */}
-        <View style={styles.compContainer}>
-          <Text style={styles.labelText}>
-            {"<Friend/>"} - #13 [Offline, Playing a game, Friend not in lava]
-          </Text>
-          <Friend
-            status="offline"
-            friendInLava={false}
-            lastSeen={lastSeen}
-            name={friendData.name}
-            imageUrl={friendData.imageUrl}
-            activityImageUrl={friendData.activityImageUrl}
-          />
-        </View>
-
-        {/* #14
-          • New Friend Request
-        */}
-        <View style={styles.compContainer}>
-          <Text style={styles.labelText}>{"<Friend/>"} - #14 [New friend request]</Text>
-          <Friend
-            notificationType="new-friend-request"
-            name="Ethan SuperNoob"
-            notificationSentOn={notificationSentOn}
-            imageUrl={friendData.imageUrl}
-            activityImageUrl={friendData.activityImageUrl}
-          />
-        </View>
-
-        {/* #15
-          • Chat
-        */}
-        <View style={styles.compContainer}>
-          <Text style={styles.labelText}>{"<Friend/>"} - #15 [Chat Notification]</Text>
-          <Friend
-            notificationType="chat"
-            name="Lily Woofers 10"
-            message="hey where are you?"
-            imageUrl={friendData.imageUrl}
-            notificationSentOn={notificationSentOn}
-          />
-        </View>
-
-        {/* #16
-          • Chat
-        */}
-        <View style={styles.compContainer}>
-          <Text style={styles.labelText}>{"<FriendGroup/>"} - #16 [Chat Group]</Text>
-          <FriendGroup
-            messageSeen
-            message="hey where are you?"
-            notificationSentOn={notificationSentOn}
-            friends={friendsOnlineOnlineSampleData}
-          />
-        </View>
-
-        {/* #17.1
-          • Call
-        */}
-        <View style={styles.compContainer}>
-          <Text style={styles.labelText}>{"<Friend/>"} - #17.1 [Call]</Text>
-          <Friend
-            name="Lily Woofers 10"
-            notificationType="video"
-            imageUrl={friendData.imageUrl}
-            notificationSentOn={notificationSentOn}
-          />
-        </View>
-
-        {/* #17.2
-          • Call
-        */}
-        <View style={styles.compContainer}>
-          <Text style={styles.labelText}>{"<FriendGroup/>"} - #17.2 [Group Call]</Text>
-          <FriendGroup
-            notificationType="video"
-            notificationSentOn={notificationSentOn}
-            friends={friendsOnlineOnlineSampleData}
-          />
-        </View>
-
-        {/* #18
-          • Call
-        */}
-        <View style={styles.compContainer}>
-          <Text style={styles.labelText}>{"<Friend/>"} - #18 [Call]</Text>
-          <Friend
-            name="Lily Woofers 10"
-            notificationType="new-friend-joined"
-            notificationSentOn={notificationSentOn}
-            imageUrl={friendData.imageUrl}
-          />
+          <FriendGroup {...friendData1} variation='inbox'/>
         </View>
       </ScrollView>
     </SafeAreaView>

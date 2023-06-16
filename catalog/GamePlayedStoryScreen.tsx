@@ -18,24 +18,28 @@ const showAlert = () => {
 const storyProps: GamePlayedStoryProps = {
   friends:[
     {
-      firstName:'Josie',
+      username:'Josie',
       status:'offline',
-      imageUrl: 'https://i.imgur.com/LK7ymaN.png',
+      avatarUrl: 'https://i.imgur.com/LK7ymaN.png',
+      variant:'primaryLarge'
     },
     {
-      firstName:'Evan',
+      username:'Evan',
       status:'offline',
-      imageUrl: 'https://i.imgur.com/LK7ymaN.png',
+      avatarUrl: 'https://i.imgur.com/LK7ymaN.png',
+      variant:'primaryLarge'
     },
     {
-      firstName:'Analena',
+      username:'Analena',
       status:'offline',
-      imageUrl: 'https://i.imgur.com/LK7ymaN.png',
+      avatarUrl: 'https://i.imgur.com/LK7ymaN.png',
+      variant:'primaryLarge'
     },
     {
-      firstName:'Josh',
+      username:'Josh',
       status:'offline',
-      imageUrl: 'https://i.imgur.com/LK7ymaN.png',
+      avatarUrl: 'https://i.imgur.com/LK7ymaN.png',
+      variant:'primaryLarge'
     }
   ],
   onFriendsTapped: showAlert,
@@ -57,9 +61,10 @@ const storyProps: GamePlayedStoryProps = {
 const storyProps1: GamePlayedStoryProps = {
   friends:[
     {
-      firstName:'Josie',
+      username:'Josie',
       status:'offline',
-      imageUrl: 'https://i.imgur.com/LK7ymaN.png',
+      avatarUrl: 'https://i.imgur.com/LK7ymaN.png',
+      variant:'primaryLarge'
     }
   ],
   games:[
@@ -83,9 +88,10 @@ const storyProps1: GamePlayedStoryProps = {
 const storyProps2: GamePlayedStoryProps = {
   friends:[
     {
-      firstName:'Josie',
+      username:'Josie',
       status:'offline',
-      imageUrl: 'https://i.imgur.com/LK7ymaN.png',
+      avatarUrl: 'https://i.imgur.com/LK7ymaN.png',
+      variant: 'primaryLarge'
     }
   ],
   onFriendsTapped: showAlert,
