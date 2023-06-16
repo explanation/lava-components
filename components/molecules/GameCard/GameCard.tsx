@@ -159,7 +159,7 @@ const GameCard: React.FC<GameCardProps> = (props) => {
                 },
                 miniName:{
                     width:100,
-                    color: 'rgba(166, 166, 166, 1)',
+                    color: theme.colors.primarySand20,
                     marginTop: theme.spacing.md,
                     ...titleStyle,
                 },

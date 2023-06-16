@@ -12,6 +12,7 @@ export const colors = {
     primarySand: '#EAEADF',
     primarySand60: '#EAEADF99',
     primarySand40: '#EAEADF66',
+    primarySand20:'#A6A6A6',
 
     // Secondary Colors
     secondaryContainers: '#161E2C',
@@ -44,6 +45,7 @@ export const colors = {
     primarySand: '#EAEADF',
     primarySand60: '#EAEADF99',
     primarySand40: '#EAEADF66',
+    primarySand20:'#A6A6A6',
 
     // Secondary Colors
     secondaryContainers: '#161E2C',
