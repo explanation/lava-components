@@ -9,19 +9,21 @@ import {
   Dimensions,
 } from 'react-native'
 import useTheme from '../components/hooks/useTheme'
-import Avatar, {AvatarProps} from '../components/atoms/Avatar/Avatar'
+import {FriendDot, FriendDotProps} from '../components/molecules/Friend/FriendDot'
 
-const avatarProps: AvatarProps = {
+const avatarProps: FriendDotProps = {
   avatarUrl: 'https://i.imgur.com/LK7ymaN.png',
   username: 'Aden Bisop',
-  variant: 'primaryLarge'
+  variant: 'primaryLarge',
+  status: 'online'
 }
-const avatarProps2: AvatarProps = {
+const avatarProps2: FriendDotProps = {
   username: 'Joe Doe',
-  variant: 'primaryLarge'
+  variant: 'primaryLarge',
+  status: 'offline'
 }
 
-const AvatarScreen: React.FC = () => {
+const FriendDotScreen: React.FC = () => {
   const theme = useTheme()
 
   const styles = useMemo(
@@ -51,22 +53,19 @@ const AvatarScreen: React.FC = () => {
         <View style={styles.videoCardContainer}>
           <Text style={styles.label}>1. [Avatar image with variant primaryLarge]</Text>
           <View style={{flexDirection:'row'}}>
-            <Avatar {...avatarProps} style={{marginRight:10}}/>
-            <Avatar {...avatarProps2}/>
+            <FriendDot {...avatarProps}/>
           </View>
         </View>
         <View style={styles.videoCardContainer}>
-          <Text style={styles.label}>2. [Avatar image with variant primarySmall]</Text>
+          <Text style={styles.label}>1. [Avatar image with variant primarySmall]</Text>
           <View style={{flexDirection:'row'}}>
-            <Avatar {...avatarProps} variant='primarySmall' style={{marginRight:10}}/>
-            <Avatar {...avatarProps2} variant='primarySmall'/>
+            <FriendDot {...avatarProps} variant='primarySmall'/>
           </View>
         </View>
         <View style={styles.videoCardContainer}>
-          <Text style={styles.label}>3. [Avatar image with variant secondary]</Text>
+          <Text style={styles.label}>1. [Avatar image with variant secondary]</Text>
           <View style={{flexDirection:'row'}}>
-            <Avatar {...avatarProps} variant='secondary' style={{marginRight:10}}/>
-            <Avatar {...avatarProps2} variant='secondary'/>
+            <FriendDot {...avatarProps} variant='secondary'/>
           </View>
         </View>
       </ScrollView>
@@ -74,4 +73,4 @@ const AvatarScreen: React.FC = () => {
   )
 }
 
-export default AvatarScreen
+export default FriendDotScreen

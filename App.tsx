@@ -14,6 +14,7 @@ import GamePlayedStoryScreen from './catalog/GamePlayedStoryScreen'
 import ThemeScreen from './catalog/ThemeScreen'
 import AvatarScreen from './catalog/AvatarScreen'
 import FriendCircleScreen from './catalog/FriendCircleScreen'
+import FriendDotScreen from './catalog/FriendDotScreen'
 
 type Views =
   | 'ROOT'
@@ -27,7 +28,7 @@ type Views =
   | 'THEME'
   | 'AVATAR'
   | 'FRIENDCIRCLE'
-
+  | 'FRIENDDOT'
 
 const App = () => {
   const [view, setView] = useState<Views>('ROOT')
@@ -53,6 +54,9 @@ const App = () => {
           Pick a Screen{'\n\n'}
         </Text>
         <View style={styles.button}>
+          <Button onPress={() => setView('THEME')} title="Theme" />
+        </View>
+        <View style={styles.button}>
           <Button onPress={() => setView('GAME_CARD')} title="<GameCard />" />
         </View>
         <View style={styles.button}>
@@ -75,6 +79,9 @@ const App = () => {
         </View>
         <View style={styles.button}>
           <Button onPress={() => setView('GAME_PLAYED_STORY')} title="<GamePlayedStory />" />
+        </View>
+        <View style={styles.button}>
+          <Button onPress={() => setView('FRIENDDOT')} title="<FriendDot/>" />
         </View>
         <View style={styles.button}>
           <Button onPress={() => setView('NEW_VIDEO_STORY')} title="<NewVideoStory />" />
@@ -106,8 +113,9 @@ const App = () => {
       screen = <AvatarScreen/>
     } else if (view === 'FRIENDCIRCLE') {
       screen = <FriendCircleScreen/>
-    }
-     else {
+    }else if (view === 'FRIENDDOT') {
+      screen = <FriendDotScreen/>
+    }else {
       screen = <View />
     }
     content = (
