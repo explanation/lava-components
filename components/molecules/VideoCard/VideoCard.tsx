@@ -56,7 +56,7 @@ const VideoCard: React.FC<VideoCardProps> = (props) => {
             case 'feed':
                 return 214
             case 'secrets':
-                return 278
+                return 178
             case 'game-preview':
                 return 495
             case 'game-preview-mini':
@@ -77,7 +77,7 @@ const VideoCard: React.FC<VideoCardProps> = (props) => {
             case 'feed':
                 return 214
             case 'secrets':
-                return 278
+                return 178
             case 'game-preview':
                 return 481
             case 'game-preview-mini':
@@ -98,7 +98,7 @@ const VideoCard: React.FC<VideoCardProps> = (props) => {
             case 'feed':
                 return 120
             case 'secrets':
-                return 156
+                return 100
             case 'game-preview':
                 return 270
             case 'game-preview-mini':
@@ -155,6 +155,7 @@ const VideoCard: React.FC<VideoCardProps> = (props) => {
                     height: 12.38,
                     width: 33.61,
                     textAlign: 'center',
+                    color: 'white',
                 },
                 title: {
                     position: 'relative',
