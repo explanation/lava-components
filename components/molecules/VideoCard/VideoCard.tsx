@@ -8,6 +8,7 @@ import {LavaImage} from "../../atoms/LavaImage/LavaImage"
 export type VideoCardVariation =
     | 'feed'
     | 'secrets'
+    | 'related'
     | 'game-preview'
     | 'game-preview-mini'
     | 'playing'
@@ -54,8 +55,10 @@ const VideoCard: React.FC<VideoCardProps> = (props) => {
     const maxWidth = useMemo(() => {
         switch (variation) {
             case 'feed':
-                return 214
+                return 303
             case 'secrets':
+                return 278
+            case 'related':
                 return 178
             case 'game-preview':
                 return 495
@@ -75,8 +78,10 @@ const VideoCard: React.FC<VideoCardProps> = (props) => {
     const thumbnailWidth = useMemo(() => {
         switch (variation) {
             case 'feed':
-                return 214
+                return 303
             case 'secrets':
+                return 278
+            case 'related':
                 return 178
             case 'game-preview':
                 return 481
@@ -96,8 +101,10 @@ const VideoCard: React.FC<VideoCardProps> = (props) => {
     const thumbnailHeight = useMemo(() => {
         switch (variation) {
             case 'feed':
-                return 120
+                return 170
             case 'secrets':
+                return 156
+            case 'related':
                 return 100
             case 'game-preview':
                 return 270
@@ -248,7 +255,7 @@ const VideoCard: React.FC<VideoCardProps> = (props) => {
                     </View>
                 )}
 
-                {(variation === 'feed' || variation === 'secrets') && !showPlayButton &&
+                {(variation === 'feed' || variation === 'secrets' || variation == 'related') && !showPlayButton &&
                     <Fragment>
                         <View style={styles.thumbnailOverlay}/>
                         {props.duration != undefined && (props.duration > 0) &&
@@ -276,6 +283,7 @@ const VideoCard: React.FC<VideoCardProps> = (props) => {
 
             {(variation === 'feed' ||
                 variation === 'secrets' ||
+                variation === 'related' ||
                 variation === 'game-thumbnail') && (
                 <Fragment>
                     <View style={{flexDirection: 'row', alignItems: 'center'}}>
@@ -283,7 +291,8 @@ const VideoCard: React.FC<VideoCardProps> = (props) => {
                             numberOfLines={
                                 variation === 'feed' ||
                                 variation === 'game-thumbnail' ||
-                                variation === 'secrets'
+                                variation === 'secrets' ||
+                                variation === 'related'
                                     ? 2 // this was 1 but temporarily changing to 2 until we have a better design fix
                                     : 2
                             }
