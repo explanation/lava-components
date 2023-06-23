@@ -14,6 +14,7 @@ import GamePlayedStoryScreen from './catalog/GamePlayedStoryScreen'
 import ThemeScreen from './catalog/ThemeScreen'
 import AvatarScreen from './catalog/AvatarScreen'
 import FriendCircleScreen from './catalog/FriendCircleScreen'
+import NewGameCardScreen from './catalog/NewGameCardScreen'
 import FriendDotScreen from './catalog/FriendDotScreen'
 import FriendOfflineRowScreen from './catalog/FriendOfflineRowScreen'
 import FriendRowScreen from './catalog/FriendRowScreen'
@@ -30,6 +31,7 @@ type Views =
   | 'THEME'
   | 'AVATAR'
   | 'FRIENDCIRCLE'
+  | 'NEW_GAME_CARD'
   | 'FRIENDDOT'
   | 'FRIENDOFFLINEROW'
   | 'FRIENDROW'
@@ -99,6 +101,9 @@ const App = () => {
         <View style={styles.button}>
           <Button onPress={() => setView('THEME')} title="Theme" />
         </View>
+        <View style={styles.button}>
+          <Button onPress={() => setView('NEW_GAME_CARD')} title="<NewGameCard/>" />
+        </View>
       </View>
     )
   } else {
@@ -123,6 +128,8 @@ const App = () => {
       screen = <AvatarScreen/>
     } else if (view === 'FRIENDCIRCLE') {
       screen = <FriendCircleScreen/>
+    } else if (view === 'NEW_GAME_CARD') {
+      screen = <NewGameCardScreen/>
     } else if (view === 'FRIENDDOT') {
       screen = <FriendDotScreen/>
     } else if (view === 'FRIENDOFFLINEROW') {

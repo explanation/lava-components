@@ -1,12 +1,11 @@
 import React, { useMemo } from 'react'
-import { Image, StyleSheet, Pressable, View } from 'react-native'
+import { Image, StyleSheet, Pressable, View, ViewStyle } from 'react-native'
 import Label from '../../atoms/Label/Label'
 import Text from '../../atoms/Text/Text'
 import Title, { TitleVariation } from '../../atoms/Title/Title'
 import useTheme from '../../hooks/useTheme'
 
-export type TopicCardVariation = 'full' | 'mini' | 'icon'
-
+export type TopicCardVariation = 'full' | 'mini' | 'icon' | 'active' | 'idle'
 export interface TopicCardProps {
   thumbnailUrl: string
   notificationCount?: number
@@ -28,48 +27,138 @@ const TopicCard: React.FC<TopicCardProps> = (props) => {
 
   const theme = useTheme()
 
-  const maxWidth = useMemo(() => {
-    switch (variation) {
-      case 'full':
-        return 152
-      case 'mini':
-        return 132
-      case 'icon':
-        return 224
-      default:
-        return 0
+  const variants = {
+    active: {
+      wrapper:{
+        backgroundColor: '#1B1F23',
+        borderWidth: 0.5,
+        borderStyle: 'solid',
+        borderColor: 'rgba(255, 255, 255, 0.2)',
+        borderRadius: theme.roundness.md,
+        alignSelf: 'baseline'
+      },
+      container: {
+        opacity: 1,
+        
+      },
+      thumbnail: {
+        height: 128,
+        width: 128,
+        borderTopLeftRadius: theme.roundness.md,
+        borderTopRightRadius: theme.roundness.md,
+        borderBottomWidth: 0.5,
+        borderStyle: 'solid',
+        borderLeftWidth: 0,
+        borderRightWidth: 0,
+        borderTopWidth: 0,
+        borderBottomColor: 'rgba(234, 234, 223, 0.15)',
+        opacity: 0.8
+      },
+      title: {
+        marginTop: 0,
+        padding: 9
+      }
+    },
+    idle: {
+      wrapper:{
+        backgroundColor: '#1B1F23',
+        borderWidth: 0.5,
+        borderStyle: 'solid',
+        borderColor: 'rgba(255, 255, 255, 0.2)',
+        borderRadius: theme.roundness.md,
+        alignSelf: 'baseline'
+      },
+      container: {
+        opacity: 0.5,
+      },
+      thumbnail: {
+        height: 128,
+        width: 128,
+        borderTopLeftRadius: theme.roundness.md,
+        borderTopRightRadius: theme.roundness.md,
+        borderBottomWidth: 0.5,
+        borderStyle: 'solid',
+        borderLeftWidth: 0,
+        borderRightWidth: 0,
+        borderTopWidth: 0,
+        borderBottomColor: 'rgba(234, 234, 223, 0.15)',
+        opacity: 0.8
+      },
+      title: {
+        marginTop: 0,
+        padding: 9
+      }
+    },
+    full: {
+      wrapper:{},
+      container: {
+        width: 152,
+        opacity: 1,
+        padding: theme.spacing.xl,
+        flexDirection: 'column',
+        backgroundColor: theme.colors.secondaryContainers,
+        boxShadow: '1px 0px 5px rgba(0, 0, 0, 0.4)',
+      },
+      thumbnail: {
+        width: 132,
+        height: 99,
+      },
+      title: {}
+    },
+    mini: {
+      wrapper:{},
+      container: {
+        width: 132,
+        opacity: 1,
+        padding: 0,
+        flexDirection: 'column',
+        backgroundColor: 'transparent'
+      },
+      thumbnail: {
+        width: 132,
+        height: 99,
+      },
+      title: {}
+    },
+    icon: {
+      wrapper:{},
+      container: {
+        width: 224,
+        opacity: 1,
+        padding: 0,
+        flexDirection: 'row',
+        backgroundColor: 'transparent'
+      },
+      thumbnail: {
+        width: 52,
+        height: 36,
+        marginRight: 8
+      },
+      title: {
+        height: callout ? 12 : 14,
+        maxWidth: 164,
+        marginTop: 0,
+      }
     }
-  }, [])
+  }
 
   const styles = useMemo(
     () =>
       StyleSheet.create({
         container: {
-          maxWidth: maxWidth,
-          padding: variation === 'full' ? theme.spacing.xl : 0,
           borderRadius: theme.roundness.sm,
-          flexDirection: variation === 'icon' ? 'row' : 'column',
-          alignItems: 'center',
-          backgroundColor:
-            variation === 'full'
-              ? theme.colors.secondaryContainers
-              : 'transparent',
-          boxShadow:
-            variation === 'full' ? '1px 0px 5px rgba(0, 0, 0, 0.4)' : undefined,
         },
         thumbnail: {
-          width: variation === 'icon' ? 52 : 132,
-          height: variation === 'icon' ? 36 : 99,
           borderWidth: 0.5,
           borderRadius: theme.roundness.xs,
           borderColor: theme.colors.primarySand60,
-          marginRight: variation === 'icon' ? 8 : 0,
+          ...variants[variation].thumbnail
         },
         title: {
           position: 'relative',
-          height: variation === 'icon' ? (callout ? 12 : 14) : 28,
-          maxWidth: variation === 'icon' ? 164 : 132,
-          marginTop: variation === 'icon' ? 0 : theme.spacing.lg,
+          marginTop: theme.spacing.lg,
+          color: '#A6A6A6',
+          ...variants[variation].title
         },
         notificationLabelContainer: {
           position: 'absolute',
@@ -105,30 +194,31 @@ const TopicCard: React.FC<TopicCardProps> = (props) => {
   return (
     <Pressable
       onPress={handlePress}
-      style={({ pressed }) => [
-        styles.container,
-        { opacity: pressed ? 0.8 : 1 },
-      ]}
+      style={variants[variation].wrapper as ViewStyle}
     >
-      <Image source={{ uri: thumbnailUrl }} style={styles.thumbnail} />
+      <View style={[
+        styles.container,
+        variants[variation].container as ViewStyle
+      ]}>
+        <Image source={{ uri: thumbnailUrl }} style={styles.thumbnail} />
+        <View>
+          <Title
+            numberOfLines={variation === 'full' || variation === 'mini' ? 2 : 1}
+            style={styles.title}
+            variation={titleVariation}
+          >
+            {title}
+          </Title>
 
-      <View>
-        <Title
-          numberOfLines={variation === 'full' || variation === 'mini' ? 2 : 1}
-          style={styles.title}
-          variation={titleVariation}
-        >
-          {title}
-        </Title>
-
-        {callout && <Text style={styles.callout}>{callout}</Text>}
-      </View>
-
-      {notificationCount && (
-        <View style={styles.notificationLabelContainer}>
-          <Label count={notificationCount!} />
+          {callout && <Text style={styles.callout}>{callout}</Text>}
         </View>
-      )}
+
+        {notificationCount && (
+          <View style={styles.notificationLabelContainer}>
+            <Label count={notificationCount!} />
+          </View>
+        )}
+      </View>
     </Pressable>
   )
 }

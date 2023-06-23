@@ -34,7 +34,7 @@ const TopicCardScreen: React.FC = () => {
           padding: 20,
           justifyContent: 'center',
           width: Platform.OS === 'web' ? undefined : Dimensions.get('screen').width,
-          backgroundColor: '#58595e',
+          backgroundColor: 'black',
         },
         videoCardContainer: {
           marginBottom: 20,
@@ -82,6 +82,23 @@ const TopicCardScreen: React.FC = () => {
             variation="icon"
             title="Brookehaven"
             callout="Has a  new secret!"
+          />
+        </View>
+        <View style={styles.videoCardContainer}>
+          <Text style={styles.label}>5. [Card with idle state]</Text>
+          <TopicCard
+            {...commonTopicCardProps}
+            variation="idle"
+            title="Brookehaven"
+          />
+        </View>
+
+        <View style={styles.videoCardContainer}>
+          <Text style={styles.label}>6. [Card with active state]</Text>
+          <TopicCard
+            {...commonTopicCardProps}
+            variation="active"
+            title="Brookehaven"
           />
         </View>
       </ScrollView>
