@@ -1,12 +1,5 @@
 import React, {Fragment, useMemo} from 'react'
-import {
-    View,
-    StyleSheet,
-    Pressable,
-    ViewStyle,
-    TextStyle,
-} from 'react-native'
-import { LinearGradient } from 'expo-linear-gradient';
+import {Pressable, StyleSheet, TextStyle, View, ViewStyle,} from 'react-native'
 import Title from '../../atoms/Title/Title'
 import Label from '../../atoms/Label/Label'
 import Text from '../../atoms/Text/Text'
@@ -232,12 +225,6 @@ const GameCard: React.FC<GameCardProps> = (props) => {
     } else if (variation === 'mini') {
         content = (
             <View>
-                <LinearGradient 
-                    colors={['#0F1017', 'rgba(0, 0, 0, 0)']}
-                    start={{ x: 0.1, y: 0.87 }}
-                    locations={[0.0277, 0.5961]}
-                    style={styles.gradient}
-                />
                 <LavaImage source={{uri: imageUrl}} style={styles.minImage}/>
                 <Title numberOfLines={2} variation="subtitle3" style={styles.miniName}>{name}</Title>
             </View>
