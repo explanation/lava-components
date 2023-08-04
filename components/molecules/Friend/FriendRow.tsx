@@ -6,6 +6,7 @@ import FriendGroup from "./FriendGroup"
 import Title from "../../atoms/Title/Title"
 import {LavaImage} from "../../atoms/LavaImage/LavaImage"
 import {LinearGradient} from "expo-linear-gradient"
+import {TouchableRipple} from "react-native-paper"
 
 export type FriendRowProps =  {
     friendCircles: FriendDotProps[]
@@ -14,7 +15,7 @@ export type FriendRowProps =  {
     lastSeen?: string
     gameImageUrl?: string
     videoImageUrl?: string
-    onProfilePress?: () => void   
+    onPress?: () => void
     onActivityPress?: () => void  
     onProfileLongPress?: () => void 
     style?:  undefined
@@ -26,11 +27,11 @@ const renderNames = (names: string[]) =>
 
 export const FriendRow = (props: FriendRowProps) => {
     return(
-        <View style={styles.container}>
+        <TouchableRipple style={styles.container} onPress={props.onPress}>
             <View style={{flexDirection: 'row', alignItems: 'center', flex: 1}}>
                 {
-                    props.friendCircles.length === 1 ? <FriendDot {...props.friendCircles[0]} variant="secondary" onPress={props.onProfilePress}/> :
-                        <FriendGroup friendCircles={props.friendCircles} variation="friends" onPress={props.onProfilePress}/>
+                    props.friendCircles.length === 1 ? <FriendDot {...props.friendCircles[0]} variant="secondary"/> :
+                        <FriendGroup friendCircles={props.friendCircles} variation="friends"/>
                 }
                 <View style={styles.textContent}>
                     <Title variation="subtitle1" numberOfLines={2}>{renderNames(props.friendCircles.map(f => f.username || ""))}</Title>
@@ -58,7 +59,7 @@ export const FriendRow = (props: FriendRowProps) => {
                     <LavaImage source={require("./assets/video-play.png")} style={{height:24, width:24}}/>
                 </View>
             </Pressable>}
-        </View>
+        </TouchableRipple>
     )
 }
 
