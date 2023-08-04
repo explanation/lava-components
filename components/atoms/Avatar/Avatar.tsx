@@ -8,6 +8,7 @@ export type AvatarVariantType = "primaryLarge" | "primarySmall" | "secondary"
 export type AvatarProps = {
     avatarUrl?: string
     username?: string
+    icon?: any
     style?: StyleProp<ViewStyle>,
     variant: AvatarVariantType
     onPress?: () => void
@@ -77,6 +78,8 @@ const Avatar = (props: AvatarProps) => {
                         {initials()}
                     </Text>
                 </View>}
+
+                {props.icon}
             </View>
         </Pressable>
     )
