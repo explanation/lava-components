@@ -1,12 +1,10 @@
-// 
+//
 
-import {View, StyleSheet, Pressable} from "react-native"
-import theme from "../../config/theme"
+import {Pressable, StyleSheet, View} from "react-native"
 import {FriendDot, FriendDotProps} from "./FriendDot"
 import FriendGroup from "./FriendGroup"
 import Title from "../../atoms/Title/Title"
 import {LavaImage} from "../../atoms/LavaImage/LavaImage"
-import Avatar from "../../atoms/Avatar/Avatar"
 import {LinearGradient} from "expo-linear-gradient"
 
 export type FriendRowProps =  {
@@ -31,7 +29,7 @@ export const FriendRow = (props: FriendRowProps) => {
         <View style={styles.container}>
             <View style={{flexDirection: 'row', alignItems: 'center', flex: 1}}>
                 {
-                    props.friendCircles.length === 1 ? <FriendDot {...props.friendCircles[0]} variant="secondary"/> : 
+                    props.friendCircles.length === 1 ? <FriendDot {...props.friendCircles[0]} variant="secondary" onPress={props.onProfilePress}/> :
                         <FriendGroup friendCircles={props.friendCircles} variation="friends" onPress={props.onProfilePress}/>
                 }
                 <View style={styles.textContent}>
