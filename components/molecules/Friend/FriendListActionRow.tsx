@@ -19,7 +19,7 @@ export const FriendListActionRow = (props: FriendListActionRowProps) => {
     return(
         <TouchableRipple style={styles.container} onPress={props.onPress}>
             <View style={{flexDirection: 'row', alignItems: 'center', flex: 1}}>
-                <Avatar username={'Add User'} variant={'primaryLarge'} />
+                <Avatar username={'Add User'} variant={'secondary'} />
                 <View style={styles.textContent}>
                     <Title variation="subtitle1" numberOfLines={1}>{props.title}</Title>
                 </View>
