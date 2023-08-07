@@ -22,7 +22,7 @@ const renderNames = (names: string[]) =>
 
 export const GamePlayedStory = (props: GamePlayedStoryProps) => {
     return (
-        <View style={[styles.container, {maxWidth: props.games.length === 1 ? MAXIMUM_WIDTH_OF_FEED_STORY : undefined}]}>
+        <View style={[styles.container, {minWidth: 296, maxWidth: props.games.length === 1 ? MAXIMUM_WIDTH_OF_FEED_STORY : undefined}]}>
             <View style={styles.friendsContent}>
                 <View>
                     {
