@@ -16,10 +16,21 @@ export type FriendListActionRowProps =  {
 }
 
 export const FriendListActionRow = (props: FriendListActionRowProps) => {
+
+    const ActionIcon = () => {
+        switch (props.icon) {
+            case 'add-friend':
+                return <LavaImage source={require('./assets/icn-add-friend.png')}/>
+            case 'new-group':
+                return <LavaImage source={require('./assets/icn-new-group.png')}/>
+        }
+
+    }
+
     return(
         <TouchableRipple style={styles.container} onPress={props.onPress}>
             <View style={{flexDirection: 'row', alignItems: 'center', flex: 1}}>
-                <Avatar username={'Add User'} variant={'secondary'} />
+                <Avatar icon={ActionIcon()} variant={'secondary'} />
                 <View style={styles.textContent}>
                     <Title variation="subtitle1" numberOfLines={1}>{props.title}</Title>
                 </View>

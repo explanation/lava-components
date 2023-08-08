@@ -79,7 +79,9 @@ const Avatar = (props: AvatarProps) => {
                     </Text>
                 </View>}
 
-                {props.icon}
+                {props.icon && <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+                    {props.icon}
+                </View>}
             </View>
         </Pressable>
     )
