@@ -88,6 +88,7 @@ const styles = StyleSheet.create({
         flex: 1
     },
     text: {
+        color: '#FFFFFF',
         marginBottom: 3
     }
 })

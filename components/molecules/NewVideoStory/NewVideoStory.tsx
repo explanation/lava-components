@@ -30,16 +30,11 @@ export const NewVideoStory = (props: NewVideoStoryProps) => {
                 <View style={styles.rightContent}>
                     <Title style={styles.text} variation="title3" numberOfLines={1}>{props.book.title}</Title>
                     <Title style={styles.text} variation="title3" numberOfLines={1}>Has a new secret</Title>
-                    <Title variation="title3" numberOfLines={1}>{props.title}</Title>
+                    <Title style={styles.text} variation="title3" numberOfLines={1}>{props.title}</Title>
                     <View style={styles.videoContent}>
                         <View>
-                            <LinearGradient
-                                colors={['#0F1017', 'rgba(0, 0, 0, 0)']}
-                                start={{x: 0.1, y: 0.922}}
-                                locations={[0.0277, 0.5961]}
-                                style={styles.gradient}
-                            />
                             <LavaImage source={{uri: props.video.imageUrl}} style={styles.video}/>
+                            <LavaImage source={require('./video-overlay.png')} contentFit={'fill'} style={StyleSheet.absoluteFillObject} />
                             <View style={styles.playContent}>
                                 <LavaImage source={require("./play.png")} style={styles.play}/>
                             </View>
@@ -87,6 +82,7 @@ const styles = StyleSheet.create({
         flex: 1
     },
     text: {
+        color: "#FFFFFF",
         marginBottom: 3
     },
     video: {

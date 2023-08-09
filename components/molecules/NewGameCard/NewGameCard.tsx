@@ -92,7 +92,10 @@ const GameCard: React.FC<GameCardProps> = (props) => {
     return (
         <Pressable style={[styles.wrapper, styles.container]} onPress={onPress}>
             <View style={[{flex: 1, }, variants[variation]]}>
-                <LavaImage source={{uri: imageUrl}} style={styles.image}/>
+                <View>
+                    <LavaImage source={{uri: imageUrl}} style={styles.image}/>
+                    <LavaImage source={require('./game-overlay.png')} contentFit={'fill'} style={StyleSheet.absoluteFillObject} />
+                </View>
                 <View style={{flex: 1, padding:theme.spacing.lg}}>
                     <Title numberOfLines={2} variation="subtitle3" style={styles.name}>{name}</Title>
                     <View style={{flex: 1, justifyContent: 'flex-end'}}>

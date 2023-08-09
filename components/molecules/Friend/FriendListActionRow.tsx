@@ -32,7 +32,7 @@ export const FriendListActionRow = (props: FriendListActionRowProps) => {
             <View style={{flexDirection: 'row', alignItems: 'center', flex: 1}}>
                 <Avatar icon={ActionIcon()} variant={'secondary'} />
                 <View style={styles.textContent}>
-                    <Title variation="subtitle1" numberOfLines={1}>{props.title}</Title>
+                    <Title style={styles.text} variation="subtitle2" numberOfLines={1}>{props.title}</Title>
                 </View>
             </View>
         </TouchableRipple>
@@ -46,6 +46,9 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
         alignItems: 'center',
         width: 286
+    },
+    text: {
+        color: '#FFFFFF99'
     },
     textContent: {
         marginLeft: 12,

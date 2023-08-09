@@ -35,14 +35,14 @@ export const FriendRow = (props: FriendRowProps) => {
                             <FriendGroup friendCircles={props.friendCircles} variation="friends"/>
                     }
                     <View style={styles.textContent}>
-                        <Title variation="subtitle1" numberOfLines={2}>{renderNames(props.friendCircles.map(f => f.username || ""))}</Title>
+                        <Title style={styles.text} variation="subtitle2" numberOfLines={2}>{renderNames(props.friendCircles.map(f => f.username || ""))}</Title>
                         <View style={{flexDirection: 'row', alignItems: 'center'}}>
                             { (props.friendCircles.findIndex(f => f.status === 'online') > -1 || props.activity) &&
-                                <Title variation="subtitle1">{props.friendCircles.findIndex(f => f.status === 'online') > -1 && 'Online'}{props.activity && ","} {props.activity}</Title>
+                                <Title style={styles.text} variation="subtitle2">{props.friendCircles.findIndex(f => f.status === 'online') > -1 && 'Online'}{props.activity && ","} {props.activity}</Title>
                             }
                             {props.inRoblox && <LavaImage source={require("./assets/roblox.png")} style={{width:16, height:16, marginLeft: 6}}/>}
                         </View>
-                        {<Title variation="subtitle1" numberOfLines={2}>{props.lastSeen}</Title>}
+                        {<Title style={styles.text} variation="subtitle2" numberOfLines={2}>{props.lastSeen}</Title>}
                     </View>
                 </View>
                 {props.gameImageUrl && <Pressable onPress={props.onActivityPress}>
@@ -79,6 +79,9 @@ const styles = StyleSheet.create({
         paddingRight: 20,
         flex: 1,
         marginTop: 5
+    },
+    text: {
+        color: '#FFFFFF99'
     },
     playContent: {
         ...StyleSheet.absoluteFillObject,
