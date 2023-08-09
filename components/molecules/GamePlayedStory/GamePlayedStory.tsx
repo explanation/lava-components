@@ -1,6 +1,6 @@
 import React from 'react'
 import {Pressable, ScrollView, StyleSheet, View} from "react-native"
-import GameCard from '../GameCard/GameCard'
+import GameCard from '../NewGameCard/NewGameCard'
 import FriendGroup from '../Friend/FriendGroup'
 import Title from '../../atoms/Title/Title'
 import FriendCircle from '../Friend/FriendCircle'
@@ -55,7 +55,8 @@ export const GamePlayedStory = (props: GamePlayedStoryProps) => {
                             <GameCard
                                 key={game.title}
                                 containerStyle={{marginTop: 16, marginRight: index === props.games.length -1 ? 0 : 16}}
-                                variation={'mini'}
+                                variation={'active'}
+                                placement={'game-feed-story'}
                                 imageUrl={game.imageUrl}
                                 name={game.title}
                                 onPress={()=> game.onTapped?.()}

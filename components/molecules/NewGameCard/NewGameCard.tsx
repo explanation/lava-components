@@ -12,7 +12,7 @@ import {LavaImage} from "../../atoms/LavaImage/LavaImage"
 import LikeStat from '../LikeStat/LikeStat'
 
 export interface GameCardProps {
-    placement: 'game'|'topic'
+    placement: 'game'|'topic'|'game-feed-story'
     imageUrl?: string
     name: string
     onPress: () => void
@@ -54,10 +54,10 @@ const GameCard: React.FC<GameCardProps> = (props) => {
                     ...containerStyle,
                 },
                 container: {
-                    height: placement == 'game' ? 168 : 140,
+                    height: placement == 'topic' || placement == 'game-feed-story' ? 140 : 168 ,
                     width: 100,
-                    backgroundColor: '#1B1F23',
-                    borderWidth: 0.5,
+                    backgroundColor: placement == 'game-feed-story' ? 'transparent' : '#1B1F23',
+                    borderWidth: placement == 'game-feed-story' ? 0.0 : 0.5,
                     borderStyle: 'solid',
                     borderColor: 'rgba(255, 255, 255, 0.2)',
                     borderRadius: theme.roundness.md,
@@ -73,7 +73,18 @@ const GameCard: React.FC<GameCardProps> = (props) => {
                     borderRightWidth: 0,
                     borderTopWidth: 0,
                     borderBottomColor: 'rgba(234, 234, 223, 0.15)',
-                    opacity: 0.8
+                    opacity: 0.8,
+                    overflow: 'hidden'
+                },
+                imageFeedStory: {
+                    height: 100,
+                    width: 100,
+                    borderRadius: theme.roundness.md,
+                    borderWidth: 0.5,
+                    borderStyle: 'solid',
+                    borderColor: 'rgba(234, 234, 223, 0.15)',
+                    opacity: 0.8,
+                    overflow: 'hidden'
                 },
                 name: {
                     color: '#FFFFFFCC',
@@ -93,10 +104,14 @@ const GameCard: React.FC<GameCardProps> = (props) => {
         <Pressable style={[styles.wrapper, styles.container]} onPress={onPress}>
             <View style={[{flex: 1, }, variants[variation]]}>
                 <View>
-                    <LavaImage source={{uri: imageUrl}} style={styles.image}/>
+                    <LavaImage source={{uri: imageUrl}} style={placement == 'game-feed-story' ? styles.imageFeedStory : styles.image}/>
                     <LavaImage source={require('./game-overlay.png')} contentFit={'fill'} style={StyleSheet.absoluteFillObject} />
                 </View>
-                <View style={{flex: 1, padding:theme.spacing.lg}}>
+                <View style={{
+                    flex: 1,
+                    paddingTop: theme.spacing.lg,
+                    paddingHorizontal: placement == 'game-feed-story' ? 0 : theme.spacing.lg
+                }}>
                     <Title numberOfLines={2} variation="subtitle3" style={styles.name}>{name}</Title>
                     <View style={{flex: 1, justifyContent: 'flex-end'}}>
                         {noOfPlays > 0 && <View style={styles.secondaryContent}>
