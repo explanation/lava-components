@@ -54,7 +54,7 @@ const GameCard: React.FC<GameCardProps> = (props) => {
                     ...containerStyle,
                 },
                 container: {
-                    height: placement == 'topic' || placement == 'game-feed-story' ? 140 : 168 ,
+                    height: (placement == 'topic' || placement == 'game-feed-story') ? 140 : 168 ,
                     width: 100,
                     backgroundColor: placement == 'game-feed-story' ? 'transparent' : '#1B1F23',
                     borderWidth: placement == 'game-feed-story' ? 0.0 : 0.5,
@@ -109,7 +109,7 @@ const GameCard: React.FC<GameCardProps> = (props) => {
                 </View>
                 <View style={{
                     flex: 1,
-                    paddingTop: theme.spacing.lg,
+                    paddingVertical: theme.spacing.lg,
                     paddingHorizontal: placement == 'game-feed-story' ? 0 : theme.spacing.lg
                 }}>
                     <Title numberOfLines={2} variation="subtitle3" style={styles.name}>{name}</Title>
