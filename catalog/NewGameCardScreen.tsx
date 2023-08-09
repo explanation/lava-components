@@ -64,19 +64,19 @@ export default function NewGameCardScreen() {
         <View style={styles.cardsContainer}>
           <View style={styles.card}>
             <Text style={styles.label}>[Card with idle state]</Text>
-            <GameCard {...sampleGameData} onPress={showAlert} />
+            <GameCard {...sampleGameData} onPress={showAlert} placement={'game'} />
           </View>
           <View style={styles.card}>
             <Text style={styles.label}>[Card with active state]</Text>
-            <GameCard {...sampleGameData} variation='active' onPress={showAlert} />
+            <GameCard {...sampleGameData} variation='active' onPress={showAlert} placement={'game'} />
           </View>
           <View style={styles.card}>
             <Text style={styles.label}>[With no of games played]</Text>
-            <GameCard {...sampleGameData} variation='active' noOfPlays={90} onPress={showAlert} />
+            <GameCard {...sampleGameData} variation='active' noOfPlays={90} onPress={showAlert} placement={'game'} />
           </View>
           <View style={styles.card}>
             <Text style={styles.label}>[With no of likes]</Text>
-            <GameCard {...sampleGameData} variation='active' noOfLikes={7200000} onPress={showAlert} />
+            <GameCard {...sampleGameData} variation='active' noOfLikes={7200000} onPress={showAlert} placement={'game'} />
           </View>
         </View>
       </ScrollView>

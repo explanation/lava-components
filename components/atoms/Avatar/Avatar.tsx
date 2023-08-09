@@ -8,6 +8,7 @@ export type AvatarVariantType = "primaryLarge" | "primarySmall" | "secondary"
 export type AvatarProps = {
     avatarUrl?: string
     username?: string
+    icon?: any
     style?: StyleProp<ViewStyle>,
     variant: AvatarVariantType
     onPress?: () => void
@@ -76,6 +77,10 @@ const Avatar = (props: AvatarProps) => {
                     <Text style={[avatarVariantTexts[props.variant], styles.text]}>
                         {initials()}
                     </Text>
+                </View>}
+
+                {props.icon && <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+                    {props.icon}
                 </View>}
             </View>
         </Pressable>

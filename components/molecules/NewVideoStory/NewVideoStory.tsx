@@ -4,6 +4,7 @@ import Title from '../../atoms/Title/Title'
 import {LavaImage} from '../../atoms/LavaImage/LavaImage'
 import { LinearGradient } from 'expo-linear-gradient';
 import theme from '../../config/theme'
+import {TouchableRipple} from "react-native-paper"
 
 const DEFAULT_WIDTH_OF_VIDEO_STORY = 369
 
@@ -19,37 +20,37 @@ export interface NewVideoStoryProps {
 export const NewVideoStory = (props: NewVideoStoryProps) => {
 
     return (
-        <View style={[styles.container, {width: props.width ?? DEFAULT_WIDTH_OF_VIDEO_STORY}]}>
+        <TouchableRipple style={[styles.container, {width: props.width ?? DEFAULT_WIDTH_OF_VIDEO_STORY}]}
+                         onPress={props.onTapped}>
             <View style={styles.bookContent}>
                 <View>
-                    <View style={styles.overlay} />
+                    <View style={styles.overlay}/>
                     <LavaImage source={{uri: props.book.imageUrl}} style={styles.book}/>
                 </View>
                 <View style={styles.rightContent}>
                     <Title style={styles.text} variation="title3" numberOfLines={1}>{props.book.title}</Title>
-                    <Title  style={styles.text} variation="title3" numberOfLines={1}>Has a new secret</Title>
-                    <Title  variation="title3" numberOfLines={1}>{props.title}</Title>
+                    <Title style={styles.text} variation="title3" numberOfLines={1}>Has a new secret</Title>
+                    <Title style={styles.text} variation="title3" numberOfLines={1}>{props.title}</Title>
                     <View style={styles.videoContent}>
                         <View>
-                            <LinearGradient 
-                                colors={['#0F1017', 'rgba(0, 0, 0, 0)']}
-                                start={{ x: 0.1, y: 0.922 }}
-                                locations={[0.0277, 0.5961]}
-                                style={styles.gradient}
-                            />
                             <LavaImage source={{uri: props.video.imageUrl}} style={styles.video}/>
+                            <LavaImage source={require('./video-overlay.png')} contentFit={'fill'} style={StyleSheet.absoluteFillObject} />
                             <View style={styles.playContent}>
                                 <LavaImage source={require("./play.png")} style={styles.play}/>
                             </View>
                         </View>
                     </View>
                     <View style={styles.titleContent}>
-                        <Title style={[styles.text, {color:theme.colors.dark.primarySand20, width: props.showVerified ? '90%' : '100%'}]} variation="subtitle3" numberOfLines={2}>{props.video.title}</Title>
-                        {props.showVerified && <LavaImage source={require("./verified-mark.png")} style={styles.verifiedMarker}/>}
+                        <Title style={[styles.text, {
+                            color: theme.colors.dark.primarySand20,
+                            width: props.showVerified ? '90%' : '100%'
+                        }]} variation="subtitle3" numberOfLines={2}>{props.video.title}</Title>
+                        {props.showVerified &&
+                            <LavaImage source={require("./verified-mark.png")} style={styles.verifiedMarker}/>}
                     </View>
                 </View>
             </View>
-        </View>
+        </TouchableRipple>
     )
 }
 
@@ -81,6 +82,7 @@ const styles = StyleSheet.create({
         flex: 1
     },
     text: {
+        color: "#FFFFFF",
         marginBottom: 3
     },
     video: {

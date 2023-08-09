@@ -1,10 +1,10 @@
 import React from 'react'
 import {Pressable, ScrollView, StyleSheet, View} from "react-native"
-import GameCard from '../GameCard/GameCard'
+import GameCard from '../NewGameCard/NewGameCard'
 import FriendGroup from '../Friend/FriendGroup'
 import Title from '../../atoms/Title/Title'
-import FriendCircle from '../Friend/FriendCircle'
-import {FriendDotProps} from '../Friend/FriendDot'
+import FriendCircle, {FriendCircleProps} from '../Friend/FriendCircle'
+import {FriendDot, FriendDotProps} from '../Friend/FriendDot'
 import theme from '../../config/theme'
 
 const MAXIMUM_WIDTH_OF_FEED_STORY = 296
@@ -13,6 +13,7 @@ export interface GamePlayedStoryProps {
     onFriendsTapped?: ()=>void
     games: { title: string, imageUrl: string; onTapped?: ()=> void}[]
     timeAgo: string
+    minWidth?: number
     maxWidth?: number
 }
 
@@ -22,27 +23,27 @@ const renderNames = (names: string[]) =>
 
 export const GamePlayedStory = (props: GamePlayedStoryProps) => {
     return (
-        <View style={[styles.container, {maxWidth: props.games.length === 1 ? MAXIMUM_WIDTH_OF_FEED_STORY : undefined}]}>
+        <View style={[styles.container, {minWidth: props.minWidth ?? 296, maxWidth: (props.maxWidth) ?? props.games.length === 1 ? MAXIMUM_WIDTH_OF_FEED_STORY : undefined}]}>
             <View style={styles.friendsContent}>
                 <View>
                     {
-                        props.friends.length === 1  ?
-                            <Pressable onPress={props.onFriendsTapped}>
-                                <FriendCircle 
-                                    imageUrl={props.friends[0].avatarUrl} 
-                                    status={props.friends[0].status} 
-                                    containerSize={54} 
-                                    imageSize={54} 
-                                    gap={0}
-                                />
-                            </Pressable> :
-                            <View style={{marginTop: -10}}>
-                                <FriendGroup
-                                    friendCircles={props.friends}
-                                    onPress={props.onFriendsTapped}
-                                    variation='feed'
-                                />
-                            </View>
+                        props.friends.length === 1 ?
+                            <FriendDot
+                                username={props.friends[0].username}
+                                avatarUrl={props.friends[0].avatarUrl}
+                                status={props.friends[0].status}
+                                variant="secondary"
+                                onPress={props.onFriendsTapped}/> :
+                            <FriendGroup
+                                friendCircles={props.friends.map((f) => {
+                                    return {
+                                        username: f.username,
+                                        avatarUrl: f.avatarUrl,
+                                        status: f.status,
+                                        variant: 'primaryLarge'
+                                    }
+                                })}
+                                variation="friends"/>
                     }
                 </View>
                 <View style={styles.rightContent}>
@@ -55,7 +56,8 @@ export const GamePlayedStory = (props: GamePlayedStoryProps) => {
                             <GameCard
                                 key={game.title}
                                 containerStyle={{marginTop: 16, marginRight: index === props.games.length -1 ? 0 : 16}}
-                                variation={'mini'}
+                                variation={'active'}
+                                placement={'game-feed-story'}
                                 imageUrl={game.imageUrl}
                                 name={game.title}
                                 onPress={()=> game.onTapped?.()}
@@ -88,6 +90,7 @@ const styles = StyleSheet.create({
         flex: 1
     },
     text: {
+        color: '#FFFFFF',
         marginBottom: 3
     }
 })

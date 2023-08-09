@@ -12,11 +12,13 @@ import {LavaImage} from "../../atoms/LavaImage/LavaImage"
 import LikeStat from '../LikeStat/LikeStat'
 
 export interface GameCardProps {
+    placement: 'game'|'topic'|'game-feed-story'
     imageUrl?: string
     name: string
     onPress: () => void
     variation?: 'idle' | 'active'
     containerStyle?: ViewStyle
+    hasPlayed?: boolean
     noOfPlays?: number
     noOfLikes?: number
 }
@@ -32,13 +34,15 @@ const variants = {
 
 const GameCard: React.FC<GameCardProps> = (props) => {
     const {
+        placement,
         imageUrl,
         name,
         onPress,
         variation = 'idle',
         containerStyle = {},
         noOfPlays = 0,
-        noOfLikes = 0
+        noOfLikes = 0,
+        hasPlayed = false
     } = props
 
     const theme = useTheme()
@@ -50,16 +54,17 @@ const GameCard: React.FC<GameCardProps> = (props) => {
                     ...containerStyle,
                 },
                 container: {
-                    backgroundColor: '#1B1F23',
-                    borderWidth: 0.5,
+                    height: (placement == 'topic' || placement == 'game-feed-story') ? 140 : 168 ,
+                    width: 100,
+                    backgroundColor: placement == 'game-feed-story' ? 'transparent' : '#1B1F23',
+                    borderWidth: placement == 'game-feed-story' ? 0.0 : 0.5,
                     borderStyle: 'solid',
                     borderColor: 'rgba(255, 255, 255, 0.2)',
                     borderRadius: theme.roundness.md,
-                    alignSelf: 'baseline'
                 },
                 image: {
-                    height: 128,
-                    width: 128,
+                    height: 100,
+                    width: 100,
                     borderTopLeftRadius: theme.roundness.md,
                     borderTopRightRadius: theme.roundness.md,
                     borderBottomWidth: 0.5,
@@ -68,19 +73,27 @@ const GameCard: React.FC<GameCardProps> = (props) => {
                     borderRightWidth: 0,
                     borderTopWidth: 0,
                     borderBottomColor: 'rgba(234, 234, 223, 0.15)',
-                    opacity: 0.8
+                    opacity: 0.8,
+                    overflow: 'hidden'
+                },
+                imageFeedStory: {
+                    height: 100,
+                    width: 100,
+                    borderRadius: theme.roundness.md,
+                    borderWidth: 0.5,
+                    borderStyle: 'solid',
+                    borderColor: 'rgba(234, 234, 223, 0.15)',
+                    opacity: 0.8,
+                    overflow: 'hidden'
                 },
                 name: {
-                    width:112,
-                    color: '#A6A6A6',
+                    color: '#FFFFFFCC',
                 },
                 text:{
-                    color: '#A6A6A6',
+                    color: '#FFFFFFCC',
                 },
                 secondaryContent: {
-                    paddingTop: 20,
                     flexDirection: 'row',
-                    width: 112,
                     alignItems: 'center'
                 }
             }),
@@ -88,17 +101,30 @@ const GameCard: React.FC<GameCardProps> = (props) => {
     )
 
     return (
-        <Pressable style={[styles.wrapper, styles.container]}>
-           <View style={[variants[variation]]}>
-                <LavaImage source={{uri: imageUrl}} style={styles.image}/>
-                <View style={{padding:8}}>
-                    <Title numberOfLines={2} variation="subtitle1" style={styles.name}>{name}</Title>
-                    {noOfPlays > 0 && <View style={styles.secondaryContent}>
-                        <Title numberOfLines={2} variation="subtitle3" style={styles.text}>You</Title>
-                        <LavaImage source={require("./player.png")} style={{width:21, height: 16, marginLeft: 6, marginRight: 6}}/>
-                        <Title numberOfLines={2} variation="subtitle3" style={styles.text}>90 times</Title>
-                    </View>}
-                    {noOfLikes > 0 && <View style={styles.secondaryContent}><LikeStat likes={noOfLikes}/></View>}
+        <Pressable style={[styles.wrapper, styles.container]} onPress={onPress}>
+            <View style={[{flex: 1, }, variants[variation]]}>
+                <View>
+                    <LavaImage source={{uri: imageUrl}} style={placement == 'game-feed-story' ? styles.imageFeedStory : styles.image}/>
+                    <LavaImage source={require('./game-overlay.png')} contentFit={'fill'} style={StyleSheet.absoluteFillObject} />
+                </View>
+                <View style={{
+                    flex: 1,
+                    paddingVertical: theme.spacing.lg,
+                    paddingHorizontal: placement == 'game-feed-story' ? 0 : theme.spacing.lg
+                }}>
+                    <Title numberOfLines={2} variation="subtitle3" style={styles.name}>{name}</Title>
+                    <View style={{flex: 1, justifyContent: 'flex-end'}}>
+                        {noOfPlays > 0 && <View style={styles.secondaryContent}>
+                            <Title numberOfLines={1} variation="subtitle4" style={styles.text}>You</Title>
+                            <LavaImage source={require("./player.png")} contentFit={'contain'} style={{marginHorizontal: 4, width: 16, height: 12}}/>
+                            <Title numberOfLines={1} variation="subtitle4" style={styles.text}>{noOfPlays} times</Title>
+                        </View>}
+                        {hasPlayed && <View style={styles.secondaryContent}>
+                            <Title numberOfLines={1} variation="subtitle4" style={styles.text}>Recently</Title>
+                            <LavaImage source={require("./player.png")} contentFit={'contain'} style={{marginStart: 4, width: 16, height: 12}}/>
+                        </View>}
+                        {noOfLikes > 0 && <View style={styles.secondaryContent}><LikeStat likes={noOfLikes}/></View>}
+                    </View>
                 </View>
             </View>
         </Pressable>
