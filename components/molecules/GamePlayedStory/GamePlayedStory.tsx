@@ -13,6 +13,7 @@ export interface GamePlayedStoryProps {
     onFriendsTapped?: ()=>void
     games: { title: string, imageUrl: string; onTapped?: ()=> void}[]
     timeAgo: string
+    minWidth?: number
     maxWidth?: number
 }
 
@@ -22,7 +23,7 @@ const renderNames = (names: string[]) =>
 
 export const GamePlayedStory = (props: GamePlayedStoryProps) => {
     return (
-        <View style={[styles.container, {minWidth: 296, maxWidth: props.games.length === 1 ? MAXIMUM_WIDTH_OF_FEED_STORY : undefined}]}>
+        <View style={[styles.container, {minWidth: props.minWidth ?? 296, maxWidth: (props.maxWidth) ?? props.games.length === 1 ? MAXIMUM_WIDTH_OF_FEED_STORY : undefined}]}>
             <View style={styles.friendsContent}>
                 <View>
                     {
